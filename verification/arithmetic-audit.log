@@ -1,0 +1,20 @@
+✔ [7798/7808] Built SpectralTests.BandWitness (40s)
+✔ [7800/7808] Built SpectralTests.LayerGrowth (12s)
+✔ [7802/7808] Built SpectralTests.Parameters (16s)
+✔ [7804/7808] Built SpectralTests.WindowSize (13s)
+✔ [7806/7808] Built SpectralTests (9.1s)
+Build completed successfully (7808 jobs).
+'GoldbachSpectral.arithmetic_obstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral.arithmetic_real_zeros' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral.Audit.as_printed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral.spectral_conclusions' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral.gap_cube' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral.checked_window' depends on axioms: [propext, Classical.choice, Quot.sound]
+Lean default kernel accepts the solution
+[anonymous]:thmDecl FractionalIdeal.eq_one_div_of_mul_eq_one_right: lean4lean took 2922
+[anonymous]:thmDecl _private.SpectralTests.Record.0.GoldbachSpectral.no_inner_offset._proof_1_1: lean4lean took 7855
+checked 73669 declarations
+con-leche: 1 inductive blocks modelled in-process: Lean.Syntax (30 generated records, checked by the fold as declarations and not counted as records of the file)
+con-leche: accepted 73668 declarations (--verified)
+208D6FCF2F8DB99EB70DCC0B20B923AC3D9F90719B12CB3BCC5FDF8E5CA30597
+Lean, lean4lean, con-leche and nanoda accepted the same export.

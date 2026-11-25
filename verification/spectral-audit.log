@@ -1,0 +1,148 @@
+ℹ [3894/4226] Replayed MathlibNt.AnalyticNumberTheory.DirichletL.DirichletLAbelWeightVariation
+info: MathlibNt/AnalyticNumberTheory/DirichletL/DirichletLAbelWeightVariation.lean:88:8: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+info: MathlibNt/AnalyticNumberTheory/DirichletL/DirichletLAbelWeightVariation.lean:235:6: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [4113/4226] Replayed ActualLimits
+info: ActualLimits.lean:122:0: 'GoldbachSpectral435.some_actual_S_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4131/4226] Replayed BetaSampling
+info: BetaSampling.lean:117:0: 'GoldbachSpectral435.half_double_sampling' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4133/4226] Replayed Characters
+info: Characters.lean:203:0: 'GoldbachSpectral435.character_gram' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Characters.lean:204:0: 'GoldbachSpectral435.smooth_character_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4136/4226] Replayed Kernel
+info: Kernel.lean:120:0: 'GoldbachSpectral435.mixed_kernel_norms' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Kernel.lean:121:0: 'GoldbachSpectral435.mixed_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4137/4226] Replayed Residues
+info: Residues.lean:78:0: 'GoldbachSpectral435.broad_projection' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4138/4226] Replayed Progressions
+info: Progressions.lean:100:0: 'GoldbachSpectral435.smooth_class_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4139/4226] Replayed BetaCross
+info: BetaCross.lean:75:0: 'GoldbachSpectral435.half_cross_vanish' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4141/4226] Replayed Diagonal
+info: Diagonal.lean:71:0: 'GoldbachSpectral435.diagonal_test' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4142/4226] Replayed Quadratic
+info: Quadratic.lean:96:0: 'GoldbachSpectral435.doubled_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4143/4226] Replayed Samples
+info: Samples.lean:89:0: 'GoldbachSpectral435.finite_character_sample' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Samples.lean:90:0: 'GoldbachSpectral435.testVector_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4144/4226] Replayed Gram
+info: Gram.lean:93:0: 'GoldbachSpectral435.gram_projected' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Gram.lean:94:0: 'GoldbachSpectral435.projected_shifts' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4145/4226] Replayed Entry
+info: Entry.lean:129:0: 'GoldbachSpectral435.opposite_entry_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4146/4226] Replayed Energy
+info: Energy.lean:102:0: 'GoldbachSpectral435.norm_at_double_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: Energy.lean:103:0: 'GoldbachSpectral435.physical_rescale' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4150/4226] Replayed Opposite
+info: Opposite.lean:184:0: 'GoldbachSpectral435.actual_transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4154/4226] Replayed PhysicalAP
+info: PhysicalAP.lean:73:0: 'GoldbachSpectral435.physical_AP' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4163/4226] Replayed BandPNT
+info: BandPNT.lean:11:0: 'spectral_band_prime_number_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4201/4226] Replayed PrimeLower
+info: PrimeLower.lean:25:0: 'GoldbachSpectral435.cofinal_prime_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4202/4226] Replayed SpectralTestsAtScale
+info: SpectralTestsAtScale.lean:62:0: 'GoldbachSpectral435.R_forces_shifts' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: SpectralTestsAtScale.lean:63:0: 'GoldbachSpectral435.S_forces_shifts' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4203/4226] Replayed PrimeMass
+info: PrimeMass.lean:161:0: 'GoldbachSpectral435.principal_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PrimeMass.lean:162:0: 'GoldbachSpectral435.class_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PrimeMass.lean:163:0: 'GoldbachSpectral435.exceptional_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PrimeMass.lean:164:0: 'GoldbachSpectral435.missing_coprime' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4205/4226] Replayed ShiftMean
+info: ShiftMean.lean:68:0: 'GoldbachSpectral435.shifted_estimate' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4209/4226] Replayed RowMean
+info: RowMean.lean:98:0: 'GoldbachSpectral435.mean_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4210/4226] Replayed ModulusWitness
+info: ModulusWitness.lean:79:0: 'GoldbachSpectral435.modulus_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4212/4226] Replayed AtWindow
+info: AtWindow.lean:146:0: 'GoldbachSpectral435.large_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4213/4226] Replayed OriginalBounds
+info: OriginalBounds.lean:98:0: 'GoldbachSpectral435.actual_R_failure_of_growth' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: OriginalBounds.lean:99:0: 'GoldbachSpectral435.actual_S_failure_of_growth' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4214/4226] Replayed SpectralRefutation
+info: SpectralRefutation.lean:93:0: 'GoldbachSpectral435.prescribed_failure' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: SpectralRefutation.lean:94:0: 'GoldbachSpectral435.refute_R' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: SpectralRefutation.lean:95:0: 'GoldbachSpectral435.refute_S' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4215/4226] Replayed OriginalStatements
+info: OriginalStatements.lean:128:0: 'GoldbachSpectral435.common_zero_sequence' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: OriginalStatements.lean:129:0: 'GoldbachSpectral435.norm_lower_on_original' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: OriginalStatements.lean:130:0: 'GoldbachSpectral435.cofinal_original_zeros' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: OriginalStatements.lean:131:0: 'GoldbachSpectral435.primitive_GRH_spectral_consequences' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4222/4226] Replayed PositiveWidth
+info: PositiveWidth.lean:78:0: 'GoldbachSpectral435.guaranteed_width_and_log_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PositiveWidth.lean:79:0: 'GoldbachSpectral435.no_admissible_S_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4223/4226] Replayed ArithmeticWidths
+info: ArithmeticWidths.lean:159:0: 'GoldbachSpectral435.arbitrarily_large_test' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ArithmeticWidths.lean:160:0: 'GoldbachSpectral435.arithmeticH_admissible' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ArithmeticWidths.lean:161:0: 'GoldbachSpectral435.arithmetic_width_decay' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ArithmeticWidths.lean:162:0: 'GoldbachSpectral435.arithmetic_width_refuted' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [4224/4226] Built PaperPremise (14s)
+info: PaperPremise.lean:33:0: 'GoldbachSpectral435.paper_GRH_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: PaperPremise.lean:34:0: 'GoldbachSpectral435.paper_spectral_consequences' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [4225/4226] Built AnalyticAudit (11s)
+Build completed successfully (4226 jobs).
+'GoldbachSpectral435.some_actual_S_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.arbitrarily_large_test' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.arithmeticH_admissible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.arithmetic_width_decay' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.arithmetic_width_refuted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.large_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'spectral_band_prime_number_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.half_cross_vanish' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.half_double_sampling' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.character_gram' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.smooth_character_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.diagonal_test' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.norm_at_double_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.physical_rescale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.opposite_entry_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.gram_projected' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.projected_shifts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.mixed_kernel_norms' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.mixed_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.modulus_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.actual_transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.actual_R_failure_of_growth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.actual_S_failure_of_growth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.common_zero_sequence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.norm_lower_on_original' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.cofinal_original_zeros' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.primitive_GRH_spectral_consequences' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.paper_GRH_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.paper_spectral_consequences' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.physical_AP' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.guaranteed_width_and_log_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.no_admissible_S_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.cofinal_prime_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.principal_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.class_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.exceptional_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.missing_coprime' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.smooth_class_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.doubled_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.broad_projection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.mean_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.finite_character_sample' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.testVector_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.shifted_estimate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.prescribed_failure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.refute_R' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.refute_S' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.R_forces_shifts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.S_forces_shifts' depends on axioms: [propext, Classical.choice, Quot.sound]
+Lean default kernel accepts the solution
+checked 81790 declarations
+con-leche: 1 inductive blocks modelled in-process: Lean.Syntax (30 generated records, checked by the fold as declarations and not counted as records of the file)
+con-leche: accepted 81789 declarations (--verified)
+19BD90AC60B6839E18396260632B2490FC88A15892BCC0757F2D333F937207D9
+Lean, lean4lean, con-leche and nanoda accepted the same export.
