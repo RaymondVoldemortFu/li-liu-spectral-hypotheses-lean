@@ -27,6 +27,8 @@ def main():
     lake = shutil.which(args.lake)
     if not lake:
         parser.error("Lake executable not found")
+    lake = os.path.abspath(lake)
+
     # Keep child process output untouched, including the byte-oriented proof export.
     def run(argv, **kwargs):
         subprocess.run(argv, cwd=project, check=True, **kwargs)
@@ -41,7 +43,7 @@ def main():
         binary = shutil.which(name, path=checker_path)
         if not binary:
             parser.error(f"cannot find {name}. Set --checker-bin to the Lean 4.36 bin directory")
-        binaries[name] = binary
+        binaries[name] = os.path.abspath(binary)
 
     run([lake, "--wfail", "build", module])
     targets = (ROOT / "verification" / f"{args.project}-targets.txt").read_text().splitlines()

@@ -1,0 +1,4 @@
+*.lean text eol=lf
+*.tex text eol=lf
+*.py text eol=lf
+*.pdf binary

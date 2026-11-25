@@ -2,10 +2,10 @@
   "date": "2026-11-26",
   "primary_spectral_proof": {
     "export": "Analytic435/.lake/build/AnalyticAudit.ndjson",
-    "bytes": 700346597,
-    "sha256": "19bd90ac60b6839e18396260632b2490fc88a15892bcc0757f2d333f937207d9",
-    "lean4lean_declarations": 81790,
-    "con_leche_records": 81789,
+    "bytes": 701961326,
+    "sha256": "7a1c0b159e41615e1d0786f87655b2c0151fe4c70d945be065d1e03e099bda2a",
+    "lean4lean_declarations": 81859,
+    "con_leche_records": 81858,
     "kernels": [
       "leanchecker --from-export",
       "lean4lean --import",
@@ -20,7 +20,7 @@
       "Classical.choice",
       "Quot.sound"
     ],
-    "lake_jobs": 4226,
+    "lake_jobs": 4229,
     "entry_points": [
       "PaperPremise.paper_GRH_iff",
       "PaperPremise.paper_spectral_consequences",
@@ -35,9 +35,22 @@
       "ArithmeticWidths.arithmetic_width_refuted",
       "ActualLimits.some_actual_S_iff",
       "PositiveWidth.no_admissible_S_iff",
-      "PositiveWidth.guaranteed_width_and_log_gap"
+      "PositiveWidth.guaranteed_width_and_log_gap",
+      "ArithmeticWidths.record_exclusions_fail",
+      "SparsePrescriptions.sparse_failure",
+      "SparsePrescriptions.sparse_count",
+      "SparsePrescriptions.sparse_log_decay",
+      "SparsePrescriptions.sparse_log_failure",
+      "FiniteSamples.sampleBound_iff_norm",
+      "FiniteSamples.prescribed_S_iff_samples",
+      "FiniteSamples.log_S_iff_samples",
+      "FiniteSamples.no_S_iff_finite_obstructions",
+      "ShortShiftLimit.opposite_size",
+      "ShortShiftLimit.shift_log_scale_cap",
+      "ShortShiftLimit.short_shifts_below_log_scale"
     ],
-    "entry_point_notation": "File stem followed by theorem name. The Lean namespace is GoldbachSpectral435."
+    "entry_point_notation": "File stem followed by theorem name. The Lean namespace is GoldbachSpectral435.",
+    "export_roots": 49
   },
   "arithmetic_support": {
     "export": ".lake/build/Audit.ndjson",
@@ -52,7 +65,14 @@
       "nanoda"
     ],
     "lean": "4.36.0",
-    "mathlib": "fc4f59e577feb1a4956671bc04ac18aaaf8cd842"
+    "mathlib": "fc4f59e577feb1a4956671bc04ac18aaaf8cd842",
+    "lake_jobs": 7810,
+    "export_roots": 32,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
   },
   "external_grh": {
     "source": "https://math.mit.edu/~drew/grh/",
@@ -74,7 +94,8 @@
     "expanded_solution_sha256": "5ea74b912147c5c93cc2b6d70cc727cf908df2f62ac6a20480a3fa02f6be244e",
     "compressed_challenge_sha256": "c24ef99dab3556a52c7fb886e03cf22a242f3b96f82ae4cc40539e5d2f678ac6",
     "expanded_challenge_sha256": "bd484ac9886a96f26b1d9a7a59ebd45b7a70d102c015d4f31f9302bbdd6ab2b9",
-    "solution_bytes": 61570595788
+    "solution_bytes": 61570595788,
+    "log_paths": "Certificate file names in the public transcript omit the machine-specific directory."
   },
   "interface": {
     "normalized_type_sha256": "308c213b1f07af6ba095f1dd082f50b5fec51ed5861e986ea4908ea885a417cc",
@@ -90,16 +111,17 @@
     "check": "Explicit expression trees, including constants, universes and numerical instance arguments. Names of bound variables are ignored and two closed wrappers are unfolded. The two mathematical proofs were replayed as separate native exports."
   },
   "paper": {
-    "pdf": "output/pdf/Goldbach-Spectral.pdf",
-    "pdf_sha256": "4b147598575db79626fe1ae8a8ce20d1198ea88209e1d40e379cbcd5e599b078",
-    "tex": "output/pdf/Goldbach-Spectral.tex",
-    "tex_sha256": "d5e6acce50d58aea17f1ee41c6dadda284705b1179ada1ef75edc9615c690236",
-    "compiler": "XeLaTeX, two passes in a fresh directory containing only the manuscript",
+    "pdf": "paper/spectral-hypotheses.pdf",
+    "pdf_sha256": "d6a568adb65f0a62cadc92b394b3222ab8236a309fb0a93d0b94a6a324e7227c",
+    "tex": "paper/spectral-hypotheses.tex",
+    "tex_sha256": "db47c9c2ce332eb47173c78ab8b5b4e9720b94dc9beef57c3e2a09f8f6532cb0",
+    "compiler": "pdfLaTeX, two passes with the source alone in a fresh directory",
+    "pages": 8,
     "style": "A4, black on white"
   },
   "local_lean_sources": {
-    "count": 65,
-    "fingerprint_sha256": "14915aa0fd512602969aaa7ba9d158cb152e77ffd2c99cc2010337d3ddbb5f20",
+    "count": 68,
+    "fingerprint_sha256": "6375059524a1aa0b820ca782a9c9c484cc2672b06102c6bb020f5142f34aa2cb",
     "algorithm": "SHA256 of UTF-8 relative path, NUL, binary file SHA256, in ascending path order"
   },
   "source_release": {
@@ -112,12 +134,30 @@
   },
   "scope": {
     "R": "Refuted given primitive Dirichlet GRH. The GRH theorem was checked separately.",
-    "S": "Refuted for the inverse-log width family and a single narrower arithmetic-record prescription. The general existence assertion and h(N) = log N remain undecided by these results."
+    "S": "Sparse changes of any admissible prescription can force failure under the paper's GRH premise. The logarithmic prescription itself and existence of any successful prescription remain undecided. Both have exact finite kernel criteria."
   },
   "reproduction": {
     "native": "From Analytic435 run lake --wfail build AnalyticAudit with Lean 4.35.0.",
-    "local_replay": "Run Analytic435/check.ps1 and check.ps1 with the respective portable toolchains.",
+    "local_replay": "Run python verification/replay.py spectral and python verification/replay.py arithmetic. Python 3.11+, ripgrep, the pinned Lean toolchains and Lean 4.36 checker binaries are required.",
     "grh": "Use verification/Replay-GRH.ps1 with the two compressed files from the recorded certificate source, zstd and the pinned checker. Python and ripgrep must be on PATH.",
     "interface": "Run python verification/compare-interface.py challenge.ndjson Analytic435/.lake/build/AnalyticAudit.ndjson."
+  },
+  "fresh_checkout": {
+    "proof_revision": "aa26e76",
+    "project_build_caches": "empty",
+    "dependencies": "Reused pinned third-party packages and their compiled caches. Their Git revisions matched both manifests and their tracked files were clean.",
+    "spectral_jobs": 4229,
+    "arithmetic_jobs": 7810,
+    "spectral_export_rebuilt_twice": true,
+    "matching_spectral_sha256": "7a1c0b159e41615e1d0786f87655b2c0151fe4c70d945be065d1e03e099bda2a"
+  },
+  "chinese_companion": {
+    "pdf": "paper/spectral-hypotheses-zh.pdf",
+    "pdf_sha256": "37af75890b349f0d6d56676cd26135dfbdbf9b91f99ed4c8923f79d39ff4da7c",
+    "tex": "paper/spectral-hypotheses-zh.tex",
+    "tex_sha256": "4121f7082ad3580f248c0bb9e34817970078cbb213a1eb3821baa74e5c76c456",
+    "compiler": "XeLaTeX with Fandol fonts, two passes with the source alone in a fresh directory",
+    "pages": 8,
+    "style": "A4, black on white"
   }
 }

@@ -1,4 +1,4 @@
 .lake/
 __pycache__/
-output/*.zip
+/output/
 
