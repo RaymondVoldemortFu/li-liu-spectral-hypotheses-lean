@@ -13,5 +13,7 @@ The main Lean development imports the operator and the two hypotheses from the [
 
 From `Analytic435`, run `lake --wfail build AnalyticAudit` with the pinned Lean 4.35.0 toolchain. The auxiliary arithmetic project at the root uses Lean 4.36.0. The manuscript credits Yilin Liu’s opposite-shift construction and supplies an independent proof of the analytic inputs used here.
 
-The draft’s spectral development has passed Lean’s kernel with only its three standard axioms. The Dirichlet GRH premise is explicit in the Lean statements. The [GRH certificate source](https://math.mit.edu/~drew/grh/) and [replay script](verification/Replay-GRH.ps1) specify the separate external proof.
+Lean, lean4lean, con-leche and nanoda accepted the same export of the spectral results. Its only axioms are `propext`, `Classical.choice` and `Quot.sound`. The spectral theorems explicitly quantify the Dirichlet GRH premise. A separate local replay of the full GRH proof with con-leche in verified mode accepted 1,468,418 declarations and matched all five challenge statements. The primitive-character statement and seven mathematical definitions were compared across the two toolchain versions.
+
+The [verification manifest](verification/results.json) records the proof and manuscript hashes. The [spectral replay log](verification/spectral-audit.log), [external GRH replay](verification/grh-replay.log) and [statement comparison](verification/interface.log) contain the checker output. To reproduce the external check, use the [certificate files](https://math.mit.edu/~drew/grh/) with the [replay script](verification/Replay-GRH.ps1).
 

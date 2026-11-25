@@ -314,8 +314,13 @@ R 会给出 \(N\|T_N\|^2\le\Sg(N)(\log N)^3\le(\log N)^5\)，与 (1) 矛盾。
 \]
 因此现有上界还缺少抵消三个算子分量所需的定量估计。原算子能否满足 (11)，或能否满足 \({\rm S}(\log)\)，仍未判定。李--刘的定理 1.1 表明，在 \(G\) 下证明其中任意一个相应的 S 断言，便可得到原文的加权二元哥德巴赫渐近式 \cite{LL}。
 
-\paragraph{形式化范围。}
-上述有限筛、特征和平均、Mellin 配对以及谱结论在 Lean 4.35.0 中连接至李--刘项目所定义的 \texttt{residualOperator}、\texttt{HypothesisR} 和 \texttt{HypothesisS} \cite{LLLean}。定理 \ref{th:main} 的形式命题显式量化 \(G\)。定理 \ref{th:slow} 的形式命题保留每个模数自己的 GRH 条件。普通素数定理通过已证明的 \(\vartheta(x)/x\to1\) 引入；整个推导没有将移位和偏差或预印本的范数下界列作前提。关于 \(G\) 本身，Alpöge 公布的 Lean 4.33.1 证明及 Sutherland 发布的独立核验给出了本原狄利克雷特征在开临界带中的确切零点命题 \cite{GRH}。对每个导子整除 \(N\) 的特征作特化，即为本文的 \(\GRH(N)\)。两项证明使用的 Lean 和 Mathlib 版本不同。展开 GRH 命题的名称和数码 \(2\) 的辅助证明，再消去绑定变量名，两份导出中的显式 GRH 命题逐项相同。
+\clearpage
+\section*{形式化核验}
+上述有限筛、特征和平均、Mellin 配对以及谱结论在 Lean 4.35.0 中连接至李--刘项目所定义的 \texttt{residualOperator}、\texttt{HypothesisR} 和 \texttt{HypothesisS} \cite{LLLean}。定理 \ref{th:main} 的形式命题显式量化 \(G\)；另一个入口直接使用原文的“充分大偶数满足局部 GRH”条件。定理 \ref{th:slow} 的形式命题保留每个模数自己的 GRH 条件。普通素数定理使用已证明的 \(\vartheta(x)/x\to1\)。移位和偏差由有限容斥给出，范数下界由精确矩阵元推得。覆盖上述结果的同一份导出由 Lean 内核、lean4lean、con-leche 与 nanoda 分别重放。导出仅含 \texttt{propext}、\texttt{Classical.choice} 和 \texttt{Quot.sound} 三个标准公理。定理、证明及逐项核验记录见形式化附件 \cite{ThisLean}。
+
+对 \(G\) 本身，我们使用 Alpöge 的 Lean 4.33.1 证明与 Sutherland 发布的核验文件 \cite{GRH}。本次独立重放核对了压缩文件及解压文件的 SHA-256，再用 con-leche 的验证模式检查完整证明中的 1\,468\,418 项声明，并与独立命题文件逐项比较。五个目标均由证明给出，其中一个恰为本原狄利克雷特征在开临界带中的 GRH。证明导出只有上述三个标准公理。
+
+谱证明与 GRH 证明分别在各自的版本环境中核验。对导子整除 \(N\) 的特征作特化，即得本文使用的 \(\GRH(N)\)。展开 GRH 命题的名称和数码 \(2\) 的辅助证明，再消去绑定变量名，两份导出中的显式 GRH 命题逐项相同。另逐项比对了狄利克雷特征、本原性、导子、经过较小模数的分解、两个 \(L\) 函数定义及取实部运算。
 
 \begin{thebibliography}{9}
 \bibitem{LL} J. Li and J. Liu, \textit{A Conditional Proof of the Goldbach Conjecture},
@@ -328,6 +333,8 @@ R 会给出 \(N\|T_N\|^2\le\Sg(N)(\log N)^3\le(\log N)^5\)，与 (1) 矛盾。
 \bibitem{GRH} L. Alpöge, \href{https://alpo.ge/remark.pdf}{关于黎曼猜想证明的公告}, 20 November 2026.
 A. V. Sutherland, \href{https://math.mit.edu/~drew/grh/}{\textit{Verification files for the Lean proof of the Riemann Hypothesis}},
 24 November 2026，第五个经核对的命题。
+\bibitem{ThisLean} Codex, \textit{The Li--Liu spectral hypotheses in Lean}, 26 November 2026.
+\href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/tree/eb458a4}{带谱证明与核验记录的固定版本}。
 \end{thebibliography}
 \end{document}
 

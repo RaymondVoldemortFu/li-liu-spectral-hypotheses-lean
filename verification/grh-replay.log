@@ -1,0 +1,63 @@
+challenge.ndjson SHA256 bd484ac9886a96f26b1d9a7a59ebd45b7a70d102c015d4f31f9302bbdd6ab2b9
+solution.ndjson SHA256 5ea74b912147c5c93cc2b6d70cc727cf908df2f62ac6a20480a3fa02f6be244e
+solution.ndjson axiom declarations: Classical.choice, Quot.sound, propext
+con-leche: reading E:\AI2\science\Goldbach-Spectral\.lake\research\external-grh\challenge.ndjson
+con-leche: reading E:\AI2\science\Goldbach-Spectral\.lake\research\external-grh\solution.ndjson
+con-leche: checking: 1468418 declarations on 8 workers t=148.3s
+con-leche: check 73421 (5%) t=154.5s busy=7/8
+con-leche: check 146842 (10%) t=175.9s busy=7/8
+con-leche: check 220263 (15%) t=221.4s busy=7/8
+con-leche: check 293684 (20%) t=290.6s busy=7/8
+con-leche: check 367105 (25%) t=363.3s busy=7/8
+con-leche: check 440526 (30%) t=425.0s busy=7/8
+con-leche: check 513947 (35%) t=539.7s busy=7/8
+con-leche: check 587368 (40%) t=635.8s busy=7/8, oldest theorem PI.PC.loop_run._proof_1_1 (#571290) 23.088s
+con-leche: check 660789 (45%) t=729.0s busy=7/8
+con-leche: check 734209 (50%) t=790.0s busy=7/8
+con-leche: check 807630 (55%) t=867.0s busy=7/8
+con-leche: check 881051 (60%) t=994.2s busy=7/8
+con-leche: check 954472 (65%) t=1064.4s busy=7/8
+con-leche: check 1027893 (70%) t=1126.0s busy=7/8
+con-leche: check 1101314 (75%) t=1176.7s busy=7/8
+con-leche: check 1174735 (80%) t=1238.7s busy=7/8
+con-leche: check 1248156 (85%) t=1329.1s busy=7/8
+con-leche: check 1321577 (90%) t=1380.4s busy=7/8
+con-leche: check 1394998 (95%) t=1431.1s busy=7/8
+con-leche: check 1468418 (100%) t=1495.7s busy=0/8
+con-leche: check done: 1468418 declarations t=1495.8s (check 1347.5s)
+con-leche: done: parse 148.3s, check 1347.5s, 8 workers t=1495.8s
+con-leche: stats: phases: parse 148.3s (index 2.2s), check 1347.5s
+con-leche: stats: check pool: 1347.478s wall, 8 workers, 1468418 records, busy 10774.961s (99.9%); tail 0.187s after the last start, 8 busy then, 0.271s worker-time in it (18.1%)
+con-leche: stats: slowest checks: 53.518s theorem GlobalTheory.HeightCounting.SideCopy.LamCopy.lam_copy (#829554); 40.056s theorem GlobalTheory.HeightCounting.SideCopy.sigSpan_copy (#829660); 32.627s theorem PI.PC.loop_run._proof_1_1 (#571290); 20.897s theorem Formalism.IrreducibleCountingLemmas.GaloisIrreducibility.PrimeCountingLemmas.factorial_ladder_one_forty_one._proof_1_1 (#226690); 17.865s theorem GlobalTheory.PrimeRecip.table_ok._proof_1_1 (#570391)
+con-leche: checking: 51692 declarations on 8 workers t=1498.7s
+con-leche: check 2585 (5%) t=1498.8s busy=7/8
+con-leche: check 5170 (10%) t=1498.8s busy=7/8
+con-leche: check 7754 (15%) t=1498.9s busy=7/8
+con-leche: check 10339 (20%) t=1499.0s busy=6/8
+con-leche: check 12923 (25%) t=1499.0s busy=7/8
+con-leche: check 15508 (30%) t=1499.1s busy=7/8
+con-leche: check 18093 (35%) t=1499.2s busy=7/8
+con-leche: check 20677 (40%) t=1499.3s busy=7/8
+con-leche: check 23262 (45%) t=1499.4s busy=7/8
+con-leche: check 25846 (50%) t=1499.5s busy=7/8
+con-leche: check 28431 (55%) t=1499.7s busy=7/8
+con-leche: check 31016 (60%) t=1499.8s busy=7/8
+con-leche: check 33600 (65%) t=1500.0s busy=7/8
+con-leche: check 36185 (70%) t=1500.2s busy=7/8
+con-leche: check 38769 (75%) t=1500.4s busy=7/8
+con-leche: check 41354 (80%) t=1500.7s busy=7/8
+con-leche: check 43939 (85%) t=1500.9s busy=7/8
+con-leche: check 46523 (90%) t=1501.1s busy=7/8
+con-leche: check 49108 (95%) t=1501.4s busy=7/8
+con-leche: check 51692 (100%) t=1501.7s busy=0/8
+con-leche: check done: 51692 declarations t=1501.7s (check 3.0s)
+con-leche: done: parse 1498.7s, check 3.0s, 8 workers t=1501.7s
+con-leche: stats: phases: parse 1498.7s (index 0.7s), check 3.0s
+con-leche: stats: check pool: 3.036s wall, 8 workers, 51692 records, busy 23.823s (98.0%); tail 0.066s after the last start, 8 busy then, 0.224s worker-time in it (42.0%)
+con-leche: stats: slowest checks: 0.065s axiom LFunction_eq_zero_re (#51583); 0.065s axiom riemannHypothesis (#51215); 0.065s axiom riemannZeta_eq_zero_re (#51218); 0.065s axiom LFunction_ne_zero_of_half_lt_re (#51581); 0.064s axiom LFunction_eq_zero_re_of_isPrimitive (#51687)
+con-leche: accepted 51692 declarations, 5 axioms justified by the solution E:\AI2\science\Goldbach-Spectral\.lake\research\external-grh\solution.ndjson (1468418 declarations accepted) (--verified)
+con-leche: theorem riemannHypothesis justified by the solution
+con-leche: theorem riemannZeta_eq_zero_re justified by the solution
+con-leche: theorem LFunction_ne_zero_of_half_lt_re justified by the solution
+con-leche: theorem LFunction_eq_zero_re justified by the solution
+con-leche: theorem LFunction_eq_zero_re_of_isPrimitive justified by the solution

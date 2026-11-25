@@ -1,0 +1,123 @@
+{
+  "date": "2026-11-26",
+  "primary_spectral_proof": {
+    "export": "Analytic435/.lake/build/AnalyticAudit.ndjson",
+    "bytes": 700346597,
+    "sha256": "19bd90ac60b6839e18396260632b2490fc88a15892bcc0757f2d333f937207d9",
+    "lean4lean_declarations": 81790,
+    "con_leche_records": 81789,
+    "kernels": [
+      "leanchecker --from-export",
+      "lean4lean --import",
+      "con-leche --verified",
+      "nanoda"
+    ],
+    "lean": "4.35.0",
+    "mathlib": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "source": "https://github.com/subfish-zhou/conditional-goldbach-lean/tree/c55db645f3b4aed00374fe4aa1fcee2428c88c4b",
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "lake_jobs": 4226,
+    "entry_points": [
+      "PaperPremise.paper_GRH_iff",
+      "PaperPremise.paper_spectral_consequences",
+      "OriginalStatements.norm_lower_on_original",
+      "OriginalStatements.cofinal_original_zeros",
+      "OriginalStatements.common_zero_sequence",
+      "OriginalStatements.primitive_GRH_spectral_consequences",
+      "SpectralRefutation.refute_R",
+      "SpectralRefutation.refute_S",
+      "ArithmeticWidths.arithmeticH_admissible",
+      "ArithmeticWidths.arithmetic_width_decay",
+      "ArithmeticWidths.arithmetic_width_refuted",
+      "ActualLimits.some_actual_S_iff",
+      "PositiveWidth.no_admissible_S_iff",
+      "PositiveWidth.guaranteed_width_and_log_gap"
+    ],
+    "entry_point_notation": "File stem followed by theorem name. The Lean namespace is GoldbachSpectral435."
+  },
+  "arithmetic_support": {
+    "export": ".lake/build/Audit.ndjson",
+    "bytes": 585030296,
+    "sha256": "208d6fcf2f8db99eb70dcc0b20b923ac3d9f90719b12cb3bcc5fdf8e5ca30597",
+    "lean4lean_declarations": 73669,
+    "con_leche_records": 73668,
+    "kernels": [
+      "leanchecker --from-export",
+      "lean4lean --import",
+      "con-leche --verified",
+      "nanoda"
+    ],
+    "lean": "4.36.0",
+    "mathlib": "fc4f59e577feb1a4956671bc04ac18aaaf8cd842"
+  },
+  "external_grh": {
+    "source": "https://math.mit.edu/~drew/grh/",
+    "native_lean": "4.33.1",
+    "mathlib": "0df444a360eaa60ab8c11dca51a86af692955474",
+    "checker": "https://github.com/leanprover/con-leche/tree/5dc36dc15b7bee891a02406b78a8ac816a47baad",
+    "checker_toolchain": "4.36.0",
+    "mode": "--verified --jobs=8 --compare",
+    "solution_records": 1468418,
+    "challenge_records": 51692,
+    "challenge_statements_justified": 5,
+    "used_theorem": "LFunction_eq_zero_re_of_isPrimitive",
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "compressed_solution_sha256": "61a8938ad5f5e57397c1c0e3b954916af546d9004ade01c3555744a681b05381",
+    "expanded_solution_sha256": "5ea74b912147c5c93cc2b6d70cc727cf908df2f62ac6a20480a3fa02f6be244e",
+    "compressed_challenge_sha256": "c24ef99dab3556a52c7fb886e03cf22a242f3b96f82ae4cc40539e5d2f678ac6",
+    "expanded_challenge_sha256": "bd484ac9886a96f26b1d9a7a59ebd45b7a70d102c015d4f31f9302bbdd6ab2b9",
+    "solution_bytes": 61570595788
+  },
+  "interface": {
+    "normalized_type_sha256": "308c213b1f07af6ba095f1dd082f50b5fec51ed5861e986ea4908ea885a417cc",
+    "matched_definition_sha256": {
+      "DirichletCharacter": "ed99814e9481f1e887c30596cc098d0748329e944b4f6163e0ad63aa0bdf1c77",
+      "DirichletCharacter.IsPrimitive": "811b00286e351cb91469b56a7c78f5597be42b6f506ca927a6a9e471a9722e38",
+      "DirichletCharacter.conductor": "0e825180d3a848e1a7979e65488447aaaf75378588ea8630f351ef9b855f624d",
+      "DirichletCharacter.FactorsThrough": "ca2bb55e018faee2934c6f33d20c01fabc5759daaf97d7d6906ad3026ba7b56c",
+      "DirichletCharacter.LFunction": "2a4829590eea51d880ff015d1c4e3fd11bee588db448d232568b8314d039bd50",
+      "ZMod.LFunction": "d271adf3b535587fc8421fd9b5968ccaa482cf8db1104bc4c84e7a669372c017",
+      "Complex.re": "b77e1468cdea7371ee19258c7bc6851bb533707c8f8ead95b31df04d5ae233e4"
+    },
+    "check": "Explicit expression trees, including constants, universes and numerical instance arguments. Names of bound variables are ignored and two closed wrappers are unfolded. The two mathematical proofs were replayed as separate native exports."
+  },
+  "paper": {
+    "pdf": "output/pdf/Goldbach-Spectral.pdf",
+    "pdf_sha256": "4b147598575db79626fe1ae8a8ce20d1198ea88209e1d40e379cbcd5e599b078",
+    "tex": "output/pdf/Goldbach-Spectral.tex",
+    "tex_sha256": "d5e6acce50d58aea17f1ee41c6dadda284705b1179ada1ef75edc9615c690236",
+    "compiler": "XeLaTeX, two passes in a fresh directory containing only the manuscript",
+    "style": "A4, black on white"
+  },
+  "local_lean_sources": {
+    "count": 65,
+    "fingerprint_sha256": "14915aa0fd512602969aaa7ba9d158cb152e77ffd2c99cc2010337d3ddbb5f20",
+    "algorithm": "SHA256 of UTF-8 relative path, NUL, binary file SHA256, in ascending path order"
+  },
+  "source_release": {
+    "repository": "https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean",
+    "initial_proof_commit": "2470971a7502e3bc1906ba778cbe5cf09263e01f"
+  },
+  "original_article": {
+    "source": "https://mrc.sdu.edu.cn/english/info/1018/1514.htm",
+    "pdf_sha256": "998f35a787a2f568113fac12caf5a9a799f537e83a5e649be25f3a76ac81bc58"
+  },
+  "scope": {
+    "R": "Refuted given primitive Dirichlet GRH. The GRH theorem was checked separately.",
+    "S": "Refuted for the inverse-log width family and a single narrower arithmetic-record prescription. The general existence assertion and h(N) = log N remain undecided by these results."
+  },
+  "reproduction": {
+    "native": "From Analytic435 run lake --wfail build AnalyticAudit with Lean 4.35.0.",
+    "local_replay": "Run Analytic435/check.ps1 and check.ps1 with the respective portable toolchains.",
+    "grh": "Use verification/Replay-GRH.ps1 with the two compressed files from the recorded certificate source, zstd and the pinned checker. Python and ripgrep must be on PATH.",
+    "interface": "Run python verification/compare-interface.py challenge.ndjson Analytic435/.lake/build/AnalyticAudit.ndjson."
+  }
+}
