@@ -54,7 +54,7 @@ def recordIndex : ℕ → ℕ
 private theorem next_spec (g : ∀ N, GRH N) (j K : ℕ) :
     arithmeticRecordAt j K (nextRecord j K) := Nat.sInf_mem (next_exists g j K)
 
-private theorem record_increases (g : ∀ N, GRH N) : StrictMono recordIndex :=
+theorem record_increases (g : ∀ N, GRH N) : StrictMono recordIndex :=
   strictMono_nat_of_lt_succ fun j => (next_spec g (j+1) (recordIndex j)).1
 
 private theorem record_data (g : ∀ N, GRH N) (j : ℕ) :
@@ -121,27 +121,29 @@ theorem arithmetic_width_decay (g : ∀ N, GRH N) (j : ℕ) :
     rw [pow_succ] at pow
     nlinarith only [pow,pow_nonneg (zero_le_one.trans lg) (recordStage N)]
 
-/-- Failure for one prescribed width smaller than every fixed inverse power of
-log N. Its stage changes at arithmetic records, independently of the spectrum. -/
-theorem arithmetic_width_refuted (g : ∀ N, GRH N) : ¬HypothesisS arithmeticH := by
-  intro S
+/-- At every sufficiently late arithmetic record the prescribed exclusion fails. -/
+theorem record_exclusions_fail (g : ∀ N, GRH N) :
+    ∀ᶠ j in atTop, Even (recordIndex j) ∧
+      ∃ (inst : NeZero (recordIndex j)), ∃ ha : alpha (recordIndex j)<beta,
+        ¬@SpectralZeroFree (recordIndex j) inst (alpha (recordIndex j)) ha
+          (zeroFreeWidth (recordIndex j) arithmeticH) := by
   obtain ⟨C,cp,F,transfer⟩ := shiftTransfer_original
-  obtain ⟨K,claim⟩ := S.2.and evenEventually_large
+  obtain ⟨K,claim⟩ := evenEventually_large
   obtain ⟨L,cap⟩ := eventually_atTop.mp eventually_small_series
   have logs := Real.tendsto_log_atTop.comp (tendsto_natCast_atTop_atTop (R := ℝ))
   obtain ⟨V,coefficient⟩ := eventually_atTop.mp (logs.eventually_ge_atTop C)
-  let j := max (max F K) (max L V)
+  filter_upwards [eventually_ge_atTop (max (max F K) (max L V))] with j hj
   let N := recordIndex j
   have nj : j≤N := (record_increases g).id_le j
   obtain ⟨ev,_,H,P,b,test,hit⟩ := record_data g j
   change Even N at ev
-  obtain ⟨free,lar⟩ := claim N (by dsimp [j] at nj; omega) ev
+  have lar := claim N (by omega) ev
   obtain ⟨four,lp,ha⟩ := large_parameters lar
   let : NeZero N := ⟨by omega⟩
-  obtain ⟨lg,small⟩ := cap N (by dsimp [j] at nj; omega)
-  have cN : C≤Real.log N := coefficient N (by dsimp [j] at nj; omega)
+  obtain ⟨lg,small⟩ := cap N (by omega)
+  have cN : C≤Real.log N := coefficient N (by omega)
   have C2 : C≤(Real.log N)^2 := cN.trans (by nlinarith only [lg,sq_nonneg (Real.log N-1)])
-  have est := transfer N (by dsimp [j] at nj; omega) ev (g N) H P b test
+  have est := transfer N (by omega) ev (g N) H P b test
   have posP : 0<P := lt_of_lt_of_le zero_lt_one (test.one_le.trans test.width_le)
   have normalized : (Real.log N)^(j+8)<C*((N:ℝ)*(eligibleNorm N)^2) := by
     apply (mul_lt_mul_iff_right₀ (sq_pos_of_pos posP)).mp
@@ -151,10 +153,20 @@ theorem arithmetic_width_refuted (g : ∀ N, GRH N) : ¬HypothesisS arithmeticH 
   have gain := normalized.trans_le (scaled.trans_eq (mul_comm _ _))
   rw [show j+8=(j+6)+2 by omega,pow_add] at gain
   have large := (mul_lt_mul_iff_left₀ (sq_pos_of_pos lp)).mp gain
-  have f := free (g N) inferInstance ha
+  refine ⟨ev, inferInstance, ha, ?_⟩
+  intro f
   rw [width_stage N (by omega),show recordStage N=j from stage_at g j] at f
   exact (logWidth_fails (by omega : 0<N) lg small large)
     (squared_bound_of_exclusion j ev lar (g N) ha lg f)
+
+/-- A failure for a prescribed width smaller than every fixed inverse log power. -/
+theorem arithmetic_width_refuted (g : ∀ N, GRH N) : ¬HypothesisS arithmeticH := by
+  intro S
+  obtain ⟨K,free⟩ := S.2
+  obtain ⟨J,fail⟩ := eventually_atTop.mp (record_exclusions_fail g)
+  let j := max K J
+  obtain ⟨ev,inst,ha,no⟩ := fail j (le_max_right ..)
+  exact no (free _ ((le_max_left ..).trans ((record_increases g).id_le j)) ev (g _) inst ha)
 
 #print axioms arbitrarily_large_test
 #print axioms arithmeticH_admissible

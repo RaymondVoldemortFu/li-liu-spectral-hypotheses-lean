@@ -1,6 +1,6 @@
 name = "goldbachSpectral"
 version = "1.0.0"
-defaultTargets = ["SpectralTests"]
+defaultTargets = ["Audit"]
 
 [[require]]
 name = "mathlib"
@@ -12,3 +12,6 @@ name = "SpectralTests"
 
 [[lean_lib]]
 name = "BandPNT"
+
+[[lean_lib]]
+name = "Audit"

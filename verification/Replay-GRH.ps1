@@ -1,13 +1,13 @@
 [CmdletBinding()]
 param(
     [Parameter(Mandatory)] [string] $CertificateDirectory,
-    [Parameter(Mandatory)] [string] $Checker,
-    [Parameter(Mandatory)] [string] $Zstd,
+    [string] $Checker = 'con-leche',
+    [string] $Zstd = 'zstd',
     [int] $Jobs = 8
 )
 $ErrorActionPreference = 'Stop'
-$checkerPath = (Resolve-Path -LiteralPath $Checker).Path
-$zstdPath = (Resolve-Path -LiteralPath $Zstd).Path
+$checkerPath = (Get-Command $Checker -CommandType Application -ErrorAction Stop).Source
+$zstdPath = (Get-Command $Zstd -CommandType Application -ErrorAction Stop).Source
 $base = (Resolve-Path -LiteralPath $CertificateDirectory).Path
 
 # Source and checker revision are recorded beside this script in results.json.
@@ -42,6 +42,11 @@ foreach ($entry in $inputs) {
 }
 & python (Join-Path $PSScriptRoot 'check-axioms.py') (Join-Path $base $inputs[1].Name)
 if ($LASTEXITCODE -ne 0) { throw 'Unexpected axiom in the GRH solution export.' }
-& $checkerPath --verified "--jobs=$Jobs" '--progress=5%' --compare (Join-Path $base $inputs[0].Name) (Join-Path $base $inputs[1].Name)
-if ($LASTEXITCODE -ne 0) { throw "GRH proof or statement check failed with exit code $LASTEXITCODE" }
+Push-Location -LiteralPath $base
+try {
+    & $checkerPath --verified "--jobs=$Jobs" '--progress=5%' --compare $inputs[0].Name $inputs[1].Name
+    if ($LASTEXITCODE -ne 0) { throw "GRH proof or statement check failed with exit code $LASTEXITCODE" }
+} finally {
+    Pop-Location
+}
 
