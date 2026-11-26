@@ -122,10 +122,9 @@ theorem smooth_character_bound (f : ℝ → ℝ) (hf : ContDiff ℝ 4 f) {a b : 
     _ ≤ c*(((M:ℝ)^(1/4:ℝ)*q^2*K)*(∫ t,W t)) :=
       mul_le_mul_of_nonneg_left ((norm_integral_le_integral_norm _).trans iB) (norm_nonneg _)
     _ ≤ _ := by have hp := Real.rpow_nonneg mp.le (1/4:ℝ); nlinarith [mul_nonneg hp (sq_nonneg (q:ℝ))]
-/-- Exact inversion at the low Hardy contour. The physical scale M may be
-any integer at least the modulus of the character. -/
-theorem character_sampling {q : ℕ} [NeZero q] (hq : 4 ≤ q) (grh : GRH q)
-    (χ : Character q) (hc : χ ∈ oddCharacters q) (M : ℕ) (hm : q ≤ M)
+/-- Exact shifted Mellin inversion on every nonprincipal character. -/
+theorem nonprincipal_sampling {q : ℕ} [NeZero q] (hq : 4 ≤ q) (grh : GRH q)
+    (χ : Character q) (nonpr : χ≠1) (M : ℕ) (hm : q ≤ M)
     (f : ℝ → ℝ) (hf : ContDiff ℝ 4 f) {a b : ℝ} (support : Function.support f ⊆ Icc a b)
     (σ : ℝ) (hs : 0 < σ) (hu : σ ≤ 1) :
     let F := fun s : ℂ => (M:ℂ)^s*mellin (fun u => (f u:ℂ)) s*logDerivative χ s
@@ -133,7 +132,6 @@ theorem character_sampling {q : ℕ} [NeZero q] (hq : 4 ≤ q) (grh : GRH q)
       -(∑' i : ℕ, ((mangoldt (i+1):ℂ)*χ (i+1)/(i+1:ℕ)^(1/2:ℂ))*(f ((i+1:ℕ)/(M:ℝ)):ℂ)) := by
   intro F
   have mp : 0 < M := by omega
-  have nonpr := odd_character_ne_one χ (Finset.mem_filter.mp hc).2
   obtain ⟨A,hA,B⟩ := logDerivative_uniform_bound σ 1 hs hu
   have grow (x : ℝ) (hx : x ∈ Icc σ 1) (t : ℝ) :
       ‖logDerivative χ (line x t)‖ ≤ A*Real.log (M*(|t|+2))^2 := by
@@ -166,6 +164,17 @@ theorem character_sampling {q : ℕ} [NeZero q] (hq : 4 ≤ q) (grh : GRH q)
   unfold verticalMellin
   simp_rw [expanded χ M mp f _ (by norm_num [line] : (1/2:ℝ) < (line 1 _).re)]
   rw [integral_neg,mul_neg,neg_neg]
+
+/-- Exact inversion at the low Hardy contour. The physical scale M may be
+any integer at least the modulus of the character. -/
+theorem character_sampling {q : ℕ} [NeZero q] (hq : 4 ≤ q) (grh : GRH q)
+    (χ : Character q) (hc : χ ∈ oddCharacters q) (M : ℕ) (hm : q ≤ M)
+    (f : ℝ → ℝ) (hf : ContDiff ℝ 4 f) {a b : ℝ} (support : Function.support f ⊆ Icc a b)
+    (σ : ℝ) (hs : 0 < σ) (hu : σ ≤ 1) :
+    let F := fun s : ℂ => (M:ℂ)^s*mellin (fun u => (f u:ℂ)) s*logDerivative χ s
+    Integrable (fun t : ℝ => F (line σ t)) ∧ verticalMellin σ F =
+      -(∑' i : ℕ, ((mangoldt (i+1):ℂ)*χ (i+1)/(i+1:ℕ)^(1/2:ℂ))*(f ((i+1:ℕ)/(M:ℝ)):ℂ)) := by
+  exact nonprincipal_sampling hq grh χ (odd_character_ne_one χ (Finset.mem_filter.mp hc).2) M hm f hf support σ hs hu
 
 def characterSample {q : ℕ} (χ : Character q) (M : ℕ) (f : ℝ → ℝ) : ℂ :=
   ∑' i : ℕ, ((mangoldt (i+1):ℂ)*χ (i+1)/(i+1:ℕ)^(1/2:ℂ))*(f ((i+1:ℕ)/(M:ℝ)):ℂ)

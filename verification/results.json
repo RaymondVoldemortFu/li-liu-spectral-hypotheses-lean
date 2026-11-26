@@ -2,10 +2,10 @@
   "date": "2026-11-26",
   "primary_spectral_proof": {
     "export": "Analytic435/.lake/build/AnalyticAudit.ndjson",
-    "bytes": 701996103,
-    "sha256": "6fb6b9c4f9e8adf4f684d617390a6fbfcccce2ce11784b391c80d6dbbaf99e92",
-    "lean4lean_declarations": 81859,
-    "con_leche_records": 81858,
+    "bytes": 701993520,
+    "sha256": "9e7d20dea0b555c57e57e25a2f03ed5ae8a8970ec5221c74e35152c0f504d675",
+    "lean4lean_declarations": 81860,
+    "con_leche_records": 81859,
     "kernels": [
       "leanchecker --from-export",
       "lean4lean --import",
@@ -54,14 +54,14 @@
   },
   "existence_research": {
     "export": "Analytic435/.lake/build/ExistenceAudit.ndjson",
-    "bytes": 746521984,
-    "sha256": "972bbec1296693313162037ab0fe996ec6d456194b961c09f06b77904ee7b204",
+    "bytes": 750006147,
+    "sha256": "5cf1f009e7ae633d130349cc687bc57e8eea0ee4d840c2b1346cdb21188d401d",
     "lean": "4.35.0",
-    "export_roots": 150,
+    "export_roots": 163,
     "targets": "verification/existence-targets.txt",
     "log": "verification/existence-audit.log",
-    "lean4lean_declarations": 84051,
-    "con_leche_records": 84050,
+    "lean4lean_declarations": 84128,
+    "con_leche_records": 84127,
     "kernels": ["leanchecker --from-export", "lean4lean --import", "con-leche --verified", "nanoda"],
     "axioms": ["propext", "Classical.choice", "Quot.sound"]
   },
@@ -133,8 +133,8 @@
     "style": "A4, black on white"
   },
   "local_lean_sources": {
-    "count": 141,
-    "fingerprint_sha256": "474a0483fc4c73cd6ede12c19958f1dc8750066bf57974c1a1b3b8f135df9868",
+    "count": 150,
+    "fingerprint_sha256": "e7061e6f869e78920aa1a48c0ab17ec6164fc7a693c4ef0cb38426b84d5ca582",
     "algorithm": "SHA256 of UTF-8 relative path, NUL, binary file SHA256, in ascending path order"
   },
   "source_release": {

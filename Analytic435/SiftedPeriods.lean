@@ -129,6 +129,11 @@ private lemma blocks {d : ℕ} [NeZero d] (E : Finset (ZMod d)) (A q r : ℕ) :
     | succ m ih => rw [Nat.succ_mul,split,complete_period,ih,Nat.succ_mul]
   rw [split,full]
 
+/-- Exact count at any integral number of periods, including translated intervals. -/
+theorem interval_multiples {d : ℕ} [NeZero d] (E : Finset (ZMod d)) (A k : ℕ) :
+    intervalCount E A (k*d)=k*E.card := by
+  simpa [intervalCount] using blocks E A k 0
+
 /-- A translate costs at most one incomplete period, independently of the offset. -/
 theorem interval_error {d : ℕ} [NeZero d] (E : Finset (ZMod d)) (A Y : ℕ) :
     |(intervalCount E A Y:ℝ)-(Y:ℝ)*(E.card/d)|≤d := by

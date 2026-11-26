@@ -5,7 +5,7 @@ public import FirstBlockBound
 public import KernelIntegrability
 public import SingleScaleCriterion
 public import GoldbachPrimeCounts
-public import MixedPrimeLimit
+public import NearLineLimit
 public import MeanReflection
 public import EligibleModuli
 public import SecondMoment
