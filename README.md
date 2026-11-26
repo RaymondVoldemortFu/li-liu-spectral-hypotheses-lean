@@ -139,6 +139,19 @@ with an absolute constant $C$ independent of $N$ and $B$. Consequently, the unif
 
 The proof identifies the closure needed at one scale. For a smooth test $\phi$ supported on a compact subinterval of a right half-line, the equation $g+g'=\phi-e^{-d}\phi(\,\cdot-d)$ has a smooth compact solution on the same half-line for every $d\ge0$. This separates all integrable densities there. The resulting bound extends from real tests at $M=k_NN$ to complex Hardy vectors supported above $-\log M$ with the same constant. On the complement, the squared output energy is at most $C' L^{-4}$ times the squared input norm. Self-adjointness gives the stated error for the full operator. [Half-line separation](Analytic435/HalfLineTests.lean) · [Density at one scale](Analytic435/SingleScaleDensity.lean) · [Complex blocks](Analytic435/SingleScaleBound.lean) · [Norm estimate and equivalence](Analytic435/SingleScaleCriterion.lean)
 
+## An unconditional bound on mass in short intervals
+
+There is an absolute constant $C$ such that, for every even $N\ge 2^{64}$ and all integers $A,Y\ge0$ with $A+Y\le N+1$,
+
+$$
+\sum_{A\le n<A+Y}\Lambda(n)\Lambda(N-n)
+\le C\bigl(Y\mathfrak S(N)+\sqrt N(\log N)^2\bigr).
+$$
+
+The estimate applies to every translate of the interval. At a prime $p$, the sieve removes the residues $0$ and $N$, counting them once if they coincide. The Chinese remainder theorem gives every complete squarefree period. Each incomplete period has count error at most its length. In the Selberg sieve, at least half the Euler-product mass is retained on divisors up to $z^8$. This follows by bounding the logarithmic first moment, using $\sum_{p\le z}(\log p)/p\le 2\log z$. Choosing $z=\lfloor N^{1/64}\rfloor$ bounds the sieve remainder by a constant times $\sqrt N$. The estimate for $\psi-\theta$ controls the proper prime powers. [Selberg denominator](Analytic435/SieveDenominator.lean) · [Residue counts](Analytic435/SieveResidues.lean) · [Euler product](Analytic435/SieveEuler.lean) · [Interval sieve](Analytic435/GoldbachUpper.lean) · [Weighted count](Analytic435/WindowTightness.lean)
+
+For the original first-line counting measure, put $F_N(t)=t+H_N(t)/\mathfrak S(N)$. For $0\le s\le t\le1$ one has $0\le F_N(t)-F_N(s)\le C(t-s+1/N+(\log N)^2/\sqrt N)$. In particular, any sequence of intervals of vanishing relative length has vanishing normalized mass as the even moduli grow. The estimate gives upper bounds on concentration. Identifying the limiting mass on each interval still requires a prime-pair asymptotic. [Original counting measure](Analytic435/GoldbachIntervals.lean)
+
 ## Build the proofs
 
 Each project pins its Lean toolchain and Git dependencies. The main spectral project uses Lean 4.35.0. From the repository root, build it with Lake.
