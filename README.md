@@ -127,6 +127,18 @@ $$
 
 Consequently, a bound $\sup_{k\ge1}\|K_{N,k}\|_2=o(\mathfrak S(N))$ on eligible moduli would imply the existence assertion. The theorem proves the implication. Establishing decay requires cancellation between the prime counts and the line integrals. [Integral representation](Analytic435/CumulativeKernel.lean) · [Prime and model kernels](Analytic435/ThresholdDiscrepancy.lean) · [Norm estimate](Analytic435/KernelBound.lean)
 
+## One prescribed scale per modulus
+
+Put $L=\log N$ and $k_N=\lceil\exp(8L\log L)/N\rceil$. If every real compact test at this one scale satisfies $|D_N(k_N,f)|\le B E_N(k_N,f)$ for some $B\ge0$, then
+
+$$
+\|T_N\|\le B+\frac{C}{(\log N)^2}
+$$
+
+with an absolute constant $C$ independent of $N$ and $B$. Consequently, the uniform little-$o$ estimate on real tests at $k_N$ alone is equivalent to the full existence assertion. At each modulus the arithmetic and continuous terms at that scale involve only finitely many prime pairs and shifts. The remaining estimate must hold for every sufficiently large eligible even integer.
+
+The proof identifies the closure needed at one scale. For a smooth test $\phi$ supported on a compact subinterval of a right half-line, the equation $g+g'=\phi-e^{-d}\phi(\,\cdot-d)$ has a smooth compact solution on the same half-line for every $d\ge0$. This separates all integrable densities there. The resulting bound extends from real tests at $M=k_NN$ to complex Hardy vectors supported above $-\log M$ with the same constant. On the complement, the squared output energy is at most $C' L^{-4}$ times the squared input norm. Self-adjointness gives the stated error for the full operator. [Half-line separation](Analytic435/HalfLineTests.lean) · [Density at one scale](Analytic435/SingleScaleDensity.lean) · [Complex blocks](Analytic435/SingleScaleBound.lean) · [Norm estimate and equivalence](Analytic435/SingleScaleCriterion.lean)
+
 ## Build the proofs
 
 Each project pins its Lean toolchain and Git dependencies. The main spectral project uses Lean 4.35.0. From the repository root, build it with Lake.

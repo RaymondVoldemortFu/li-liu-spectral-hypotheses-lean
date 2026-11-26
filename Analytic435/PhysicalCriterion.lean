@@ -24,7 +24,7 @@ private lemma split_i {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ 
   rw [Complex.I_sq]
   ring
 
-private lemma real_splits (N : ℕ) [NeZero N] (even : Even N) (big : Real.exp 10<(N:ℝ))
+lemma real_splits (N : ℕ) [NeZero N] (even : Even N) (big : Real.exp 10<(N:ℝ))
     (g : GRH N) (ha : alpha N<beta) (x y : HardySpace (alpha N) beta) (hx : x∈tests N) (hy : y∈tests N) :
     let T := residualOperator ha N
     inner ℂ (x+Complex.I • y) (T (x+Complex.I • y))=inner ℂ x (T x)+inner ℂ y (T y) ∧

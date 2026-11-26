@@ -59,6 +59,25 @@ private theorem scale_vector (N M : ℕ) [NeZero N] (big : Real.exp 10<(N:ℝ)) 
   rw [mul_left_comm]
   rfl
 
+lemma atScale_add (N M : ℕ) [NeZero N] (mp : 0<M) (big : Real.exp 10<(N:ℝ))
+    {x y : HardySpace (alpha N) beta} (hx : AtScale N M mp x) (hy : AtScale N M mp y) :
+    AtScale N M mp (x+y) := by
+  obtain ⟨f,hf,rfl⟩ := hx
+  obtain ⟨j,hj,rfl⟩ := hy
+  exact ⟨f+j,summed hf hj,(testVector_add N M mp f j hf hj _ (1/9) (by norm_num) (sample_line big)).symm⟩
+
+lemma atScale_smul (N M : ℕ) [NeZero N] (mp : 0<M) (big : Real.exp 10<(N:ℝ)) (r : ℝ)
+    {x : HardySpace (alpha N) beta} (hx : AtScale N M mp x) : AtScale N M mp ((r:ℂ) • x) := by
+  obtain ⟨f,hf,rfl⟩ := hx
+  exact ⟨_,scaled r hf,(scale_vector N M big mp r f hf).symm⟩
+
+lemma atScale_zero (N M : ℕ) [NeZero N] (mp : 0<M) (big : Real.exp 10<(N:ℝ)) :
+    AtScale N M mp 0 := by
+  let hf : FiniteModelWeight (fun _ => 0) :=
+    ⟨contDiff_const,1/3,2/3,by norm_num,by norm_num,by norm_num,by simp⟩
+  have x : AtScale N M mp (testVector N M mp _ hf) := ⟨_,hf,rfl⟩
+  simpa using atScale_smul N M mp big 0 x
+
 theorem common_scale (N : ℕ) [NeZero N] (big : Real.exp 10<(N:ℝ)) {x y : HardySpace (alpha N) beta}
     (hx : x∈tests N) (hy : y∈tests N) :
     ∃ (k : ℕ) (kp : 0<k), AtScale N (k*N) (Nat.mul_pos kp (NeZero.pos N)) x ∧
