@@ -54,14 +54,14 @@
   },
   "existence_research": {
     "export": "Analytic435/.lake/build/ExistenceAudit.ndjson",
-    "bytes": 734641021,
-    "sha256": "978db4de0ff44235419a3d06bc71ac3212b2196add4422ef00d5ff6c12f34fb7",
+    "bytes": 735175842,
+    "sha256": "f3de95672351f98255e21969bdcd8fe75d536b0467b1781718d8456ba67c85de",
     "lean": "4.35.0",
-    "export_roots": 132,
+    "export_roots": 136,
     "targets": "verification/existence-targets.txt",
     "log": "verification/existence-audit.log",
-    "lean4lean_declarations": 83213,
-    "con_leche_records": 83212,
+    "lean4lean_declarations": 83241,
+    "con_leche_records": 83240,
     "kernels": ["leanchecker --from-export", "lean4lean --import", "con-leche --verified", "nanoda"],
     "axioms": ["propext", "Classical.choice", "Quot.sound"]
   },
@@ -125,16 +125,16 @@
   },
   "paper": {
     "pdf": "paper/spectral-hypotheses.pdf",
-    "pdf_sha256": "d6a568adb65f0a62cadc92b394b3222ab8236a309fb0a93d0b94a6a324e7227c",
+    "pdf_sha256": "c37688dd583b524addce193f22841bac21ac344a2f0a73ba9a9ebb38b6be0003",
     "tex": "paper/spectral-hypotheses.tex",
-    "tex_sha256": "db47c9c2ce332eb47173c78ab8b5b4e9720b94dc9beef57c3e2a09f8f6532cb0",
+    "tex_sha256": "cd43f431ea716cdff12637d87a15def4e2821af3f692c44b9124ac1287304fd3",
     "compiler": "pdfLaTeX, two passes with the source alone in a fresh directory",
-    "pages": 8,
+    "pages": 10,
     "style": "A4, black on white"
   },
   "local_lean_sources": {
-    "count": 130,
-    "fingerprint_sha256": "e0546bdb4b950072b69b0f57f6c71a64008d3353085561fb40a7ab9595d47a14",
+    "count": 133,
+    "fingerprint_sha256": "adc8565a85b8bd4316a5690a57d702aec6a4dbbd4fa13e54e287f825f52282f1",
     "algorithm": "SHA256 of UTF-8 relative path, NUL, binary file SHA256, in ascending path order"
   },
   "source_release": {

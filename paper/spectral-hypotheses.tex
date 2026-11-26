@@ -19,11 +19,11 @@
 \setlength{\emergencystretch}{1em}
 \title{Arithmetic obstructions and finite tests for the\\ Li--Liu spectral hypotheses}
 \author{Codex}
-\date{26 November 2026}
+\date{27 November 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
-Li and Liu deduce a weighted binary Goldbach asymptotic from a prescribed zero-free region for the spectral function of a residual operator. Under Dirichlet GRH we construct an arithmetic sequence on which the zero-free region fails. Any admissible prescription can be modified on an arbitrarily thin subsequence of these records to produce a counterexample. In particular, a failing prescription agrees with $\log N$ off a set containing at most $1+\lfloor\log_2 X\rfloor$ integers up to $X$, and its width is smaller than every fixed inverse power of $\log N$. We give an exact finite-matrix criterion for the unmodified prescription and for the existence of any admissible zero-free region. A Chebyshev bound shows why short opposite-shift tests cannot decide the logarithmic case by themselves. The construction also gives an independent derivation of the failure of Hypothesis R under Dirichlet GRH.
+Li and Liu deduce a weighted binary Goldbach asymptotic from a prescribed zero-free region for the spectral function of a residual operator. Under Dirichlet GRH we construct an arithmetic sequence on which the zero-free region fails. Any admissible prescription can be modified on an arbitrarily thin subsequence of these records to produce a counterexample. In particular, a failing prescription agrees with $\log N$ off a set containing at most $1+\lfloor\log_2 X\rfloor$ integers up to $X$, and its width is smaller than every fixed inverse power of $\log N$. We give an exact finite-matrix criterion for the unmodified prescription and for the existence of any admissible zero-free region. On the first physical scale, decay of the normalized quadratic form on its entire test family is equivalent to a uniform Hardy--Littlewood asymptotic for ordinary ordered prime pairs with a sharp cutoff in the first summand. An unconditional total variation estimate removes both von Mangoldt weights. The construction also gives an independent derivation of the failure of Hypothesis R under Dirichlet GRH.
 \end{abstract}
 
 \section{The hypotheses and the main results}
@@ -318,16 +318,111 @@ $|B_N(b_0)|\le\log(2N)\psi(2P)$, where $\psi(x)=\sum_{n\le x}\Lambda(n)$. Chebys
 
 For the moduli of Section~\ref{sec:transfer}, $P$ grows polynomially in $t$ and $N>2^{64t^9}/4$. The proposition applies even though the same tests prove Theorem~\ref{th:growth}. On the upper-bound side the Hilbert--Schmidt estimates give $\|T_N\|\ll(\log N)^2$ under local GRH \cite[Theorem 6.2]{LL}. By \eqref{eq:dict} they guarantee the width $c\SSg(N)/(N\log N)$ for a fixed $c>0$. The ratio of $\eta_{\log}$ to this width is $(\log N)^6/(c\SSg(N)^2)$ and tends to infinity. We have neither a uniform bound at the threshold \eqref{eq:sampleS} for $h=\log$ nor a cofinal strict violation at that threshold. The logarithmic prescription and the existence assertion of Theorem~\ref{th:exist} remain undecided here.
 
+\section{Prime counts on the first physical scale}\label{sec:sharp}
+
+For $0\le t\le1$ let $P_N(t)$ count ordered pairs of primes $p+q=N$ with $p<tN$. Put $L=\log N$, $a=1/L$ and $\beta=1/8$. Define a positive measure on $[0,1]$ by
+\[
+ \mu_N=\frac{1}{N\SSg(N)}
+ \sum_{\substack{n<N\\(n,N)=1}}\Lambda(n)\Lambda(N-n)\,\delta_{n/N},
+ \qquad F_N(t)=\mu_N([0,t)).
+\]
+For a real $f\in C_c^6(0,1)$ set $R_f(u)=f(u)f(1-u)$, $Df(u)=f(u)/2-u f'(u)$ and
+\begin{align*}
+ W_N(u)&=\frac{(Nu)^{2\beta}}{1+(Nu)^{2(\beta-a)}},&
+ E_N(f)&=\frac{1}{2\pi}\int_0^1 W_N(u)|Df(u)|^2\dd u,\\
+ Q_N(f)&=\SSg(N)\left(\int_0^1 R_f(u)\dd u-\int R_f\dd\mu_N\right).
+\end{align*}
+At scale $M=N$, $E_N(f)$ is the squared norm of the test vector, and $Q_N(f)$ is its quadratic form under $T_N$. To see the arithmetic identity, odd-character orthogonality gives the difference of the congruences $m\equiv n$ and $m\equiv-n\bmod N$ on units. For $0<n,m<N$ the first congruence is the diagonal and the second is $m+n=N$. The model on this range consists of the single reflected integral. The Mellin norm formula gives $E_N$ by changing variables $u=e^{-t}/N$ in the Fourier representation of the Hardy norm.
+
+\begin{theorem}\label{th:sharp}
+Along every sequence of eligible even moduli $N\to\infty$, the following limits are equivalent:
+\[
+ \sup_{0\ne f\in C_c^6(0,1;\mathbb R)}
+ \frac{|Q_N(f)|}{\SSg(N)E_N(f)}\longrightarrow0,
+ \qquad
+ \sup_{0\le t\le1}\left|\frac{L^2P_N(t)}{N\SSg(N)}-t\right|
+ \longrightarrow0.
+\]
+The existence of an admissible $h$ satisfying $\mathrm S(h)$ implies both limits.
+\end{theorem}
+
+\begin{lemma}\label{lm:totalvar}
+Uniformly for sufficiently large even $N$,
+\[
+ \left\|\mu_N-\frac{L^2}{N\SSg(N)}
+       \sum_{\substack{p+q=N\\p,q\ {\rm prime}}}\delta_{p/N}
+       \right\|_{\mathrm{TV}}
+ \ll \frac1L+\frac{L^2}{\sqrt N}.
+\]
+Here the norm of an atomic signed measure is the sum of the absolute masses of its distinct atoms.
+\end{lemma}
+\begin{proof}
+Write $A_N(I)$ for the number of ordered representations with first prime in an interval $I$ of $Y$ consecutive integers in $[0,N]$. We first establish
+\begin{equation}\label{eq:sharp-sieve}
+ L^2 A_N(I)\ll Y\SSg(N)+\sqrt N L^2.
+\end{equation}
+Take $z=\lfloor N^{1/64}\rfloor$, $R=z^8$ and $P=\prod_{p\le z}p$. At $p$ the forbidden residues $0,N$ have density $\nu_p=(1+\one_{p\nmid N})/p$. For squarefree $d\mid P$, the Chinese remainder theorem gives density $\nu_d=\prod_{p\mid d}\nu_p$ for $d\mid n(N-n)$. The error on any translated interval is at most $2d$, by separating complete periods from the two ends. The Selberg upper sieve therefore bounds the surviving count by $Y/G(R)+2R^4$, where
+\[
+ G(R)=\sum_{\substack{d\mid P\\d\le R}}\prod_{p\mid d}\frac{\nu_p}{1-\nu_p}.
+\]
+Indeed the optimal square weights satisfy $|\lambda_d|\le1$ and vanish for $d>R$. Summing the errors $2[d,e]$ over $d,e\le R$ gives $2R^4$. Normalize the unrestricted summands of $G$ to a probability measure. Each prime is included independently with probability $\nu_p$, so the expectation of $\log d$ is at most $4\log z$: the divisibility of $z!$ by prime powers gives $\sum_{p\le z}\log p/p\le2\log z$. Markov's inequality gives $G(R)\ge\frac12\prod_{p\le z}(1-\nu_p)^{-1}$. Multiplying the local factors and applying Mertens' product estimate gives $\prod_{p\le z}(1-\nu_p)\ll\SSg(N)/\log^2z$. There are at most $2(z+1)$ additional pairs with a summand at most $z$. This proves \eqref{eq:sharp-sieve}. Including proper prime powers, the corresponding sum of $\Lambda(n)\Lambda(N-n)$ over $I$ is $\ll Y\SSg(N)+\sqrt N L^2$, since $\psi(N)-\vartheta(N)\ll\sqrt N$ and each complementary weight is at most $L$.
+
+Let $b_n$ be the indicator that $n$ and $N-n$ are both prime. Telescoping $\log N-\log n$ and interchanging two finite sums gives
+\[
+ \sum_{n<N} b_n(L-\log n)
+ =\sum_{1\le v<N}\log(1+1/v)\sum_{n\le v}b_n
+ \ll \frac{N\SSg(N)}{L^2}+\sqrt N L.
+\]
+For the main term use $(v+1)\log(1+1/v)\le2$ in \eqref{eq:sharp-sieve}. The remaining logarithmic increments sum to $L$. Reflection gives the same bound at the other summand. On a prime pair,
+$0\le L^2-\log p\log q\le L[(L-\log p)+(L-\log q)]$.
+Removing proper prime powers costs $O(\sqrt N L)$ in unnormalized mass. A prime pair excluded by coprimality must have $p=q=N/2$ and costs at most $L^2$. Division by $N\SSg(N)$ proves the estimate, using $\SSg(N)>1$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{th:sharp}]
+Assume the quadratic limit. For fixed $f$, $W_N(u)\le(Nu)^{2/L}\le e^2$ gives a uniform bound for $E_N(f)$. Thus $\int R_f\dd\mu_N\to\int_0^1R_f\dd u$. Given an arbitrary real $\varphi\in C_c^6(0,1)$, choose a compact smooth $g$ equal to $1$ on the reflection of $\supp\varphi$. Then
+\[
+ R_{g+\varphi}(u)-R_{g-\varphi}(u)=2\{\varphi(u)+\varphi(1-u)\}.
+\]
+Both measures are invariant under $u\mapsto1-u$, so their integrals of $\varphi$ converge. The weighted version of \eqref{eq:sharp-sieve} gives
+\[
+ 0\le F_N(t)-F_N(s)\ll t-s+1/N+L^2/\sqrt N
+ \qquad(0\le s\le t\le1).
+\]
+Approximate $[0,t)$ from within by a smooth function with transition intervals of length $2d$ at either end. The displayed bound controls the lost mass by $O(d+1/N+L^2/\sqrt N)$, even at $t=1$. First send $N$ to infinity and then $d$ to zero. Monotonicity and interpolation on a finite mesh give $\sup_t|F_N(t)-t|\to0$. Lemma~\ref{lm:totalvar} transfers the limit to $P_N$.
+
+Conversely, the prime-count limit and Lemma~\ref{lm:totalvar} give $d_N=\sup_t|F_N(t)-t|\to0$. Put $H(t)=\SSg(N)(F_N(t)-t)$, $v(t)=1-e^{-Nt}$ and $B(t)=H(t)-tH(1)$. Integration by parts gives $Q_N(f)=\int_0^1 H R_f'\dd t$. We give the uniform estimates needed when the support of $f$ approaches an endpoint. Since $v(t)\ge Nt/(1+Nt)$ and the first and last intervals of length $1/N$ have no positive atom in their interiors,
+\[
+ |B(t)|\ll \SSg(N)(d_N+1/N)v(t)v(1-t).
+\]
+On $[1/N,1-1/N]$ both factors are bounded below. On the two end intervals $B(t)$ is linear and vanishes at the adjacent endpoint, which gives the stated estimate there.
+
+Write $g=vf$, $A=vtf'$ and $J=\int_0^1(vDf)^2\dd t$. Integration by parts, using $v'\ge0$, gives $\int A^2+\tfrac34\int g^2\le J$. Since $0\le tv'\le v$, this also bounds $\|tg'\|_2$ by a constant times $\sqrt J$. Hardy's inequality at the right endpoint applied to $tg$ yields
+$\|g/(1-t)\|_2\le\|g\|_2+2\|(tg)'\|_2\ll\sqrt J$.
+Cauchy--Schwarz after reflection therefore gives
+\[
+ \int_0^1 v(t)v(1-t)|R_f'(t)|\dd t\ll J,\qquad
+ \int_0^1|R_f(t)|\dd t\ll J.
+\]
+For the second estimate use $v(t)\ge t/2$ and
+$1/(t(1-t))=1/t+1/(1-t)$. Splitting at $Nt=1$ in the energy weight gives $v(t)^2\le2W_N(t)$, hence $J\le4\pi E_N(f)$. Finally $\int_0^1 tR_f'\dd t=-\int_0^1 R_f\dd t$. The two parts of $H=B+tH(1)$ give
+\[
+ |Q_N(f)|\ll\SSg(N)(d_N+1/N)E_N(f)
+\]
+uniformly in $f$. This proves the converse. The last implication follows from Theorem~\ref{th:exist} and $|Q_N(f)|\le\|T_N\|E_N(f)$. The other physical scales remain in the existence criterion for the full operator.
+\end{proof}
+
 \section*{Formal verification}
-The Lean statements import the residual operator, the quaternionic spectral function and the two hypotheses from the fixed revision of the Li--Liu formalization \cite{LLLean}. The proof supplement \cite{formal} connects the half-grid pairing, finite sieve, progression estimate and record construction to these definitions. The spectral theorems quantify their GRH premise where needed. Lean 4.35.0 produced byte-identical spectral exports in two builds, one from a fresh checkout. Lean, lean4lean, con-leche and nanoda accepted the same export. The lean4lean replay checked 81,859 declarations. An enumeration of the axiom records found precisely propositional extensionality, classical choice and quotient soundness.
+The formal proofs use the residual operator and the hypotheses of the Li--Liu formalization \cite{LLLean}. The original spectral export was reproduced byte for byte from a fresh checkout. The export containing Theorem~\ref{th:sharp} and Lemma~\ref{lm:totalvar} was accepted by Lean, lean4lean, con-leche and nanoda. The lean4lean replay checked 83,213 declarations. The axiom records contain propositional extensionality, classical choice and quotient soundness \cite{formal}.
 
-The primitive-character GRH statement has a separate Lean 4.33.1 certificate \cite{grh}. An independent verified-mode replay of the complete solution accepted 1,468,418 declarations and justified all five challenge statements. Across versions the normalized primitive-character proposition and seven definitions, including the $L$-function and primitivity, agreed as explicit expression trees. The supplement records both checks.
+A separate verified-mode replay of the Dirichlet GRH certificate \cite{grh} accepted 1,468,418 declarations and all five challenge statements. The primitive-character proposition and seven definitions, including the $L$-function and primitivity, agree across the two formal libraries \cite{formal}.
 
+\begingroup\small
 \begin{thebibliography}{9}
 \bibitem{LL} J. Li and J. Liu, \emph{A conditional proof of the Goldbach conjecture}, 13 November 2026. \href{https://mrc.sdu.edu.cn/english/info/1018/1514.htm}{Shandong University, Research Center for Mathematics}.
 \bibitem{YL} Y. Liu, \emph{Failure of the Li--Liu spectral hypothesis R under Dirichlet GRH}, 21 November 2026. \href{https://hexagonmath.org/2611.00788v1}{Hexagon 2611.00788v1}.
 \bibitem{LLLean} \emph{Conditional Goldbach in Lean}, revision \texttt{c55db645}. \href{https://github.com/subfish-zhou/conditional-goldbach-lean/tree/c55db645f3b4aed00374fe4aa1fcee2428c88c4b}{Formal definitions and proofs}.
 \bibitem{grh} L. Alp\"oge, \href{https://alpo.ge/remark.pdf}{Announcement of a proof of the Riemann hypothesis}, 20 November 2026. A. V. Sutherland, \emph{Verification files for the Lean proof of the Riemann hypothesis}, updated 25 November 2026. \href{https://math.mit.edu/~drew/grh/}{Certificates and challenge statements}.
-\bibitem{formal} Codex, \emph{The Li--Liu spectral hypotheses in Lean}, 2026. \href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/tree/aa26e76}{Proof sources, revision \texttt{aa26e76}}. \href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/tree/main/verification}{Verification records}.
+\bibitem{formal} Codex, \emph{The Li--Liu spectral hypotheses in Lean}, 2026. \href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/tree/9ae958a}{Proof sources, revision \texttt{9ae958a}}. \href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/tree/main/verification}{Verification records}.
 \end{thebibliography}
+\endgroup
 \end{document}

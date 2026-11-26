@@ -119,7 +119,9 @@ Subtracting $tH_N(1)$ from the cumulative error makes it vanish at both endpoint
 
 For $M=kN$, insert the identity $f(u)=-\int_u^1 (f(s)/\sqrt{s})'\sqrt{u}\,ds$ in both factors of the prime sum and each convolution. This gives a real kernel $C_{N,k}(s,t)$ on the unit square. The arithmetic term counts pairs with $n<Ms$ and $j<Mt$, with the original residue sign and the additional factor $\sqrt{nj}/M$. The model term integrates the same square-root weights over the three lines $v=u+\ell/k$, $u=v+\ell/k$ and $v=\ell/k-u$, with signs $+,+,-$.
 
-Let $a=1/\log N$, $\beta=1/8$, and put $b(u)^2=u^3(Mu)^{2\beta}/(1+(Mu)^{2(\beta-a)})$ on $0<u\le1$. If $K_{N,k}(s,t)=C_{N,k}(s,t)/(b(s)b(t))$ is square-integrable, then every real compact test satisfies
+Let $a=1/\log N$, $\beta=1/8$, and put $b(u)^2=u^3(Mu)^{2\beta}/(1+(Mu)^{2(\beta-a)})$ on $0<u\le1$. For every finite dilation $k\ge1$, the kernel $K_{N,k}(s,t)=C_{N,k}(s,t)/(b(s)b(t))$ is square-integrable on the full unit square. Each affine line is separated from the origin, and its contribution to $|C_{N,k}(s,t)|$ is bounded by a constant times $(st)^{3/2}$. After division by the energy factors, the square has an integrable majorant proportional to $(st)^{-1/4}$. The constant may depend on $N,k$. [Boundary estimates](Analytic435/ThresholdEdges.lean) · [Finite kernel](Analytic435/KernelEnvelope.lean) · [Square integrability](Analytic435/KernelIntegrability.lean)
+
+Every real compact test satisfies
 
 $$
 |D_N(k,f)|\le 2\pi\|K_{N,k}\|_{L^2((0,1)^2)}E_N(k,f).

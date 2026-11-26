@@ -2,7 +2,7 @@ module
 public import PhysicalHyperbola
 public import PhysicalCriterion
 public import FirstBlockBound
-public import KernelBound
+public import KernelIntegrability
 public import SingleScaleCriterion
 public import GoldbachPrimeCounts
 public import MeanReflection
