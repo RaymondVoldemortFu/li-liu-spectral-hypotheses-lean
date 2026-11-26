@@ -86,7 +86,14 @@ $$
 
 Both sums are finite. The model formula follows from Mellin inversion of the continued density after dilation. At $k=1$ the difference is $\mathfrak S(N)\int_0^1 f(u)f(1-u)\,du$ minus the reflected Mangoldt sum. [Dilation and inversion](Analytic435/Dilation.lean) · [Exact finite discrepancy](Analytic435/FiniteDiscrepancy.lean) · [First-scale identity](Analytic435/ReflectionModel.lean)
 
-The complex linear span of these real-weight vectors, with $k$ and $f$ allowed to vary, is dense in the full original Hardy space at each $N$. In Fourier time the test associated with a compact smooth profile $g$ pairs against $g+g'$. A cutoff argument recovers the Fourier–Laplace transform from these pairings at every real point of the strip. Analytic continuation then proves density. Obtaining uniform norm decay on the critical strip remains open here. [Time profiles](Analytic435/PhysicalTests.lean) · [Density theorem](Analytic435/PhysicalDensity.lean)
+Denote the displayed difference by $D_N(k,f)$. Let $E_N(k,f)$ be the squared norm of the test vector. Some admissible $h$ satisfies Hypothesis S if and only if, for every $\varepsilon>0$, every sufficiently large eligible even $N$ satisfies
+
+$$
+|D_N(k,f)|\leq \varepsilon\,\mathfrak S(N) E_N(k,f)
+\qquad\text{for every integer }k\geq 1\text{ and every real compact }C^6\text{ weight }f.
+$$
+
+At each such modulus, the least constant multiplying $E_N(k,f)$ is exactly $\|T_N\|$. One can put two tests on a common scale and take their real linear combinations there. The real and imaginary parts of a complex test contribute additively to its squared norm and to its residual quadratic form. These complex tests are dense in the original Hardy space. The uniform arithmetic estimate above remains open. [Density](Analytic435/PhysicalDensity.lean) · [Real and imaginary parts](Analytic435/TestCombinations.lean) · [Exact norm and existence criterion](Analytic435/PhysicalCriterion.lean)
 
 ## Build the proofs
 
