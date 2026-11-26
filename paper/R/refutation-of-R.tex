@@ -23,7 +23,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Li and Liu's Hypothesis R places every zero of a spectral function on the plane of real part one half. We give a Lean-verified refutation in their original normalization. For each integer $d\ge0$ there are arbitrarily large even $N$ for which $N\|T_N\|^2>(\log N)^d$. One sequence of real spectral zeros approaches $1$ faster than every fixed inverse power of $\log N$. The proof isolates a pair of opposite prime shifts and constructs a discrepancy by finite inclusion--exclusion. A formal proof of Dirichlet GRH supplies the local hypotheses in the original statement.
+Li and Liu's Hypothesis R places every zero of a spectral function on the quaternionic hyperplane of real part one half. We give a Lean-verified refutation in their original normalization. For each integer $d\ge0$ there are arbitrarily large even $N$ for which $N\|T_N\|^2>(\log N)^d$. One sequence of real spectral zeros approaches $1$ faster than every fixed inverse power of $\log N$. The proof isolates a pair of opposite prime shifts and constructs a discrepancy by finite inclusion--exclusion. A formal proof of Dirichlet GRH supplies the local hypotheses in the original statement.
 \end{abstract}
 
 \section{The spectral hypothesis}
@@ -35,7 +35,7 @@ Let $\Lambda$ be the von Mangoldt function. For even $N\ge4$, write
 \]
 Products indexed by $p$ are over primes. Write $G(N)$ for GRH in the open critical strip for primitive Dirichlet characters of conductors dividing $N$. Let $G$ denote the assertion that $G(N)$ holds for every sufficiently large even $N$. Each positive conductor divides arbitrarily large even integers, so $G$ is equivalent to GRH for all primitive Dirichlet characters. The verified Dirichlet GRH theorem supplies $G(N)$ for each positive $N$ \cite{grh,compact}.
 
-For $N>e^{10}$ satisfying $G(N)$, let $T_N$ be the Li--Liu compact selfadjoint residual operator on the Hardy strip $a_N<\Rea s<b$, where $a_N=1/\log N$ and $b=1/8$. We use their normalization $c=1$ throughout. Its nonzero eigenvalues $\mu_\nu$, counted with multiplicity, define
+Call an even $N>e^{10}$ satisfying $G(N)$ eligible. For each such $N$, let $T_N$ be the Li--Liu compact selfadjoint residual operator on the Hardy strip $a_N<\Rea s<b$, where $a_N=1/\log N$ and $b=1/8$. We use their normalization $c=1$ throughout. Its nonzero eigenvalues $\mu_\nu$, counted with multiplicity, define
 \[
  X_N(q)=\prod_\nu\left(1-\frac{4\mu_\nu^2}{\delta_N^2}\,q(1-q)\right)
  \qquad(q\in\mathbb H).
@@ -69,7 +69,7 @@ We specify the kernel used throughout. Put $L_\chi(s)=(L'/L)(1/2+s,\chi)$, $w=s+
        \sum_{\substack{\chi\bmod N\\\chi(-1)=-1}} L_\chi(s)\overline{L_\chi(\bar z)}
        -\sum_{(n,N)=1}\frac{\Lambda(n)^2}{n^{1+w}}-N^{-w}D_N(w)\mathcal B(s,z).
 \end{align*}
-Here $B$ is Euler's beta function. The weighted kernel is
+Here $B$ is Euler's beta function. On the Hardy strip the beta model above equals the analytically continued model in the definition of the residual operator, by the functional equation for $\zeta$ and the beta--gamma identity \cite{LL,LLLean}. The weighted kernel is
 $K_N(s,z)=\mathcal E_N(s,\bar z)/((1+s)(1+\bar z))$. The Hardy norm uses the sum of the two boundary $L^2(\mathbb R,\dd t)$ integrals. In this normalization $K_N(s,z)=\langle T_Nk_z,k_s\rangle$ for the evaluation vectors $k_s$ and the inner product linear in its first variable.
 
 Let $1\le H\le P<N/20$. A test is a real $b_0\in C^\infty_c(\mathbb R)$ supported in $[P,2P]$ and in an interval of length $H$, with $|b_0|\le1$ and $H|b_0'|\le1$. Write
@@ -106,7 +106,7 @@ Pairing each of the three kernels with this functional twice gives
 \end{align}
 For clarity, in the character term Mellin inversion first uses the absolutely convergent expansion of $-L'/L$. The move to $\Rea s=1/9$ crosses no pole for an odd character under $G(N)$. The diagonal is inverted termwise. For the last term use $w=s+z$ in the two Mellin integrals. The inner beta integral is the Mellin transform of $J_v$. The quotient of the sampling scales gives $2^w$. On $\Rea w>1$, $D_N(w)=\sum_{\ell\ge1}\SSg(\ell N)\ell^{-w}$, so inversion samples at $\ell/2$. The pole at $w=1$ is removable in the pairing because $\int_0^\infty J_v(y)\dd y=0$. This follows by interchanging the two integrals and using symmetry in their two arguments. Smooth compact support gives rapid vertical decay in the contour moves.
 
-Polarize \eqref{eq:pair} using $v=f+g,f,g$. The diagonal cross term is zero. In the beta cross term the translated and reflected copies of $g$ coincide on $\supp f$ at $y=1/2$ by symmetry. For $y=\ell/2$, $\ell\ge2$, both vanish there. Also $g(u)f(u+y)=0$ for every such $y$, and the two reflected cross terms have equal integral. The odd-character projection is the difference of the equal- and opposite-residue indicators on units. For $m$ with $f(m/M)\ne0$ only the two samples $N+m,N-m$ contribute from $g$, both with value one. Thus the real part of the mixed matrix element is $-B_N(b_0)/M$.
+Polarize \eqref{eq:pair} using $v=f+g,f,g$. The diagonal cross term is zero. In the beta cross term the translated and reflected copies of $g$ coincide on $\supp f$ at $y=1/2$ by symmetry. For $y=\ell/2$, $\ell\ge2$, both vanish there. Also $g(u)f(u+y)=0$ for every such $y$, and the two reflected cross terms have equal integral. The odd-character projection is the difference of the equal- and opposite-residue indicators on units. For $m$ with $f(m/M)\ne0$ only the two samples $N+m,N-m$ contribute from $g$, both with value one. Thus $\langle T_N x_f,x_g\rangle+\langle T_N x_g,x_f\rangle=-2B_N(b_0)/M$. Bounding both terms by $\|T_N\|\,\|x_f\|\,\|x_g\|$ gives $|B_N(b_0)|/M\le\|T_N\|\,\|x_f\|\,\|x_g\|$.
 
 Mellin Plancherel for the weighted functional gives
 \[
@@ -195,11 +195,18 @@ For any given $d$ take odd $k$ with $2k>9d$ and let $t$ tend to infinity.
 For fixed $d$, the choice of $k$ in \eqref{eq:winning} gives the asserted strict lower bound for all sufficiently large $t$ in the construction. In particular the resulting moduli are unbounded. To compare with the critical-line condition, write the odd prime divisors of $N$ in increasing order as $p_1,\dots,p_r$. Since $p_i\ge i+2$, their correction factors have product at most $\prod_{i=1}^r(1+1/i)=r+1$. Also $2^r\le N$ and $C_2\le1$. Hence $\SSg(N)\le(\log N)^2$ eventually. R would give
 $N\|T_N\|^2\le N\delta_N^2\le(\log N)^5$ at all sufficiently large even $N$. The case $d=5$ contradicts this bound.
 
-For each $i\ge1$ choose such a modulus $N_i$ beyond its predecessor with $d=i+5$ and $\log N_i>2$. At an extremal eigenvalue put $y_i=\delta_{N_i}^2/\|T_{N_i}\|^2<(\log N_i)^{-i}$. The larger real root satisfies
+For an integer $j\ge0$ set $\eta_j(N)=1/(4(\log N)^j)$. On the large moduli it is at most $1/4$. If all zeros satisfied $\Rea q\le1-\eta_j(N)$ eventually, the zero-free half-space equivalence of Li and Liu's Theorem~6.1 would give
 \[
-  0<1-x_i=\frac{y_i}{2(1+\sqrt{1-y_i})}\le y_i/2 .
+ N\|T_N\|^2\le\frac{\SSg(N)(\log N)^3}{4\eta_j(N)(1-\eta_j(N))}
+             \le \tfrac43(\log N)^{j+5}.
 \]
-This gives the simultaneous limits.
+The cofinal lower bound with $d=j+6$ contradicts this inequality. Thus arbitrarily large even $N$ have a zero with $\Rea q>1-\eta_j(N)$. At such a zero the quadratic factor gives $q(1-q)=\delta_N^2/(4\mu_\nu^2)\in\mathbb R_{>0}$. The imaginary part is $(1-2\Rea q)\operatorname{Im}q$, so $q$ is real and belongs to $(1-\eta_j(N),1)$.
+
+Choose these zeros successively with $j=i$ and $N_i>N_{i-1}$. For every fixed $d$ and $i\ge d+1$ sufficiently large,
+\[
+ 0<(\log N_i)^d(1-x_i)<\tfrac14(\log N_i)^{d-i}\le \frac1{4\log N_i}.
+\]
+This proves the simultaneous limits.
 \end{proof}
 
 \section*{Formal statement and verification}
@@ -208,7 +215,7 @@ The final Lean theorem has type
                  \texttt{GoldbachSpectral435.Unconditional.not\_R}
                  \;:\; \neg\,\texttt{ConditionalGoldbach.HypothesisR}.
 \]
-The transfer estimate and the arithmetic construction first give the conditional theorem \texttt{refute\_R}. Applying the primitive-character form of Dirichlet GRH supplies $G(N)$ at every modulus \cite{compact}. Lean elaborated the composition and its kernel checked the combined proof export. Its axiom report lists propositional extensionality, classical choice and quotient soundness. Four checkers accepted the spectral implication as a separate export. The published Dirichlet GRH certificate was also checked against the primitive-character challenge statement \cite{grh,formal}.
+The transfer estimate and the arithmetic construction first give the conditional theorem \texttt{refute\_R}. Applying the primitive-character form of Dirichlet GRH supplies $G(N)$ at every modulus \cite{compact}. Lean elaborated the composition and its kernel checked the combined proof export. Its axiom report lists propositional extensionality, classical choice and quotient soundness. On the same joint export, con-leche accepted all 209,642 declarations in verified mode and nanoda passed its axiom-restricted check. A separate Lean statement combines all three conclusions of Theorem~\ref{th:growth} with the original operator and product \cite{formal}. The published Dirichlet GRH certificate was checked against the primitive-character challenge statement \cite{grh,formal}.
 
 \paragraph{Acknowledgment.} OpenAI Codex assisted with the proof construction, Lean formalization and preparation of the manuscript.
 

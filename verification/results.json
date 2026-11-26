@@ -134,17 +134,17 @@
   },
   "paper": {
     "pdf": "paper/R/refutation-of-R.pdf",
-    "pdf_sha256": "1cba898e989fc5bd25a2e23eea9e64ab794a710d999649bc017ca53f641c268b",
+    "pdf_sha256": "16b545b290b72a357c9fcbfdfc5dc50c563e82769bcdb6893cc84340ab60422a",
     "tex": "paper/R/refutation-of-R.tex",
-    "tex_sha256": "32898b73d00fe9839adf49787eccf3839268c9e79b5a4ee6700d7c91ae78d921",
+    "tex_sha256": "211062605c16dec6e507c50e2a5fada101cf79173b842bc7fb585e05cd8851fe",
     "author": "Leiming Fu",
     "compiler": "pdfLaTeX, standalone source compiled to stable cross-references",
     "pages": 6,
     "style": "A4, black on white"
   },
   "local_lean_sources": {
-    "count": 183,
-    "fingerprint_sha256": "cf5d3ec68caf3496518429989e88b0936fcb921998f3d2bacdb5776599413f7c",
+    "count": 184,
+    "fingerprint_sha256": "e330fa0cad3cdf91fcb6ee0b893cd61d2472c95365de282bc7fefd59da817313",
     "algorithm": "SHA256 of UTF-8 relative path, NUL, binary file SHA256, in ascending path order"
   },
   "source_release": {
@@ -164,7 +164,7 @@
     "local_replay": "Run python verification/replay.py separately with spectral, existence and arithmetic. Python 3.11+, ripgrep, the pinned Lean toolchains and Lean 4.36 checker binaries are required.",
     "grh": "Use verification/Replay-GRH.ps1 with the two compressed files from the recorded certificate source, zstd and the pinned checker. Python and ripgrep must be on PATH.",
     "interface": "Run python verification/compare-interface.py challenge.ndjson Analytic435/.lake/build/AnalyticAudit.ndjson.",
-    "joint": "From the repository root run python verification/replay.py unconditional to build, export and check the joint proof."
+    "joint": "From the repository root run python verification/replay.py unconditional --lean-only to build, export and check the joint proof and its axiom declarations."
   },
   "fresh_checkout": {
     "proof_revision": "aa26e76",
@@ -198,13 +198,20 @@
     "bytes": 5274506584,
     "sha256": "0a748d517e836f1e58204c7a8915ff75c4b99a11fb22b3f5614b0b5b44a0ea00",
     "kernels": [
-      "leanchecker --from-export"
+      "leanchecker --from-export",
+      "con-leche --verified --jobs=4",
+      "nanoda"
     ],
+    "con_leche_revision": "5dc36dc15b7bee891a02406b78a8ac816a47baad",
+    "con_leche_records": 209642,
+    "con_leche_log": "verification/unconditional-con-leche.log",
     "axioms": [
       "propext",
       "Classical.choice",
       "Quot.sound"
-    ]
+    ],
+    "nanoda_config": "verification/unconditional-nanoda.json",
+    "matching_joint_reexport_sha256": "0a748d517e836f1e58204c7a8915ff75c4b99a11fb22b3f5614b0b5b44a0ea00"
   },
   "hypothesis_s_paper": {
     "pdf": "paper/S/hypothesis-S.pdf",
@@ -215,5 +222,24 @@
     "compiler": "pdfLaTeX, standalone source compiled to stable cross-references",
     "pages": 12,
     "style": "A4, black on white"
+  },
+  "r_paper_audit": {
+    "source": "WithGRH435/RPaperAudit.lean",
+    "paper_theorem": "GoldbachSpectral435.RPaperAudit.paper_theorem",
+    "original_pdf_pages": [
+      3,
+      4,
+      35,
+      53
+    ],
+    "description": "Explicit statement comparison by reflexivity, squared scale, realized kernel and convergent partial products, and all three conclusions of manuscript Theorem 1.1.",
+    "lean_log": "verification/r-paper-audit.log",
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "dependencies_log": "verification/r-dependencies.log",
+    "checked_proof_body_references": 37
   }
 }

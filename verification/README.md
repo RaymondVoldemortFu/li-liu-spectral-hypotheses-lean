@@ -2,7 +2,7 @@
 
 | Result | Formal statement or export | Recorded evidence |
 | --- | --- | --- |
-| Refutation of R | `GoldbachSpectral435.Unconditional.not_R : ¬ ConditionalGoldbach.HypothesisR` | [Joint kernel check and axiom audit](unconditional-audit.log) |
+| Refutation of R | `GoldbachSpectral435.Unconditional.not_R : ¬ ConditionalGoldbach.HypothesisR` | [Joint kernel check and axiom audit](unconditional-audit.log) · [Independent con-leche replay](unconditional-con-leche.log) |
 | Spectral implication under Dirichlet GRH | `GoldbachSpectral435.refute_R` and the [spectral targets](spectral-targets.txt) | [Four-checker replay](spectral-audit.log) |
 | Published Dirichlet GRH certificate | `LFunction_eq_zero_re_of_isPrimitive` | [Verified-mode challenge comparison](grh-replay.log) · [Interface comparison](interface.log) |
 | S research | [Exact criteria, individual obstructions and estimates](existence-targets.txt) | [Replay log](existence-audit.log). The full existence question remains open. |
@@ -12,14 +12,26 @@ The closed R theorem first specializes primitive Dirichlet GRH to each conductor
 
 ## Build and replay
 
-From the repository root, run the commands below individually. Use Python 3.11 or later, ripgrep, the pinned Lean toolchains, and the Lean 4.36 checker executables `leanchecker`, `lean4lean`, `con-leche` and `nanoda_bin`. With Elan available, the script selects Lake in the project directory. For standalone installations, use `--lake` and `--checker-bin` to specify the project Lake executable and checker directory.
+From the repository root, run the commands below individually. Use Python 3.11 or later, ripgrep and the pinned Lean toolchains. The first command uses the Lean 4.36 `leanchecker` executable. The other three also use `lean4lean`, `con-leche` and `nanoda_bin`. With Elan available, the script selects Lake in the project directory. For standalone installations, use `--lake` and `--checker-bin` to specify the project Lake executable and checker directory.
 
 ```sh
-python verification/replay.py unconditional
+python verification/replay.py unconditional --lean-only
 python verification/replay.py spectral
 python verification/replay.py existence
 python verification/replay.py arithmetic
 ```
+
+The first command reproduces the recorded Lean kernel check of the 5.27 GB joint export and audits every axiom declaration. Omitting `--lean-only` requests all four checkers. The recorded four-checker results cover the separate spectral, existence-research and arithmetic exports.
+
+To reproduce the independent joint check, run `lake build con-leche` in the [pinned con-leche checkout](https://github.com/leanprover/con-leche/tree/5dc36dc15b7bee891a02406b78a8ac816a47baad). Put that executable on PATH. From the proof repository root, run the following command after the Lean replay has finished. In verified mode, this build accepted all 209,642 declarations on four worker threads. [Transcript](unconditional-con-leche.log)
+
+```sh
+con-leche --verified --jobs=4 --progress=10% WithGRH435/.lake/build/UnconditionalAudit.ndjson
+```
+
+Nanoda also accepted the joint export with four threads and the three-axiom allowlist. From the repository root, run `nanoda_bin verification/unconditional-nanoda.json` for its independent check. For a joint replay with all four checkers, `--con-leche PATH` selects the pinned con-leche executable. The replay script runs the checkers sequentially and uses four con-leche workers for the joint proof.
+
+The joint build also checks all three conclusions of the R manuscript against explicit statements of the operator and partial products. The audit records the original PDF pages, proof-body dependencies and axiom checks. [R manuscript audit](hypothesis-R.md)
 
 The joint replay builds the pinned GRH and spectral dependencies. They both define a global name `nabla` with different meanings. The build helper checks the SHA-256 of the pinned Wiener source and renames its finite-difference declaration and its occurrences in a temporary copy. It then builds the joint theorem with warnings treated as errors and exports the listed roots. The combined export includes the proof terms of the GRH theorem. [Build helper](join-grh.py) · [Joint targets](unconditional-targets.txt)
 

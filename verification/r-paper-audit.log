@@ -1,0 +1,5 @@
+'GoldbachSpectral435.RPaperAudit.statement_agrees' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.RPaperAudit.main_normalization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.RPaperAudit.scale_squared' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.RPaperAudit.realization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.RPaperAudit.paper_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -24,6 +24,9 @@ def main():
     parser.add_argument("project", choices=CONFIG)
     parser.add_argument("--lake", default="lake", help="Lake executable for the project toolchain")
     parser.add_argument("--checker-bin", type=Path, help="directory containing the Lean 4.36 checkers (default: PATH)")
+    parser.add_argument("--con-leche", type=Path, help="use this con-leche executable for a four-checker replay")
+    parser.add_argument("--lean-only", action="store_true",
+                        help="check the export with Lean's kernel and audit all its axiom declarations")
     args = parser.parse_args()
     project, module = CONFIG[args.project]
     lake = shutil.which(args.lake)
@@ -41,8 +44,12 @@ def main():
         parser.error(f"expected Lean {toolchain} for {args.project}, found {version.strip()}")
     checker_path = str(args.checker_bin.resolve()) if args.checker_bin else None
     binaries = {}
-    for name in ["leanchecker", "lean4lean", "con-leche", "nanoda_bin"]:
-        binary = shutil.which(name, path=checker_path)
+    checker_names = ["leanchecker"] if args.lean_only else ["leanchecker", "lean4lean", "con-leche", "nanoda_bin"]
+    for name in checker_names:
+        if name == "con-leche" and args.con_leche:
+            binary = shutil.which(str(args.con_leche.resolve()))
+        else:
+            binary = shutil.which(name, path=checker_path)
         if not binary:
             parser.error(f"cannot find {name}. Set --checker-bin to the Lean 4.36 bin directory")
         binaries[name] = os.path.abspath(binary)
@@ -67,20 +74,25 @@ def main():
             raise RuntimeError("empty proof export")
         relative = os.path.relpath(candidate, project)
         run([binaries["leanchecker"], "--from-export", relative])
-        run([binaries["lean4lean"], "--import", relative])
-        run([binaries["con-leche"], "--verified", relative])
-        config = Path(scratch) / "nanoda.json"
-        config.write_text(json.dumps({
-            "export_file_path": relative, "permitted_axioms": AXIOMS,
-            "unpermitted_axiom_hard_error": True, "nat_extension": True,
-            "string_extension": True, "num_threads": 4,
-        }), encoding="utf-8")
-        run([binaries["nanoda_bin"], str(config)])
+        if not args.lean_only:
+            run([binaries["lean4lean"], "--import", relative])
+            con_leche_args = ["--verified", "--jobs=4"] if args.project == "unconditional" else ["--verified"]
+            run([binaries["con-leche"], *con_leche_args, relative])
+            config = Path(scratch) / "nanoda.json"
+            config.write_text(json.dumps({
+                "export_file_path": relative, "permitted_axioms": AXIOMS,
+                "unpermitted_axiom_hard_error": True, "nat_extension": True,
+                "string_extension": True, "num_threads": 4,
+            }), encoding="utf-8")
+            run([binaries["nanoda_bin"], str(config)])
         run([sys.executable, str(ROOT / "verification" / "check-axioms.py"), relative])
         candidate.replace(export)
     with export.open("rb") as stream:
         print(hashlib.file_digest(stream, "sha256").hexdigest().upper())
-    print("Lean, lean4lean, con-leche and nanoda accepted the same export.")
+    if args.lean_only:
+        print("Lean accepted the export and the axiom audit passed.")
+    else:
+        print("Lean, lean4lean, con-leche and nanoda accepted the same export.")
 
 
 if __name__ == "__main__":

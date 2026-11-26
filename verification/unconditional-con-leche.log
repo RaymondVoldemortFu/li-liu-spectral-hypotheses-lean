@@ -1,0 +1,19 @@
+con-leche: reading UnconditionalAudit.ndjson
+con-leche: parse done: 209642 fold records — the file's 209642, 0 built-in prelude records synthesised t=11.6s (parse 11.6s)
+con-leche: checking: 209642 declarations on 4 workers t=11.6s
+con-leche: check 20965 (10%) t=13.5s busy=3/4
+con-leche: check 41929 (20%) t=17.0s busy=3/4
+con-leche: check 62893 (30%) t=22.2s busy=3/4
+con-leche: check 83857 (40%) t=28.5s busy=3/4
+con-leche: check 104821 (50%) t=37.7s busy=3/4
+con-leche: check 125786 (60%) t=50.7s busy=3/4
+con-leche: check 146750 (70%) t=88.3s busy=3/4
+con-leche: check 167714 (80%) t=117.6s busy=3/4
+con-leche: check 188678 (90%) t=143.3s busy=3/4
+con-leche: check 209642 (100%) t=198.9s busy=0/4
+con-leche: check done: 209642 declarations t=199.0s (check 187.3s)
+con-leche: done: parse 11.6s, check 187.3s, 4 workers t=199.0s
+con-leche: stats: phases: parse 11.6s (index 0.2s), check 187.3s
+con-leche: stats: check pool: 187.344s wall, 4 workers, 209642 records, busy 748.730s (99.9%); tail 0.043s after the last start, 4 busy then, 0.042s worker-time in it (24.8%)
+con-leche: stats: slowest checks: 2.810s theorem Data.hasGap_gridParam._proof_1_6 (#130842); 2.677s theorem exists_thetaFamily_of_points (#191514); 2.672s theorem CMLattice.translatedWpDeriv_add_mem_multiPhiRing._proof_1_15 (#204337); 2.355s theorem Data.gridParam_interlace._proof_1_9 (#202211); 2.302s theorem ellAdicCohom.isCrystalline_and_linearFrob_rel (#182877)
+con-leche: accepted 209642 declarations (--verified)

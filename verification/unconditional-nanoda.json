@@ -1,0 +1,8 @@
+{
+  "export_file_path": "WithGRH435/.lake/build/UnconditionalAudit.ndjson",
+  "permitted_axioms": ["propext", "Classical.choice", "Quot.sound"],
+  "unpermitted_axiom_hard_error": true,
+  "nat_extension": true,
+  "string_extension": true,
+  "num_threads": 4
+}

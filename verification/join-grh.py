@@ -48,6 +48,8 @@ def main():
     root = "UnconditionalAudit"
     subprocess.run([lean, "-DwarningAsError=true", "-o", str(scratch / (root + ".olean")),
                     root + ".lean"], cwd=project, env=env, check=True)
+    subprocess.run([lean, "-DwarningAsError=true", "RPaperAudit.lean"],
+                   cwd=project, env=env, check=True)
     with output.open("wb") as stream:
         subprocess.run([exporter, root, "--", *sys.argv[2:]], cwd=project, env=env,
                        stdout=stream, check=True)

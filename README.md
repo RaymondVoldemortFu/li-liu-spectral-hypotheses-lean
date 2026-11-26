@@ -13,7 +13,7 @@ Both questions use Jiamin Li and Jianya Liu’s residual operator on the strip w
 
 If R held, then $N\lVert T_N\rVert^2\leq\mathfrak S(N)(\log N)^3\leq(\log N)^5$ eventually. The opposite-shift construction gives arbitrarily large even $N$ for which $N\lVert T_N\rVert^2>(\log N)^d$ for any fixed $d$. There is a single sequence of genuine real spectral zeros approaching $1$ faster than every fixed inverse power of $\log N$. Yilin Liu previously reported failure under Dirichlet GRH. This formalization derives the required discrepancy by finite inclusion–exclusion. [Arithmetic construction and zeros](Analytic435/OriginalStatements.lean) · [Yilin Liu’s preprint](https://hexagonmath.org/2611.00788v1)
 
-The spectral implication is `GoldbachSpectral435.refute_R`. The joint Lean project supplies the primitive-character Dirichlet GRH theorem and proves `GoldbachSpectral435.Unconditional.not_R`. The final theorem depends on `propext`, `Classical.choice` and `Quot.sound`. [Conditional proof](Analytic435/SpectralRefutation.lean) · [Closed theorem](WithGRH435/UnconditionalAudit.lean#L16) · [Verification records and replay](verification/README.md)
+The spectral implication is `GoldbachSpectral435.refute_R`. The joint Lean project supplies the primitive-character Dirichlet GRH theorem and proves `GoldbachSpectral435.Unconditional.not_R`. The final theorem depends on `propext`, `Classical.choice` and `Quot.sound`. [Conditional proof](Analytic435/SpectralRefutation.lean) · [Closed theorem](WithGRH435/UnconditionalAudit.lean#L16) · [Statement and proof audit](verification/hypothesis-R.md) · [Verification records and replay](verification/README.md)
 
 ## S — the existence question
 
