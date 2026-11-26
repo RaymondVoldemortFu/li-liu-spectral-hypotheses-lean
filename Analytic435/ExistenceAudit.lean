@@ -2,6 +2,7 @@ module
 public import PhysicalHyperbola
 public import PhysicalCriterion
 public import FirstBlockBound
+public import KernelBound
 public import MeanReflection
 public import EligibleModuli
 public import SecondMoment

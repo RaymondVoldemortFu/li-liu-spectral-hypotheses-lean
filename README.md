@@ -115,6 +115,18 @@ $$
 
 Subtracting $tH_N(1)$ from the cumulative error makes it vanish at both endpoints. Below the first sample and above the last nonzero sample its value is explicit. The weight $1-e^{-Nu}$ incorporates those endpoint contributions into the Hardy norm. Thus $d_N=o(\mathfrak S(N))$ would suffice at the first scale even for weights that vary with $N$. The existence criterion also requires all larger scales. [Endpoint estimate](Analytic435/PrimitiveEndpoints.lean) · [Weighted inequality](Analytic435/WeightedReflection.lean) · [Uniform first-scale theorem](Analytic435/FirstBlockBound.lean)
 
+## A rectangular kernel at every scale
+
+For $M=kN$, insert the identity $f(u)=-\int_u^1 (f(s)/\sqrt{s})'\sqrt{u}\,ds$ in both factors of the prime sum and each convolution. This gives a real kernel $C_{N,k}(s,t)$ on the unit square. The arithmetic term counts pairs with $n<Ms$ and $j<Mt$, with the original residue sign and the additional factor $\sqrt{nj}/M$. The model term integrates the same square-root weights over the three lines $v=u+\ell/k$, $u=v+\ell/k$ and $v=\ell/k-u$, with signs $+,+,-$.
+
+Let $a=1/\log N$, $\beta=1/8$, and put $b(u)^2=u^3(Mu)^{2\beta}/(1+(Mu)^{2(\beta-a)})$ on $0<u\le1$. If $K_{N,k}(s,t)=C_{N,k}(s,t)/(b(s)b(t))$ is square-integrable, then every real compact test satisfies
+
+$$
+|D_N(k,f)|\le 2\pi\|K_{N,k}\|_{L^2((0,1)^2)}E_N(k,f).
+$$
+
+Consequently, a bound $\sup_{k\ge1}\|K_{N,k}\|_2=o(\mathfrak S(N))$ on eligible moduli would imply the existence assertion. The theorem proves the implication. Establishing decay requires cancellation between the prime counts and the line integrals. [Integral representation](Analytic435/CumulativeKernel.lean) · [Prime and model kernels](Analytic435/ThresholdDiscrepancy.lean) · [Norm estimate](Analytic435/KernelBound.lean)
+
 ## Build the proofs
 
 Each project pins its Lean toolchain and Git dependencies. The main spectral project uses Lean 4.35.0. From the repository root, build it with Lake.
