@@ -125,11 +125,11 @@
   },
   "paper": {
     "pdf": "paper/spectral-hypotheses.pdf",
-    "pdf_sha256": "c37688dd583b524addce193f22841bac21ac344a2f0a73ba9a9ebb38b6be0003",
+    "pdf_sha256": "59af1dc4dfdddea138f24b137ea4a99168207d8708393ac18f9b2fc793d29292",
     "tex": "paper/spectral-hypotheses.tex",
-    "tex_sha256": "cd43f431ea716cdff12637d87a15def4e2821af3f692c44b9124ac1287304fd3",
+    "tex_sha256": "16021554a92595407e422da6f21984cbfb2421e20e14e56135a6a8ccdcd2995e",
     "compiler": "pdfLaTeX, two passes with the source alone in a fresh directory",
-    "pages": 10,
+    "pages": 12,
     "style": "A4, black on white"
   },
   "local_lean_sources": {

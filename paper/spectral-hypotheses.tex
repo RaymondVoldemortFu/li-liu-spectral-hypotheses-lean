@@ -23,7 +23,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Li and Liu deduce a weighted binary Goldbach asymptotic from a prescribed zero-free region for the spectral function of a residual operator. Under Dirichlet GRH we construct an arithmetic sequence on which the zero-free region fails. Any admissible prescription can be modified on an arbitrarily thin subsequence of these records to produce a counterexample. In particular, a failing prescription agrees with $\log N$ off a set containing at most $1+\lfloor\log_2 X\rfloor$ integers up to $X$, and its width is smaller than every fixed inverse power of $\log N$. We give an exact finite-matrix criterion for the unmodified prescription and for the existence of any admissible zero-free region. On the first physical scale, decay of the normalized quadratic form on its entire test family is equivalent to a uniform Hardy--Littlewood asymptotic for ordinary ordered prime pairs with a sharp cutoff in the first summand. An unconditional total variation estimate removes both von Mangoldt weights. The construction also gives an independent derivation of the failure of Hypothesis R under Dirichlet GRH.
+Li and Liu deduce a weighted binary Goldbach asymptotic from a prescribed zero-free region for the spectral function of a residual operator. Under Dirichlet GRH we construct an arithmetic sequence on which the zero-free region fails. Any admissible prescription can be modified on an arbitrarily thin subsequence of these records to produce a counterexample. In particular, a failing prescription agrees with $\log N$ off a set containing at most $1+\lfloor\log_2 X\rfloor$ integers up to $X$, and its width is smaller than every fixed inverse power of $\log N$. We give an exact finite-matrix criterion for the unmodified prescription and for the existence of any admissible zero-free region. On the first physical scale, decay of the normalized quadratic form on its entire test family is equivalent to a uniform Hardy--Littlewood asymptotic for ordinary ordered prime pairs with a sharp cutoff in the first summand. An unconditional total variation estimate removes both von Mangoldt weights. We also prove a two-prime asymptotic on both sum and difference congruences at moduli up to the summation length divided by its eighth logarithmic power. The construction also gives an independent derivation of the failure of Hypothesis R under Dirichlet GRH.
 \end{abstract}
 
 \section{The hypotheses and the main results}
@@ -411,8 +411,105 @@ $1/(t(1-t))=1/t+1/(1-t)$. Splitting at $Nt=1$ in the energy weight gives $v(t)^2
 uniformly in $f$. This proves the converse. The last implication follows from Theorem~\ref{th:exist} and $|Q_N(f)|\le\|T_N\|E_N(f)$. The other physical scales remain in the existence criterion for the full operator.
 \end{proof}
 
+\section{Two-prime counts in large residue classes}\label{sec:congruences}
+
+Write $z=\lfloor\log N/64\rfloor$, $Q=\prod_{p\le z}p$ and
+\[
+ k_N=\left\lceil\frac{\exp(8\log N\log\log N)}{N}\right\rceil.
+\]
+For $j\ge0$ set $q=2^jQ$. Let $f,g\in C_c^6(0,1)$ be real.
+Define $\mathcal P_q^+(H)$ by summing
+$\Lambda(n)\Lambda(m)f(n/M)g(m/M)$ over $0\le n,m<M$ with
+$(nm,q)=1$ and $n+m\equiv H\pmod q$. For $\mathcal P_q^-(H)$ impose
+$n-m\equiv H\pmod q$. Write $I_f=\int_0^1f(u)\dd u$.
+
+\begin{theorem}\label{th:congruences}
+Uniformly for $M\ge N$, $0<H\le 2k_NN$ even, and all $j\ge0$ such
+that $q(\log M)^8\le M$ and $G(q)$ holds, one has
+\[
+  \frac{q\,\mathcal P_q^\pm(H)}{M^2\SSg(H)}=I_f I_g+o_{f,g}(1)
+             \qquad(N\to\infty).
+\]
+For every $M\ge N$ and sufficiently large $N$, there exists a lift
+$M/(2\log^8 M)<q\le M/\log^8 M$.
+\end{theorem}
+
+\begin{proof}
+Let $E_q(H)$ consist of the residues $t\bmod q$ for which
+$t(t-H)$ is a unit. Put $e=\#E_q(H)$, $\phi=\varphi(q)$ and
+$T=qe/\phi^2$. For $z\ge2$, the prime divisors of $q$ are precisely
+those of $Q$. Passing from $Q$ to $q$ multiplies both $e$ and
+$\varphi(Q)$ by $2^j$. The Chinese remainder theorem at $Q$ gives
+\[
+ T=2\prod_{2<p\le z}\left(1-\frac1{(p-1)^2}\right)
+       \prod_{\substack{2<p\le z\\p\mid H}}\frac{p-1}{p-2}.
+\]
+The ratio $T/\SSg(H)$ tends uniformly to one in the stated range.
+Indeed $\log H\ll z\log z$. For each fixed $\eta>0$, Mertens' theorem
+bounds the reciprocal mass of primes $z<p\le z^{1+\eta}$ by
+$\log(1+\eta)+o(1)$. The larger prime divisors of $H$ have reciprocal
+sum at most $\log H/(z^{1+\eta}\log z)\ll z^{-\eta}$. Letting
+$\eta\downarrow0$ handles the omitted factors at primes dividing $H$.
+The other Euler product converges absolutely. In particular $T\ge1/2$
+for all sufficiently large $N$.
+
+For a unit residue $t$ let $A_f(t)=\sum_{n\equiv t\bmod q}
+\Lambda(n)f(n/M)$, where $0\le n<M$. Write $F=\sum_t A_f(t)$,
+over the units, and $D_f(t)=A_f(t)-F/\phi$. Character orthogonality gives
+\[
+  \phi\sum_{t\in(\mathbb Z/q)^\times}|D_f(t)|^2
+    =\sum_{\chi\ne\chi_0}
+       \left|\sum_{n<M}\Lambda(n)\chi(n)f(n/M)\right|^2 .
+\]
+Under $G(q)$ each twist on the right is at most
+$B_f=C_f\sqrt M(\log M)^2(6+\log q)$ in absolute value. To see the
+dependence on the parameters, use Mellin inversion for $\sqrt u f(u)$
+and move the contour to $\sigma=1/\log M$ in the variable shifted by
+$1/2$. On the disk of radius $5/2-\sigma/2$ about $3+it$, the
+nonprincipal $L$-function has no zero, its modulus is
+$\ll q(2+|t|)$, and its modulus at the center is at least $1/2$.
+The disk estimate for the derivative of an analytic logarithm, on the
+concentric disk of radius $5/2-\sigma$, gives
+\[
+  |(L'/L)(1/2+\sigma+it,\chi)|
+     \ll \sigma^{-2}(6+\log q)(1+|t|).
+\]
+The Mellin transform decays as $(1+|t|)^{-4}$ uniformly for
+$0\le\sigma\le1$, by integration by parts in $\log u$.
+The factor $M^{1/2+\sigma}=\exp(1)\sqrt M$ yields the asserted twist bound.
+Parseval now gives $\sum_t |D_f(t)|^2\le B_f^2$.
+
+Put $U=F/M$ and define $V$ from $g$ in the same way. The map
+$\tau(t)=H-t$ for the sum, or $\tau(t)=t-H$ for the difference,
+takes $E_q(H)$ injectively into the units. Expanding
+$\sum_{t\in E_q(H)}A_f(t)A_g(\tau(t))$ about the two means, then
+applying Cauchy--Schwarz on $E_q(H)$, gives
+\[
+ \left|\frac{q\,\mathcal P_q^\pm(H)}{M^2T}-UV\right|
+ \le b_f b_g+|U|b_g+|V|b_f,\qquad
+ b_f=\frac{\phi B_f}{M\sqrt e}.
+\]
+As $\phi^2/e=q/T\le2q$, the assumed size of $q$ gives
+$b_f\ll_f1/\log M$.
+
+Finally $U=I_f+o_f(1)$ uniformly. Partial summation against
+$\psi(x)=x+o(x)$ gives the claim before the restriction to units.
+Only primes dividing $Q$ and their powers can be removed.
+Here $Q\le\sqrt M$, so for large $M$ the primes themselves lie below
+the support of $f(n/M)$. The total weight at proper prime powers is
+$O(\sqrt M)$. The same argument applies to $V$. Combining these
+estimates proves the limit. The bound $Q\le\sqrt M$ also gives
+$Q(\log M)^8\le M$ eventually, so successive doublings cross
+$M/\log^8M$ and give the stated lift.
+\end{proof}
+
+At the largest such lift, the support meets $O(\log^8 M)$ possible
+integer values of the sum or difference in each residue class.
+The individual values enter the first physical scale in
+Theorem~\ref{th:sharp}. The congruence estimate controls their aggregate.
+
 \section*{Formal verification}
-The formal proofs use the residual operator and the hypotheses of the Li--Liu formalization \cite{LLLean}. The original spectral export was reproduced byte for byte from a fresh checkout. The export containing Theorem~\ref{th:sharp} and Lemma~\ref{lm:totalvar} was accepted by Lean, lean4lean, con-leche and nanoda. The lean4lean replay checked 83,213 declarations. The axiom records contain propositional extensionality, classical choice and quotient soundness \cite{formal}.
+The formal proofs use the residual operator and the hypotheses of the Li--Liu formalization \cite{LLLean}. Lean, lean4lean, con-leche and nanoda independently accepted the proof export for the spectral obstruction and the common export for Theorems~\ref{th:sharp} and~\ref{th:congruences}. The latter lean4lean replay checked 84,128 declarations. The exports contain three axiom declarations, for propositional extensionality, classical choice and quotient soundness \cite{formal}.
 
 A separate verified-mode replay of the Dirichlet GRH certificate \cite{grh} accepted 1,468,418 declarations and all five challenge statements. The primitive-character proposition and seven definitions, including the $L$-function and primitivity, agree across the two formal libraries \cite{formal}.
 
@@ -422,7 +519,7 @@ A separate verified-mode replay of the Dirichlet GRH certificate \cite{grh} acce
 \bibitem{YL} Y. Liu, \emph{Failure of the Li--Liu spectral hypothesis R under Dirichlet GRH}, 21 November 2026. \href{https://hexagonmath.org/2611.00788v1}{Hexagon 2611.00788v1}.
 \bibitem{LLLean} \emph{Conditional Goldbach in Lean}, revision \texttt{c55db645}. \href{https://github.com/subfish-zhou/conditional-goldbach-lean/tree/c55db645f3b4aed00374fe4aa1fcee2428c88c4b}{Formal definitions and proofs}.
 \bibitem{grh} L. Alp\"oge, \href{https://alpo.ge/remark.pdf}{Announcement of a proof of the Riemann hypothesis}, 20 November 2026. A. V. Sutherland, \emph{Verification files for the Lean proof of the Riemann hypothesis}, updated 25 November 2026. \href{https://math.mit.edu/~drew/grh/}{Certificates and challenge statements}.
-\bibitem{formal} Codex, \emph{The Li--Liu spectral hypotheses in Lean}, 2026. \href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/tree/9ae958a}{Proof sources, revision \texttt{9ae958a}}. \href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/tree/main/verification}{Verification records}.
+\bibitem{formal} Codex, \emph{The Li--Liu spectral hypotheses in Lean}, 2026. \href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/tree/8d5408a}{Proof sources, revision \texttt{8d5408a}}. \href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/tree/main/verification}{Verification records}.
 \end{thebibliography}
 \endgroup
 \end{document}
