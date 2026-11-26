@@ -107,6 +107,14 @@ $$
 
 The constant is uniform as the support approaches either endpoint. Integration by parts gives $\int_0^1(f(u)/(1-u))^2\,du\le4\int_0^1 u^2 f'(u)^2\,du$. Applying this inequality to the reflected product bounds its total variation by four times $\int_0^1(f(u)/2-u f'(u))^2\,du$. [Reflection inequality](Analytic435/ReflectionVariation.lean) · [Norm bound](Analytic435/ReflectionEnergy.lean)
 
+For arbitrary first-scale weights, including support below $1/N$, put $d_N=\sup_{0\le t\le1}|H_N(t)|$. The full range of such tests satisfies
+
+$$
+|D_N(1,f)|\le 576\pi\left(d_N+\frac{\mathfrak S(N)}{N}\right)E_N(1,f).
+$$
+
+Subtracting $tH_N(1)$ from the cumulative error makes it vanish at both endpoints. Below the first sample and above the last nonzero sample its value is explicit. The weight $1-e^{-Nu}$ incorporates those endpoint contributions into the Hardy norm. Thus $d_N=o(\mathfrak S(N))$ would suffice at the first scale even for weights that vary with $N$. The existence criterion also requires all larger scales. [Endpoint estimate](Analytic435/PrimitiveEndpoints.lean) · [Weighted inequality](Analytic435/WeightedReflection.lean) · [Uniform first-scale theorem](Analytic435/FirstBlockBound.lean)
+
 ## Build the proofs
 
 Each project pins its Lean toolchain and Git dependencies. The main spectral project uses Lean 4.35.0. From the repository root, build it with Lake.
