@@ -1,6 +1,6 @@
 name = "goldbachSpectralAnalytic"
 version = "1.0.0"
-defaultTargets = ["AnalyticAudit"]
+defaultTargets = ["AnalyticAudit", "ExistenceAudit"]
 
 [[require]]
 name = "conditionalGoldbach"
@@ -11,6 +11,10 @@ subDir = "formalization"
 [[lean_lib]]
 name = "AnalyticAudit"
 roots = ["ActualLimits", "BetaSampling", "Characters", "Kernel", "Residues", "Progressions", "BetaCross", "Diagonal", "Quadratic", "Samples", "Gram", "Entry", "Energy", "Opposite", "PrimeLower", "PhysicalAP", "SpectralTestsAtScale", "PrimeMass", "SmoothShift", "ShiftMean", "RowMean", "ModulusWitness", "AtWindow", "OriginalBounds", "SpectralRefutation", "OriginalStatements", "PositiveWidth", "ArithmeticWidths", "PaperPremise", "FiniteSamples", "SparsePrescriptions", "ShortShiftLimit", "BandPNT", "AnalyticAudit"]
+
+[[lean_lib]]
+name = "ExistenceAudit"
+roots = ["ExistenceAudit", "ExistenceLocalization", "ConductorMoments", "MomentTruncation", "PerronApproximation", "PerronHardy", "PerronOperators", "PerronDiagonal", "PrimeResidual", "PrimeCorrelations"]
 
 [[lean_lib]]
 name = "SpectralTests"

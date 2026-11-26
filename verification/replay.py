@@ -12,6 +12,7 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = {
     "spectral": (ROOT / "Analytic435", "AnalyticAudit"),
+    "existence": (ROOT / "Analytic435", "ExistenceAudit"),
     "arithmetic": (ROOT, "Audit"),
 }
 AXIOMS = ["propext", "Classical.choice", "Quot.sound"]

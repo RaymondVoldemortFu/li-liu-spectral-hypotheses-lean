@@ -52,6 +52,19 @@
     "entry_point_notation": "File stem followed by theorem name. The Lean namespace is GoldbachSpectral435.",
     "export_roots": 49
   },
+  "existence_research": {
+    "export": "Analytic435/.lake/build/ExistenceAudit.ndjson",
+    "bytes": 674233830,
+    "sha256": "65217608ea002a10b1b5103ff0dfe0058c876b1d7fae508a194e2003557b54a6",
+    "lean": "4.35.0",
+    "export_roots": 19,
+    "targets": "verification/existence-targets.txt",
+    "log": "verification/existence-audit.log",
+    "lean4lean_declarations": 80093,
+    "con_leche_records": 80092,
+    "kernels": ["leanchecker --from-export", "lean4lean --import", "con-leche --verified", "nanoda"],
+    "axioms": ["propext", "Classical.choice", "Quot.sound"]
+  },
   "arithmetic_support": {
     "export": ".lake/build/Audit.ndjson",
     "bytes": 585030296,

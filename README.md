@@ -16,6 +16,18 @@ Under Dirichlet GRH, Hypothesis R fails. Hypothesis S also fails for some admiss
 
 The arithmetic construction uses the opposite prime shifts studied by Yilin Liu. The paper derives the analytic inputs and proves the required discrepancy by finite inclusion–exclusion. [Original article](https://mrc.sdu.edu.cn/english/info/1018/1514.htm) · [Yilin Liu’s preprint](https://hexagonmath.org/2611.00788v1)
 
+## Finite prime sums for the existence question
+
+Write $T_N$ for the residual operator and $M_N$ for the Li–Liu model operator. Set $m=\max(1,\lceil100\log\log N\rceil)$ and $X=N^{2m}$. Form $P_N$ from the odd-character Gram sum over prime powers up to $X$. Use the same squared weights for its diagonal $D_N$. For every sufficiently large even $N$ that satisfies the original local GRH condition, the operator norm satisfies
+
+$$
+\big\|T_N-(P_N-D_N-M_N)\big\|\le C(\log N)^{-16}.
+$$
+
+The constant is independent of $N$. Hypothesis S holds for some admissible $h$ exactly when $\|P_N-D_N-M_N\|/\mathfrak S(N)$ tends to zero on these moduli. Proving this limit or finding an infinite sequence that violates it remains open here. [Finite Gram sum](Analytic435/PerronOperators.lean) · [Diagonal estimate](Analytic435/PerronDiagonal.lean) · [Equivalence with S](Analytic435/PrimeResidual.lean)
+
+For each test vector, the finite arithmetic term is a sum over pairs of prime powers. Equal residue classes contribute with a plus sign. Opposite residue classes contribute with a minus sign. The diagonal cancels. [Signed correlation formula](Analytic435/PrimeCorrelations.lean)
+
 ## Build the proofs
 
 Each project pins its Lean toolchain and Git dependencies. The main spectral project uses Lean 4.35.0. From the repository root, build it with Lake.
@@ -25,18 +37,19 @@ cd Analytic435
 lake --wfail build AnalyticAudit
 ```
 
-The root project checks the supporting arithmetic in Lean 4.36.0. From the repository root, run `lake --wfail build Audit`. Both builds treat warnings as errors. The audits inspect the dependencies of the named theorems.
+In the same directory, run `lake --wfail build ExistenceAudit` for the finite approximation and conductor moments. The root project checks the supporting arithmetic in Lean 4.36.0. From the repository root, run `lake --wfail build Audit`. Both builds treat warnings as errors. The audits inspect the dependencies of the named theorems.
 
 ## Replay the proof exports
 
-Use Python 3.11 or later and ripgrep. Make the Lean 4.36 checker executables available on `PATH`, or pass their directory with `--checker-bin`. The executables are `leanchecker`, `lean4lean`, `con-leche` and `nanoda_bin`. With Elan on `PATH`, run both commands from the repository root.
+Use Python 3.11 or later and ripgrep. Make the Lean 4.36 checker executables available on `PATH`, or pass their directory with `--checker-bin`. The executables are `leanchecker`, `lean4lean`, `con-leche` and `nanoda_bin`. With Elan on `PATH`, run the commands from the repository root.
 
 ```sh
 python verification/replay.py spectral
+python verification/replay.py existence
 python verification/replay.py arithmetic
 ```
 
-If you use a standalone Lean distribution, pass its Lake executable with `--lake`. The script builds the selected project, exports its listed theorems and runs all four checkers on the same file. It also reads the axiom declarations from the export. The only axioms are `propext`, `Classical.choice` and `Quot.sound`. [Verification manifest](verification/results.json) · [Spectral replay](verification/spectral-audit.log) · [Arithmetic replay](verification/arithmetic-audit.log)
+If you use a standalone Lean distribution, pass its Lake executable with `--lake`. The script builds the selected project, exports its listed theorems and runs all four checkers on the same file. It also reads the axiom declarations from the export. The only axioms are `propext`, `Classical.choice` and `Quot.sound`. [Verification manifest](verification/results.json) · [Spectral replay](verification/spectral-audit.log) · [Existence research replay](verification/existence-audit.log) · [Arithmetic replay](verification/arithmetic-audit.log)
 
 The spectral proof states its GRH premise explicitly. A separate replay of the published Dirichlet GRH certificate used con-leche in verified mode. It accepted 1,468,418 declarations and matched all five challenge statements. We compared the primitive-character GRH statement and seven definitions across the two Lean versions. [GRH replay](verification/grh-replay.log) · [Statement comparison](verification/interface.log) · [Published certificates](https://math.mit.edu/~drew/grh/)
 
