@@ -55,6 +55,25 @@ In particular, the entire normalized operator tends to zero whenever $aL-2\log L
 
 For a test vector supported at Fourier times $t>-\log Y$, the original arithmetic form is exactly a finite signed sum over $n,j<Y$. This holds for every positive integer $Y$ at each eligible modulus. When $2Y\le N$, odd-character orthogonality makes the sum zero. Restriction to the strip with left boundary $a$ bounds the contribution from the complementary times. The model has its own factor $N^{-2a}$. [Fourier support](Analytic435/PhysicalSupport.lean) · [Exact arithmetic form](Analytic435/LocalPrimeForm.lean) · [Model estimate](Analytic435/ModelDecay.lean)
 
+## The first Goldbach line on the original strip
+
+For two complex unit vectors supported at Fourier times $t>-\log N$, the full arithmetic operator after diagonal subtraction has a single sum. If $c_x(n)=-\Lambda(n)n^{-1/2}\langle x,d_n\rangle$, where $d_n$ is the monomial Hardy vector, then
+
+$$
+\langle x,(P_N^{\mathrm{arith}}-D_N^{\mathrm{arith}})y\rangle
+=-\sum_{\substack{n<N\\(n,N)=1}}c_x(n)\overline{c_y(N-n)}.
+$$
+
+Here the two operators are the original infinite arithmetic Gram operator and diagonal. The formula applies to every pair of vectors with the stated support. It gives exact cancellation when their respective physical cutoffs $Y,Z$ satisfy $Y+Z\le N$. [Reflection formula](Analytic435/Reflection.lean)
+
+For arbitrary positive integer cutoffs $Y,Z$, set $W=\max(Y,Z)$. At the original boundary $a=1/\log N$, the absolute mixed arithmetic entry is bounded by
+
+$$
+162(\log W)^2(1+\log(W+1))^2\frac{\sqrt{YZ}}{N}.
+$$
+
+In particular it is at most $10368/(\log N)^2$ throughout $W\le N^2$ and $\sqrt{YZ}\le N/(\log N)^6$. The unit vectors, the modulus and the two window sizes may vary together. When both physical cutoffs are comparable to $N$, estimating the discrepancy between the reflected prime sum and the continuous model remains necessary. [Critical-window bounds](Analytic435/PhysicalHyperbola.lean)
+
 ## Build the proofs
 
 Each project pins its Lean toolchain and Git dependencies. The main spectral project uses Lean 4.35.0. From the repository root, build it with Lake.
