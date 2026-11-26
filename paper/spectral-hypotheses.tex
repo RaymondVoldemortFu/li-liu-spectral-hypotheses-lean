@@ -23,7 +23,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Li and Liu deduce a weighted binary Goldbach asymptotic from a prescribed zero-free region for the spectral function of a residual operator. Under Dirichlet GRH we construct an arithmetic sequence on which the zero-free region fails. Any admissible prescription can be modified on an arbitrarily thin subsequence of these records to produce a counterexample. In particular, a failing prescription agrees with $\log N$ off a set containing at most $1+\lfloor\log_2 X\rfloor$ integers up to $X$, and its width is smaller than every fixed inverse power of $\log N$. We give an exact finite-matrix criterion for the unmodified prescription and for the existence of any admissible zero-free region. On the first physical scale, decay of the normalized quadratic form on its entire test family is equivalent to a uniform Hardy--Littlewood asymptotic for ordinary ordered prime pairs with a sharp cutoff in the first summand. An unconditional total variation estimate removes both von Mangoldt weights. We also prove a two-prime asymptotic on both sum and difference congruences at moduli up to the summation length divided by its eighth logarithmic power. The construction also gives an independent derivation of the failure of Hypothesis R under Dirichlet GRH.
+Li and Liu deduce a weighted binary Goldbach asymptotic from a prescribed zero-free region for the spectral function of a residual operator. Under Dirichlet GRH we construct an arithmetic sequence on which the zero-free region fails. Any admissible prescription can be modified on an arbitrarily thin subsequence of these records to produce a counterexample. In particular, a failing prescription agrees with $\log N$ off a set containing at most $1+\lfloor\log_2 X\rfloor$ integers up to $X$, and its width is smaller than every fixed inverse power of $\log N$. We give an exact finite-matrix criterion for the unmodified prescription and for the existence of any admissible zero-free region. On the first physical scale, decay of the normalized quadratic form on its entire test family is equivalent to a uniform Hardy--Littlewood asymptotic for ordinary ordered prime pairs with a sharp cutoff in the first summand. An unconditional total variation estimate removes both von Mangoldt weights. We also prove a two-prime asymptotic on both sum and difference congruences at moduli of size comparable to the summation length divided by the cube of its logarithm. The construction also gives an independent derivation of the failure of Hypothesis R under Dirichlet GRH.
 \end{abstract}
 
 \section{The hypotheses and the main results}
@@ -425,13 +425,15 @@ $n-m\equiv H\pmod q$. Write $I_f=\int_0^1f(u)\dd u$.
 
 \begin{theorem}\label{th:congruences}
 Uniformly for $M\ge N$, $0<H\le 2k_NN$ even, and all $j\ge0$ such
-that $q(\log M)^8\le M$ and $G(q)$ holds, one has
+that $q(\log M)^3\le M$ and $G(q)$ holds, one has
 \[
   \frac{q\,\mathcal P_q^\pm(H)}{M^2\SSg(H)}=I_f I_g+o_{f,g}(1)
              \qquad(N\to\infty).
 \]
 For every $M\ge N$ and sufficiently large $N$, there exists a lift
-$M/(2\log^8 M)<q\le M/\log^8 M$.
+$M/(2\log^3 M)<q\le M/\log^3 M$.
+More generally the limit holds along any sequence with $q\le M$ and
+$q(6+\log q)^2/M\to0$.
 \end{theorem}
 
 \begin{proof}
@@ -461,22 +463,43 @@ over the units, and $D_f(t)=A_f(t)-F/\phi$. Character orthogonality gives
     =\sum_{\chi\ne\chi_0}
        \left|\sum_{n<M}\Lambda(n)\chi(n)f(n/M)\right|^2 .
 \]
-Under $G(q)$ each twist on the right is at most
-$B_f=C_f\sqrt M(\log M)^2(6+\log q)$ in absolute value. To see the
-dependence on the parameters, use Mellin inversion for $\sqrt u f(u)$
-and move the contour to $\sigma=1/\log M$ in the variable shifted by
-$1/2$. On the disk of radius $5/2-\sigma/2$ about $3+it$, the
-nonprincipal $L$-function has no zero, its modulus is
-$\ll q(2+|t|)$, and its modulus at the center is at least $1/2$.
-The disk estimate for the derivative of an analytic logarithm, on the
-concentric disk of radius $5/2-\sigma$, gives
+We prove that under $G(q)$ each nonprincipal twist is bounded by
+$B_f=C_f\sqrt M(6+\log q)$ for sufficiently large $M$.
+For the primitive character inducing $\chi$ put
 \[
-  |(L'/L)(1/2+\sigma+it,\chi)|
-     \ll \sigma^{-2}(6+\log q)(1+|t|).
+ Z_\sigma(t)=\sum_\gamma\frac{\sigma}{\sigma^2+(t-\gamma)^2},
+ \qquad P_\sigma(t)=\frac{\sigma}{\pi(\sigma^2+t^2)}.
 \]
-The Mellin transform decays as $(1+|t|)^{-4}$ uniformly for
-$0\le\sigma\le1$, by integration by parts in $\log u$.
-The factor $M^{1/2+\sigma}=\exp(1)\sqrt M$ yields the asserted twist bound.
+Here $\gamma$ runs through the ordinates of the nontrivial zeros with
+multiplicity. Positivity and $P_1*P_\sigma=P_{1+\sigma}$ give
+$\int P_1(t)Z_\sigma(t)\dd t=Z_{1+\sigma}(0)\le3Z_{3/2}(0)$
+for $0<\sigma\le1$. The zero sum at $3/2$ satisfies
+$Z_{3/2}(t)\ll\log(2q(2+|t|))$ by the zero count on unit intervals.
+Write $D(t)=(L'/L)(1/2+\sigma+it,\chi)$. Take the difference of the
+completed logarithmic derivatives at $1/2+\sigma+it$ and $2+it$ in
+the Hadamard product. Under $G(q)$ the real part of the zero sum is
+$Z_\sigma(t)-Z_{3/2}(t)$. The Dirichlet series at $2+it$ is bounded.
+The difference of the digamma terms is bounded uniformly in $t$ by
+its resolvent series, since both gamma arguments have real part at
+least $1/4$ and their separation is at most $3/4$. Each omitted
+Euler factor costs $O(\log p)$ at these two points. Hence
+\[
+ \int_{\mathbb R}\frac{|\Rea D(t)|}{(1+|t|)^4}\dd t\ll 6+\log q.
+\]
+
+Set $\sigma=1/\log M$ and
+$W(t)=M^{\sigma+it}\widehat{\sqrt u\,f(u)}(\sigma+it)$.
+Four integrations by parts give $|W(t)|\ll_f(1+|t|)^{-4}$. Mellin
+inversion expresses the twist as $-\sqrt M(2\pi)^{-1}\int W D$.
+We claim $\int\overline W D=0$. Indeed let
+$g(v)=\sqrt{v/M}\,f(v/M)$ and take $g(v)=0$ for $v\le0$.
+On this line the Mellin transform of $v^{-2\sigma}g(1/v)$ equals
+$\overline W$. For large $M$ its support is a compact subset of
+$(0,1)$, so every positive integer sample in the inversion formula
+vanishes. The contour move is valid for both compact weights by the
+zero-free half-plane and rapid Mellin decay. Conjugating the zero
+integral gives $\int W\overline D=0$. Thus $\int W D=2\int W\Rea D$,
+which proves the bound for the twist.
 Parseval now gives $\sum_t |D_f(t)|^2\le B_f^2$.
 
 Put $U=F/M$ and define $V$ from $g$ in the same way. The map
@@ -489,8 +512,9 @@ applying Cauchy--Schwarz on $E_q(H)$, gives
  \le b_f b_g+|U|b_g+|V|b_f,\qquad
  b_f=\frac{\phi B_f}{M\sqrt e}.
 \]
-As $\phi^2/e=q/T\le2q$, the assumed size of $q$ gives
-$b_f\ll_f1/\log M$.
+As $\phi^2/e=q/T\le2q$, we have $b_f\ll_f(6+\log q)\sqrt{q/M}$.
+This tends to zero under the stated general condition, and is
+$O_f((\log M)^{-1/2})$ at the displayed dyadic lift.
 
 Finally $U=I_f+o_f(1)$ uniformly. Partial summation against
 $\psi(x)=x+o(x)$ gives the claim before the restriction to units.
@@ -499,17 +523,39 @@ Here $Q\le\sqrt M$, so for large $M$ the primes themselves lie below
 the support of $f(n/M)$. The total weight at proper prime powers is
 $O(\sqrt M)$. The same argument applies to $V$. Combining these
 estimates proves the limit. The bound $Q\le\sqrt M$ also gives
-$Q(\log M)^8\le M$ eventually, so successive doublings cross
-$M/\log^8M$ and give the stated lift.
+$Q(\log M)^3\le M$ eventually, so successive doublings cross
+$M/\log^3M$ and give the stated lift.
 \end{proof}
 
-At the largest such lift, the support meets $O(\log^8 M)$ possible
-integer values of the sum or difference in each residue class.
-The individual values enter the first physical scale in
-Theorem~\ref{th:sharp}. The congruence estimate controls their aggregate.
+At this lift the support meets $O(\log^3 M)$ possible lines in a
+residue class. An exact identity records what remains to isolate any
+one of them. For either sign, fix the two weights including the unit
+conditions at $q$. Write $P_u(d)$ for their congruence sum at $d\bmod u$
+and $G(d)$ for their sum on $n\pm m=d$. For $0\le H\le 2M$ and
+$2^rq>3M$, one has
+\[
+ 2^r G(H)=P_q(H)+\sum_{j=0}^{r-1}2^j
+ \bigl(P_{2u_j}(H)-P_{2u_j}(H+u_j)\bigr),\qquad u_j=2^jq .
+\]
+Indeed the two displayed classes at $2u_j$ partition the class at
+$u_j$. At the final modulus, a multiple of $2^rq$ equal to
+$n\pm m-H$ must be zero. Telescoping gives the identity.
+
+Removing the unit conditions from this single line changes $G(H)$ by
+at most
+\[
+ 2\|f\|_\infty\|g\|_\infty(\log M)\lfloor\log_2 M\rfloor\log q .
+\]
+To see this, every excluded prime power $p^j<M$ divides
+$q^{\lfloor\log_2 M\rfloor}$. The identity
+$\sum_{n\mid b}\Lambda(n)=\log b$ bounds the total excluded mass on
+either coordinate by $\lfloor\log_2 M\rfloor\log q$. Each coordinate
+has at most one partner on the line, whose Mangoldt weight is at most
+$\log M$. The remaining analytic question concerns cancellation in
+the weighted differences of the lifted congruences.
 
 \section*{Formal verification}
-The formal proofs use the residual operator and the hypotheses of the Li--Liu formalization \cite{LLLean}. Lean, lean4lean, con-leche and nanoda independently accepted the proof export for the spectral obstruction and the common export for Theorems~\ref{th:sharp} and~\ref{th:congruences}. The latter lean4lean replay checked 84,128 declarations. The exports contain three axiom declarations, for propositional extensionality, classical choice and quotient soundness \cite{formal}.
+The formal proofs use the residual operator and the hypotheses of the Li--Liu formalization \cite{LLLean}. Lean, lean4lean, con-leche and nanoda independently accepted the proof export for the spectral obstruction and the common export for Theorems~\ref{th:sharp} and~\ref{th:congruences}. The latter lean4lean replay checked 84,217 declarations. The exports contain three axiom declarations, for propositional extensionality, classical choice and quotient soundness \cite{formal}.
 
 A separate verified-mode replay of the Dirichlet GRH certificate \cite{grh} accepted 1,468,418 declarations and all five challenge statements. The primitive-character proposition and seven definitions, including the $L$-function and primitivity, agree across the two formal libraries \cite{formal}.
 
@@ -519,7 +565,7 @@ A separate verified-mode replay of the Dirichlet GRH certificate \cite{grh} acce
 \bibitem{YL} Y. Liu, \emph{Failure of the Li--Liu spectral hypothesis R under Dirichlet GRH}, 21 November 2026. \href{https://hexagonmath.org/2611.00788v1}{Hexagon 2611.00788v1}.
 \bibitem{LLLean} \emph{Conditional Goldbach in Lean}, revision \texttt{c55db645}. \href{https://github.com/subfish-zhou/conditional-goldbach-lean/tree/c55db645f3b4aed00374fe4aa1fcee2428c88c4b}{Formal definitions and proofs}.
 \bibitem{grh} L. Alp\"oge, \href{https://alpo.ge/remark.pdf}{Announcement of a proof of the Riemann hypothesis}, 20 November 2026. A. V. Sutherland, \emph{Verification files for the Lean proof of the Riemann hypothesis}, updated 25 November 2026. \href{https://math.mit.edu/~drew/grh/}{Certificates and challenge statements}.
-\bibitem{formal} Codex, \emph{The Li--Liu spectral hypotheses in Lean}, 2026. \href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/tree/8d5408a}{Proof sources, revision \texttt{8d5408a}}. \href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/tree/main/verification}{Verification records}.
+\bibitem{formal} Codex, \emph{The Li--Liu spectral hypotheses in Lean}, 2026. \href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/tree/5e572d5}{Proof sources, revision \texttt{5e572d5}}. \href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/tree/main/verification}{Verification records}.
 \end{thebibliography}
 \endgroup
 \end{document}
