@@ -554,8 +554,87 @@ has at most one partner on the line, whose Mangoldt weight is at most
 $\log M$. The remaining analytic question concerns cancellation in
 the weighted differences of the lifted congruences.
 
+\section{Fourier inversion on a specified line}\label{sec:frequency}
+
+Fix $\sigma\in\{1,-1\}$ and write $d_\sigma(n,m)=n+\sigma m$.
+Let $N,M,H,q$ vary along a sequence satisfying the hypotheses of
+Theorem~\ref{th:congruences}, with $N\to\infty$,
+$q(6+\log q)^2/M\to0$ and $H/M\to x$. Define
+\[
+ J_\sigma(x;f,g)=\int_0^1 f(u)g\bigl(\sigma(x-u)\bigr)\,\dd u .
+\]
+Write $G_\sigma(H)$ for the sum of
+$\Lambda(n)\Lambda(m)f(n/M)g(m/M)$ over $0\le n,m<M$ with
+$d_\sigma(n,m)=H$, including all prime powers. To resolve a single
+line inside its congruence class, put $A=\pi M/q$ and
+\[
+ P(t)=\frac{q}{M^2\SSg(H)}
+ \sum_{\substack{0\le n,m<M,\ (nm,q)=1\\d_\sigma(n,m)\equiv H\bmod q}}
+ \Lambda(n)\Lambda(m) f(n/M)g(m/M)
+ \cos\!\left(t\frac{d_\sigma(n,m)-H}{M}\right).
+\]
+For $B>0$ let $E(B)=\int_{-A}^{-B}P(t)\,\dd t+
+\int_B^A P(t)\,\dd t$. All integrals here are oriented. For each fixed
+$B$, the inequality $B<A$ holds eventually.
+
+\begin{theorem}\label{th:frequency}
+Along every such sequence,
+\[
+ \frac{G_\sigma(H)}{M\SSg(H)}\longrightarrow J_\sigma(x;f,g)
+ \quad\Longleftrightarrow\quad
+ \lim_{B\to\infty}\limsup_{N\to\infty}|E(B)|=0 .
+\]
+When $M=H$ and $G(M)$ holds, the tail condition for $\sigma=1$ and
+every pair of real tests $f,g\in C_c^6(0,1)$ is equivalent to
+both first-scale limits of Theorem~\ref{th:sharp} at the moduli $M$.
+In particular the original existence assertion implies this family
+of signed tail estimates.
+\end{theorem}
+
+\begin{proof}
+For an integer $k$, integration of $\cos(tkq/M)$ from $-A$ to $A$
+gives $2A$ when $k=0$ and zero otherwise. Thus the integral of $P$
+over this interval equals $2\pi G_\sigma(H)/(M\SSg(H))+o(1)$.
+The error is bounded by the unit-removal estimate at the end of the
+preceding section, divided by $M\SSg(H)$ and multiplied by $2\pi$.
+
+Write $\widehat f(t)=\int_\mathbb R f(u)e^{-itu}\,\dd u$, extending
+the tests by zero. At each fixed $t$, apply
+Theorem~\ref{th:congruences} to the products of $f$ and $g$ with
+$\cos(tu)$ and $\sin(tu)$. Expanding the cosine of the difference
+shows
+\[
+ P(t)\longrightarrow
+ F(t)=\Rea\!\left(e^{itx}\widehat f(t)\widehat g(\sigma t)\right).
+\]
+For each test choose a nonnegative compact smooth majorant for its
+absolute value. The congruence estimate on the two majorants gives
+a common bound for $|P(t)|$ at every $t$ and all sufficiently large
+indices. Dominated convergence applies on every fixed interval
+$[-B,B]$. Two integrations by parts give
+$\widehat g(t)=O_g((1+|t|)^{-2})$, so $F$ is integrable.
+Fourier inversion for $g$ and Fubini's theorem now give
+\[
+ (2\pi)^{-1}\int_\mathbb R F(t)\,\dd t=J_\sigma(x;f,g).
+\]
+For each fixed $B$ the difference between the full integral and the
+central integral is exactly $E(B)$. The triangle inequality, first
+along the arithmetic sequence and then as $B\to\infty$, proves both
+implications.
+
+For $M=H$ the archimedean integral uses $g(1-u)$. Imposing
+coprimality with $M$ on the exact line costs $O_{f,g}(\log^3 M)$.
+The resulting normalized count is
+$\int f(u)g(1-u)\,\dd\mu_M(u)$ with the measure of
+Section~\ref{sec:sharp}. Every smooth interior test $f$ has the form
+$f(u)g(1-u)$ for a smooth $g$ equal to one on the reflection of its
+support. Thus convergence on these products is precisely convergence
+on all smooth interior tests. The endpoint and energy estimates in
+the proof of Theorem~\ref{th:sharp} give the asserted equivalences.
+\end{proof}
+
 \section*{Formal verification}
-The formal proofs use the residual operator and the hypotheses of the Li--Liu formalization \cite{LLLean}. Lean, lean4lean, con-leche and nanoda independently accepted the proof export for the spectral obstruction and the common export for Theorems~\ref{th:sharp} and~\ref{th:congruences}. The latter lean4lean replay checked 84,217 declarations. The exports contain three axiom declarations, for propositional extensionality, classical choice and quotient soundness \cite{formal}.
+The formal proofs use the residual operator and the hypotheses of the Li--Liu formalization \cite{LLLean}. Lean, lean4lean, con-leche and nanoda independently accepted the proof export for the spectral obstruction and the common export for Theorems~\ref{th:sharp}, \ref{th:congruences} and~\ref{th:frequency}. The latter lean4lean replay checked 84,362 declarations. The exports contain three axiom declarations, for propositional extensionality, classical choice and quotient soundness \cite{formal}.
 
 A separate verified-mode replay of the Dirichlet GRH certificate \cite{grh} accepted 1,468,418 declarations and all five challenge statements. The primitive-character proposition and seven definitions, including the $L$-function and primitivity, agree across the two formal libraries \cite{formal}.
 
@@ -565,7 +644,7 @@ A separate verified-mode replay of the Dirichlet GRH certificate \cite{grh} acce
 \bibitem{YL} Y. Liu, \emph{Failure of the Li--Liu spectral hypothesis R under Dirichlet GRH}, 21 November 2026. \href{https://hexagonmath.org/2611.00788v1}{Hexagon 2611.00788v1}.
 \bibitem{LLLean} \emph{Conditional Goldbach in Lean}, revision \texttt{c55db645}. \href{https://github.com/subfish-zhou/conditional-goldbach-lean/tree/c55db645f3b4aed00374fe4aa1fcee2428c88c4b}{Formal definitions and proofs}.
 \bibitem{grh} L. Alp\"oge, \href{https://alpo.ge/remark.pdf}{Announcement of a proof of the Riemann hypothesis}, 20 November 2026. A. V. Sutherland, \emph{Verification files for the Lean proof of the Riemann hypothesis}, updated 25 November 2026. \href{https://math.mit.edu/~drew/grh/}{Certificates and challenge statements}.
-\bibitem{formal} Codex, \emph{The Li--Liu spectral hypotheses in Lean}, 2026. \href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/tree/5e572d5}{Proof sources, revision \texttt{5e572d5}}. \href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/tree/main/verification}{Verification records}.
+\bibitem{formal} Codex, \emph{The Li--Liu spectral hypotheses in Lean}, 2026. \href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/tree/046b4e9}{Proof sources, revision \texttt{046b4e9}}. \href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/tree/main/verification}{Verification records}.
 \end{thebibliography}
 \endgroup
 \end{document}
