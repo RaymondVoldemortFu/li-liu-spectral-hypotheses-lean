@@ -32,6 +32,17 @@ Set $Y=\lceil(\log N)^{100}\rceil$. Keep the primes up to $X$ and the prime powe
 
 One can also omit every pair $(n,j)$ with $\sqrt{nj}\leq N/(\log N)^{24}$ at the same error rate, uniformly over the unit ball. The sum of the absolute contributions of these pairs already satisfies the bound. The remaining sum includes pairs on the Goldbach line $n+j=N$ with both primes comparable to $N$. Its discrepancy from the model still has to be estimated. [Prime pairs below the hyperbola](Analytic435/PrimeHyperbola.lean)
 
+## A necessary second term for the odd-character mean square
+
+Fix an even integer $b\ge 2$ and a real number $c>1$. Take $N=b^{k+1}$ and $x=c/\log N$. Let $A_N(x)$ be the average of $|(L'/L)(1/2+x,\chi)|^2$ over the odd characters modulo $N$, with normalization $2/\varphi(N)$. If some admissible $h$ satisfies S and the local GRH condition holds along this sequence, then
+
+$$
+\lim_{k\to\infty} x\left(A_N(x)-\frac{1-e^{-2c}}{4x^2}\right)
+=-\frac{e^{-2c}}2\left(\log\pi+\sum_{p\mid b}\frac{\log p}{p-1}-\psi(3/4)\right).
+$$
+
+Here $\psi=\Gamma'/\Gamma$ and the sum runs over the distinct prime divisors of $b$. The linear correction comes from the derivative of the regular part of the original model. The arithmetic diagonal has a double pole with bounded remainder. A failure of this limit for even one such $b,c$ would rule out every admissible $h$. [Model derivative](Analytic435/ConductorCorrection.lean) · [Arithmetic diagonal](Analytic435/DiagonalPole.lean) · [Mean-square limit](Analytic435/SecondMoment.lean)
+
 ## Build the proofs
 
 Each project pins its Lean toolchain and Git dependencies. The main spectral project uses Lean 4.35.0. From the repository root, build it with Lake.

@@ -1,5 +1,5 @@
 module
 public import PrimeHyperbola
-public import ConductorMoments
+public import SecondMoment
 public import MomentTruncation
 public import ExistenceLocalization

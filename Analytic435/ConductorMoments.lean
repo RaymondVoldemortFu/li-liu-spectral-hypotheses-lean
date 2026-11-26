@@ -20,7 +20,7 @@ theorem moment_eq_mean_square (N : ℕ) [NeZero N] (x t : ℝ) :
       ∑ χ ∈ oddCharacters N, ((‖logDerivative χ (line x t)‖ ^ 2 : ℝ) : ℂ) := by
   simp only [moment, characterKernel, conj_conj, Complex.mul_conj, Complex.sq_norm]
 
-private theorem singular_power (b k : ℕ) :
+theorem singular_power (b k : ℕ) :
     singularSeries (b^(k+1)) = singularSeries b := by
   simp only [original_series, GoldbachSpectral.singular, Nat.primeFactors_pow_succ]
 
@@ -34,11 +34,11 @@ private theorem density_power (b k : ℕ) (w : ℂ) :
     simp only [hp, h]
   · simp [hp]
 
-private theorem diagonal_power (b k : ℕ) (w : ℂ) :
+theorem diagonal_power (b k : ℕ) (w : ℂ) :
     diagonalSeries (b^(k+1)) w = diagonalSeries b w := by
   simp only [diagonalSeries, Nat.coprime_pow_right_iff (Nat.succ_pos k)]
 
-private theorem model_power (b k : ℕ) (hb : 1 < b) (x t : ℝ) :
+private lemma model_power (b k : ℕ) (hb : 1 < b) (x t : ℝ) :
     continuedModel (b^(k+1)) (line x t) (conj (line x t)) =
     (Real.exp (-2*x*(Real.log (b^(k+1):ℕ)-Real.log b)) : ℂ) *
       continuedModel b (line x t) (conj (line x t)) := by
@@ -103,7 +103,7 @@ private theorem norm_vanishes (s : ∃ h, HypothesisS h) {n : ℕ → ℕ}
   rw [fixedSeries, show ε/(2*D)*D=ε/2 by field_simp] at h
   simpa [Real.dist_eq, abs_of_nonneg (eligibleNorm_nonneg _)] using h.trans_lt (half_lt_self ep)
 
-private theorem common_shift_error (s : ∃ h, HypothesisS h) {n : ℕ → ℕ}
+theorem common_shift_error (s : ∃ h, HypothesisS h) {n : ℕ → ℕ}
     [∀ k, NeZero (n k)] (grow : Tendsto n atTop atTop) (even : ∀ k, Even (n k))
     (g : ∀ k, GRH (n k)) {D : ℝ} (dp : 0 < D) (fixedSeries : ∀ k, singularSeries (n k)=D)
     {x : ℕ → ℝ} (xp : ∀ k, 0<x k) (lim : Tendsto x atTop (𝓝 0))
