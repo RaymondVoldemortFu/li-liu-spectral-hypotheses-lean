@@ -24,8 +24,8 @@ lemma distribution_zero (N : ℕ) : distribution N 0=0 := by
   have h (n : ℕ) : ¬(n:ℝ)/N<0 := not_lt.mpr (by positivity)
   simp [h]
 
-theorem sharp_limit {n : ℕ→ℕ} [∀ j, NeZero (n j)] (h : FirstScaleDecay n)
-    (ng : Tendsto n atTop atTop) (he : ∀ j, Even (n j)) (grh : ∀ j, GRH (n j))
+theorem sharp_limit_of_smooth {n : ℕ→ℕ} (ng : Tendsto n atTop atTop) (he : ∀ j, Even (n j))
+    (smooth : ∀ f : ℝ→ℝ, FiniteModelWeight f → Tendsto (fun j => observed (n j) f) atTop (𝓝 (mean f)))
     (t : ℝ) (ht : t∈Icc (0:ℝ) 1) : Tendsto (fun j => distribution (n j) t) atTop (𝓝 t) := by
   rcases ht.1.eq_or_lt with zero|tp
   · simp [← zero,distribution_zero]
@@ -36,7 +36,7 @@ theorem sharp_limit {n : ℕ→ℕ} [∀ j, NeZero (n j)] (h : FirstScaleDecay n
   have dp : 0<d := lt_min (by positivity) (by positivity)
   have sep : 4*d≤t := by have b : d≤t/8 := min_le_left ..; linarith
   have loss := (le_div_iff₀ (show 0<32*(C+1) by positivity)).mp (show d≤ε/(32*(C+1)) from min_le_right ..)
-  have sm := Metric.tendsto_nhds.mp (smooth_limit h ng he grh _ (window_weight dp sep ht.2)) d dp
+  have sm := Metric.tendsto_nhds.mp (smooth _ (window_weight dp sep ht.2)) d dp
   have tiny := (sieve_error_decay.comp ng).eventually_lt_const dp
   filter_upwards [ng.eventually_ge_atTop (2^64),sm,tiny] with j big near small
   let N := n j
@@ -52,11 +52,16 @@ theorem sharp_limit {n : ℕ→ℕ} [∀ j, NeZero (n j)] (h : FirstScaleDecay n
   have err := mul_lt_mul_of_pos_left small cp
   constructor <;> nlinarith only [a,b,m,M,near.1,near.2,low,high,loss,err,mul_pos dp cp,dp]
 
+theorem sharp_limit {n : ℕ→ℕ} [∀ j, NeZero (n j)] (h : FirstScaleDecay n)
+    (ng : Tendsto n atTop atTop) (he : ∀ j, Even (n j)) (grh : ∀ j, GRH (n j))
+    (t : ℝ) (ht : t∈Icc (0:ℝ) 1) : Tendsto (fun j => distribution (n j) t) atTop (𝓝 t) :=
+  sharp_limit_of_smooth ng he (smooth_limit h ng he grh) t ht
+
 def SharpDecay (n : ℕ→ℕ) : Prop := ∀ ε : ℝ, 0<ε →
   ∀ᶠ j in atTop, ∀ t∈Icc (0:ℝ) 1, |distribution (n j) t-t|≤ε
 
-theorem uniform_sharp {n : ℕ→ℕ} [∀ j, NeZero (n j)] (h : FirstScaleDecay n)
-    (ng : Tendsto n atTop atTop) (he : ∀ j, Even (n j)) (grh : ∀ j, GRH (n j)) : SharpDecay n := by
+theorem uniform_sharp_of_pointwise {n : ℕ→ℕ}
+    (pointwise : ∀ t∈Icc (0:ℝ) 1,Tendsto (fun j => distribution (n j) t) atTop (𝓝 t)) : SharpDecay n := by
   intro ε ep
   obtain ⟨q,gap⟩ := exists_nat_one_div_lt (half_pos ep)
   let m := q+1
@@ -69,7 +74,7 @@ theorem uniform_sharp {n : ℕ→ℕ} [∀ j, NeZero (n j)] (h : FirstScaleDecay
     have le : i≤m := by have := mem_range.mp mem; omega
     have hi : (i:ℝ)/m≤1 := (div_le_one mr).mpr (by exact_mod_cast le)
     simpa only [Real.dist_eq] using Metric.tendsto_nhds.mp
-      (sharp_limit h ng he grh _ ⟨by positivity,hi⟩) (ε/2) (half_pos ep)
+      (pointwise _ ⟨by positivity,hi⟩) (ε/2) (half_pos ep)
   filter_upwards [points] with j pt
   intro t ht
   let N := n j
@@ -83,6 +88,10 @@ theorem uniform_sharp {n : ℕ→ℕ} [∀ j, NeZero (n j)] (h : FirstScaleDecay
   apply res.trans
   rw [show singularSeries N/m=singularSeries N*(1/(m:ℝ)) by ring,← mul_add]
   exact mul_le_mul_of_nonneg_left (by linarith) s.le
+
+theorem uniform_sharp {n : ℕ→ℕ} [∀ j, NeZero (n j)] (h : FirstScaleDecay n)
+    (ng : Tendsto n atTop atTop) (he : ∀ j, Even (n j)) (grh : ∀ j, GRH (n j)) : SharpDecay n :=
+  uniform_sharp_of_pointwise (sharp_limit h ng he grh)
 
 /-- At the first scale the norm estimate for all original tests is equivalent
 to the sharp, uniform asymptotic for all prefix counts. -/
