@@ -2,4 +2,4 @@ module
 public import PrimeHyperbola
 public import SecondMoment
 public import MomentTruncation
-public import ExistenceLocalization
+public import StripDecay

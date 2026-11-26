@@ -45,7 +45,7 @@ def restrictStrip {u a : ℝ} (ua : u ≤ a) (ab : a ≤ beta) :
             simpa only [RingHom.id_apply] using h1.trans (h4.trans (by simpa only [Pi.smul_apply,h2] using h3.symm))
           cont := J.continuous }
 
-private lemma restrict_ae {u a : ℝ} (ua : u ≤ a) (ab : a ≤ beta) (f : HardySpace u beta) :
+lemma restrict_ae {u a : ℝ} (ua : u ≤ a) (ab : a ≤ beta) (f : HardySpace u beta) :
     restrictStrip ua ab f =ᵐ[hardyMeasure a beta] f :=
   Lp.coeFn_LpToLpOfMeasureLeSMul (by norm_num : (2 : ℝ≥0∞) ≠ ⊤) (measure_le ua ab) f
 
@@ -71,21 +71,22 @@ private lemma vector_ext {a : ℝ} (ab : a < beta) (x y : HardySpace a beta)
   exact fourierLaplace_injective_strip ab x y fun s hs => (evaluationVector_spec hs _).trans
     ((e s hs).trans (evaluationVector_spec hs _).symm)
 
-/-- Exact comparison of the *same* arithmetic residual on two Hardy strips. -/
-theorem exact_compression {u a : ℝ} (up : 0 < u) (ua : u ≤ a) (ab : a < beta)
-    (N : ℕ) [NeZero N] (four : 4 ≤ N) (g : GRH N) :
-    residualOperator ab N =
-      (restrictStrip ua ab.le).comp ((residualOperator (ua.trans_lt ab) N).comp (restrictStrip ua ab.le).adjoint) := by
-  let A := residualOperator ab N
-  let B := (restrictStrip ua ab.le).comp ((residualOperator (ua.trans_lt ab) N).comp (restrictStrip ua ab.le).adjoint)
+/-- Restriction compresses two operators with the same interior kernel. -/
+theorem compression_of_entries {u a : ℝ} (ua : u≤a) (ab : a<beta)
+    (A : HardySpace a beta →L[ℂ] HardySpace a beta)
+    (T : HardySpace u beta →L[ℂ] HardySpace u beta)
+    (same : ∀ s z : ℂ, s∈strip a beta → z∈strip a beta →
+      paperInner (A (evaluationVector z)) (evaluationVector s) =
+      paperInner (T (evaluationVector z)) (evaluationVector s)) :
+    A = (restrictStrip ua ab.le).comp (T.comp (restrictStrip ua ab.le).adjoint) := by
+  let B := (restrictStrip ua ab.le).comp (T.comp (restrictStrip ua ab.le).adjoint)
   have entry (s z : ℂ) (hs : s ∈ strip a beta) (hz : z ∈ strip a beta) :
       paperInner (A (evaluationVector z)) (evaluationVector s) = paperInner (B (evaluationVector z)) (evaluationVector s) := by
     dsimp only [B,ContinuousLinearMap.comp_apply]
     rw [adjoint_eval ua ab hz]
     conv_rhs => rw [← evaluationVector_spec hs,restrict_values]
     rw [evaluationVector_spec (show s ∈ strip u beta from ⟨ua.trans_lt hs.1,hs.2⟩)]
-    exact (residualOperator_pairing_at a N (up.trans_le ua) four g ab s z hs hz).symm.trans
-      (residualOperator_pairing_at u N up four g (ua.trans_lt ab) s z ⟨ua.trans_lt hs.1,hs.2⟩ ⟨ua.trans_lt hz.1,hz.2⟩)
+    exact same s z hs hz
   have vals (z : ℂ) (hz : z ∈ strip a beta) : A (evaluationVector z) = B (evaluationVector z) :=
     vector_ext ab _ _ fun s hs => entry s z hs hz
   change A = B
@@ -99,6 +100,16 @@ theorem exact_compression {u a : ℝ} (up : 0 < u) (ua : u ≤ a) (ab : a < beta
     simp only [paperInner,ContinuousLinearMap.adjoint_inner_right,vals s hs]
   simp only [paperInner,← ContinuousLinearMap.adjoint_inner_left,adjs]
 
+/-- Exact comparison of the *same* arithmetic residual on two Hardy strips. -/
+theorem exact_compression {u a : ℝ} (up : 0 < u) (ua : u ≤ a) (ab : a < beta)
+    (N : ℕ) [NeZero N] (four : 4 ≤ N) (g : GRH N) :
+    residualOperator ab N =
+      (restrictStrip ua ab.le).comp ((residualOperator (ua.trans_lt ab) N).comp (restrictStrip ua ab.le).adjoint) := by
+  apply compression_of_entries ua ab
+  intro s z hs hz
+  exact (residualOperator_pairing_at a N (up.trans_le ua) four g ab s z hs hz).symm.trans
+    (residualOperator_pairing_at u N up four g (ua.trans_lt ab) s z ⟨ua.trans_lt hs.1,hs.2⟩ ⟨ua.trans_lt hz.1,hz.2⟩)
+
 private lemma far_weight {u a L t : ℝ} (ua : u ≤ a) (ab : a ≤ beta) (hL : 0 ≤ L) (ht : t ≤ -L) :
     hardyWeight a beta t ≤ (2 * Real.exp (-2*(a-u)*L)) * hardyWeight u beta t := by
   have t0 : t ≤ 0 := by linarith
@@ -110,7 +121,7 @@ private lemma far_weight {u a L t : ℝ} (ua : u ≤ a) (ab : a ≤ beta) (hL : 
   unfold hardyWeight
   nlinarith only [e1,e2,mul_pos (Real.exp_pos (-2*(a-u)*L)) (Real.exp_pos (2*beta*t))]
 
-private lemma restrict_tail {u a L : ℝ} (ua : u ≤ a) (ab : a ≤ beta) (hL : 0 ≤ L)
+lemma restrict_tail {u a L : ℝ} (ua : u ≤ a) (ab : a ≤ beta) (hL : 0 ≤ L)
     (v : HardySpace u beta) :
     (∫ t in Iic (-L), ‖restrictStrip ua ab v t‖^2 * hardyWeight a beta t) ≤
       (2*Real.exp (-2*(a-u)*L))*‖v‖^2 := by
@@ -127,7 +138,7 @@ private lemma restrict_tail {u a L : ℝ} (ua : u ≤ a) (ab : a ≤ beta) (hL :
       (Eventually.of_forall (fun t => by dsimp [K]; have := hardyWeight_pos u beta t; positivity))
     _ = _ := by rw [integral_const_mul,← hardySpace_norm_sq_integral]
 
-private lemma restrict_norm {u a : ℝ} (ua : u ≤ a) (ab : a ≤ beta) :
+lemma restrict_norm {u a : ℝ} (ua : u ≤ a) (ab : a ≤ beta) :
     ‖restrictStrip ua ab‖ ≤ 2 := by
   apply ContinuousLinearMap.opNorm_le_bound _ (by norm_num)
   intro v

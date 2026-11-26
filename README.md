@@ -43,6 +43,16 @@ $$
 
 Here $\psi=\Gamma'/\Gamma$ and the sum runs over the distinct prime divisors of $b$. The linear correction comes from the derivative of the regular part of the original model. The arithmetic diagonal has a double pole with bounded remainder. A failure of this limit for even one such $b,c$ would rule out every admissible $h$. [Model derivative](Analytic435/ConductorCorrection.lean) · [Arithmetic diagonal](Analytic435/DiagonalPole.lean) · [Mean-square limit](Analytic435/SecondMoment.lean)
 
+## Decay as the left boundary moves
+
+Let $T_{N,a}$ be the original residual operator on the strip with left boundary $a$ and right boundary $1/8$. Write $L=\log N$. For all sufficiently large eligible even $N$ and every $1/L\le a<1/8$, an absolute constant $D$ satisfies
+
+$$
+\frac{\|T_{N,a}\|}{\mathfrak S(N)}\le D\bigl(L^{-16}+L^2 e^{-aL}\bigr).
+$$
+
+In particular, the entire normalized operator tends to zero whenever $aL-2\log L\to+\infty$. Odd-character orthogonality cancels the finite arithmetic form when both indices are below $N/2$. Restriction to the strip with left boundary $a$ controls the terms outside this range. The model retains the separate factor $N^{-2a}$. At the boundary $a=1/L$ in Hypothesis S, the second term in the displayed bound is $L^2/e$. Decay at this boundary remains open. [Support and cancellation](Analytic435/PhysicalSupport.lean) · [Model estimate](Analytic435/ModelDecay.lean) · [Operator bound and limit](Analytic435/StripDecay.lean)
+
 ## Build the proofs
 
 Each project pins its Lean toolchain and Git dependencies. The main spectral project uses Lean 4.35.0. From the repository root, build it with Lake.
