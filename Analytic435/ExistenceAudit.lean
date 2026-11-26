@@ -1,5 +1,5 @@
 module
-public import PowerRemoval
+public import PrimeHyperbola
 public import ConductorMoments
 public import MomentTruncation
 public import ExistenceLocalization

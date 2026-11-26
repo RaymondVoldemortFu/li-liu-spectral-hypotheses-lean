@@ -30,6 +30,8 @@ For each test vector, the finite arithmetic term is a sum over pairs of prime po
 
 Set $Y=\lceil(\log N)^{100}\rceil$. Keep the primes up to $X$ and the prime powers below $Y^2$. With these indices alone, the signed quadratic form minus the original model still approximates $\langle f,T_N f\rangle$ within $C(\log N)^{-16}$ for every $\|f\|\leq1$. The constant is uniform in the eligible even modulus. For squares, the proof uses the fact that three distinct roots of one square residue modulo $N$ cannot all lie in an interval of length $Y$ when $Y^3<N$. For the remaining powers, the sum of the absolute coefficients converges with an explicit tail bound. [Square-root spacing](Analytic435/SquareResidues.lean) · [Removal of proper prime powers](Analytic435/PowerRemoval.lean)
 
+One can also omit every pair $(n,j)$ with $\sqrt{nj}\leq N/(\log N)^{24}$ at the same error rate, uniformly over the unit ball. The sum of the absolute contributions of these pairs already satisfies the bound. The remaining sum includes pairs on the Goldbach line $n+j=N$ with both primes comparable to $N$. Its discrepancy from the model still has to be estimated. [Prime pairs below the hyperbola](Analytic435/PrimeHyperbola.lean)
+
 ## Build the proofs
 
 Each project pins its Lean toolchain and Git dependencies. The main spectral project uses Lean 4.35.0. From the repository root, build it with Lake.

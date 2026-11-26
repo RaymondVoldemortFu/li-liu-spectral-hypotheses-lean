@@ -54,14 +54,14 @@
   },
   "existence_research": {
     "export": "Analytic435/.lake/build/ExistenceAudit.ndjson",
-    "bytes": 677615020,
-    "sha256": "dee48aeebd48c536fe6505733bec0f1e5e16c953e6e1f8402488cbe1b36bc2ef",
+    "bytes": 678617155,
+    "sha256": "33722063f61b8605dc76dfb4e2aa64c4b241f8ea712abf1fc203513417261c23",
     "lean": "4.35.0",
-    "export_roots": 24,
+    "export_roots": 27,
     "targets": "verification/existence-targets.txt",
     "log": "verification/existence-audit.log",
-    "lean4lean_declarations": 80244,
-    "con_leche_records": 80243,
+    "lean4lean_declarations": 80283,
+    "con_leche_records": 80282,
     "kernels": ["leanchecker --from-export", "lean4lean --import", "con-leche --verified", "nanoda"],
     "axioms": ["propext", "Classical.choice", "Quot.sound"]
   },
@@ -133,8 +133,8 @@
     "style": "A4, black on white"
   },
   "local_lean_sources": {
-    "count": 82,
-    "fingerprint_sha256": "f1ed740a582ad20c4e2f4b6c3657f7b5fb9af9a96ee9dbf9486716e6e7dd5bf1",
+    "count": 83,
+    "fingerprint_sha256": "6417a12ce073560e64e26cbb4610c6d9e4491ff8bab0a96711d7c4874fe917c5",
     "algorithm": "SHA256 of UTF-8 relative path, NUL, binary file SHA256, in ascending path order"
   },
   "source_release": {
