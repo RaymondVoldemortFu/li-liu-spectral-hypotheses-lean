@@ -162,6 +162,13 @@ $$
 
 In particular the existence of any admissible $h$ satisfying S implies this uniform asymptotic for the actual von Mangoldt pair counts. To prove the forward implication, polarization and reflection symmetry recover each smooth interior weight from the original quadratic forms. The translated sieve estimate controls the ends of each interval as the test approaches its indicator. Positivity of the counting measure extends convergence on a finite mesh to every threshold. The reverse implication uses the first-scale operator estimate above. [Energy and exact entries](Analytic435/FirstLineLimits.lean) · [Polarization](Analytic435/GoldbachSmoothTests.lean) · [Interval tests](Analytic435/GoldbachWindowTests.lean) · [Equivalence](Analytic435/SharpGoldbachLimits.lean)
 
+For ordinary primes let $P_N(t)$ count the ordered pairs $p+q=N$ with $p<tN$. Uniformly in $t$ and every sufficiently large even $N$, the translated sieve and finite Abel summation give
+$$
+\left|F_N(t)-\frac{(\log N)^2 P_N(t)}{N\mathfrak S(N)}\right|
+\le C\left(\frac1{\log N}+\frac{(\log N)^2}{\sqrt N}\right).
+$$
+In fact the proof bounds the sum of the absolute differences of all the atomic masses, including the possible prime pair $p=q=N/2$. Consequently the first-scale spectral criterion is equivalent to the uniform sharp asymptotic for ordinary ordered prime representations. [Logarithmic weight loss](Analytic435/PrimePairLogLoss.lean) · [Total variation estimate](Analytic435/PrimePairVariation.lean) · [Prime counts and the original operator](Analytic435/GoldbachPrimeCounts.lean)
+
 ## Build the proofs
 
 Each project pins its Lean toolchain and Git dependencies. The main spectral project uses Lean 4.35.0. From the repository root, build it with Lake.
