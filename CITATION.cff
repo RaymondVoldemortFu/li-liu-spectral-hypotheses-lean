@@ -15,7 +15,7 @@ references:
       - family-names: Fu
         given-names: Leiming
     year: 2026
-    url: "https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/blob/main/paper/R/refutation-of-R.pdf"
+    url: "https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/releases/download/hypothesis-r-v1.0.1/refutation-of-R.pdf"
   - type: unpublished
     title: "Finite tests and arithmetic obstructions for the Li–Liu spectral hypothesis S"
     authors:

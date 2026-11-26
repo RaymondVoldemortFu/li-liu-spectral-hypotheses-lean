@@ -23,7 +23,7 @@ python verification/replay.py arithmetic
 
 The first command reproduces the recorded Lean kernel check of the 5.27 GB joint export and audits every axiom declaration. Omitting `--lean-only` requests all four checkers. The recorded four-checker results cover the separate spectral, existence-research and arithmetic exports.
 
-To reproduce the independent joint check, run `lake build con-leche` in the [pinned con-leche checkout](https://github.com/leanprover/con-leche/tree/5dc36dc15b7bee891a02406b78a8ac816a47baad). Put that executable on PATH. From the proof repository root, run the following command after the Lean replay has finished. In verified mode, this build accepted all 209,642 declarations on four worker threads. [Transcript](unconditional-con-leche.log)
+To reproduce the independent joint check, run `lake build con-leche` in a [con-leche checkout](https://github.com/leanprover/con-leche) at the revision recorded in the [verification manifest](results.json). Put that executable on PATH. From the proof repository root, run the following command after the Lean replay has finished. In verified mode, this build accepted all 209,642 declarations on four worker threads. [Transcript](unconditional-con-leche.log)
 
 ```sh
 con-leche --verified --jobs=4 --progress=10% WithGRH435/.lake/build/UnconditionalAudit.ndjson

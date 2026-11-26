@@ -4,10 +4,10 @@
 
 | Original question | Result | Manuscript |
 | --- | --- | --- |
-| **R**. Must every spectral zero have real part $1/2$ for every sufficiently large eligible even $N$? | **Formally refuted.** Lean proves `¬ ConditionalGoldbach.HypothesisR` with no GRH premise in the final theorem. | [R paper (PDF)](paper/R/refutation-of-R.pdf) · [LaTeX](paper/R/refutation-of-R.tex) |
+| **R**. Must every spectral zero have real part $1/2$ for every sufficiently large eligible even $N$? | **Formally refuted.** Lean proves `¬ ConditionalGoldbach.HypothesisR` with no GRH premise in the final theorem. | [R paper (PDF)](paper/R/refutation-of-R.pdf) · [LaTeX](paper/R/refutation-of-R.tex) · [Proof release](https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/releases/tag/hypothesis-r-v1.0.1) |
 | **S**. Does there exist an admissible $h$ for which $X_N$ has the prescribed zero-free region? | **Open.** Certain admissible functions fail. The full existence statement has an exact operator-norm criterion. The choice $h(N)=\log N$ also remains undecided here. | [S research paper (PDF)](paper/S/hypothesis-S.pdf) · [LaTeX](paper/S/hypothesis-S.tex) |
 
-Both questions use Jiamin Li and Jianya Liu’s residual operator on the strip with left boundary $1/\log N$ and right boundary $1/8$. Binary Goldbach remains open in this work. [Original paper](https://mrc.sdu.edu.cn/english/info/1018/1514.htm) · [Original Lean definitions](https://github.com/subfish-zhou/conditional-goldbach-lean/blob/c55db645f3b4aed00374fe4aa1fcee2428c88c4b/formalization/ConditionalGoldbach/Definitions/Hypotheses.lean)
+Both questions use Jiamin Li and Jianya Liu’s residual operator on the strip with left boundary $1/\log N$ and right boundary $1/8$. Binary Goldbach remains open in this work. [Original paper](https://mrc.sdu.edu.cn/english/info/1018/1514.htm) · [Original Lean definitions](https://github.com/subfish-zhou/conditional-goldbach-lean/blob/main/formalization/ConditionalGoldbach/Definitions/Hypotheses.lean)
 
 ## R — the refutation
 
