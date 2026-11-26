@@ -95,6 +95,10 @@ $$
 
 At each such modulus, the least constant multiplying $E_N(k,f)$ is exactly $\|T_N\|$. One can put two tests on a common scale and take their real linear combinations there. The real and imaginary parts of a complex test contribute additively to its squared norm and to its residual quadratic form. These complex tests are dense in the original Hardy space. The uniform arithmetic estimate above remains open. [Density](Analytic435/PhysicalDensity.lean) · [Real and imaginary parts](Analytic435/TestCombinations.lean) · [Exact norm and existence criterion](Analytic435/PhysicalCriterion.lean)
 
+At the first scale, write $F(u)=f(u)f(1-u)$. Let $H_N(t)$ be the sum of $\Lambda(n)\Lambda(N-n)/N$ over units $n<N$ with $n/N<t$, minus $t\mathfrak S(N)$. Then $D_N(1,f)=\int_0^1 H_N(t)F'(t)\,dt$. If $|H_N(j/m)|\le D$ at every mesh point, the entry is bounded by $(D+\mathfrak S(N)/m)\int_0^1|F'|$. The estimate applies simultaneously to all the test weights. [Cumulative count and mesh bound](Analytic435/GoldbachPrimitive.lean)
+
+There is also an unconditional mean bound for the absolute prime masses at the two ends of this line. Put $v(n)=\Lambda(n)/\sqrt n$ for $n>0$ and $v(0)=0$. Summing $v(n)v(j)$ over $n+j=N$, $n\le Y$, $j\le Z$, and over any finite set of distinct moduli costs at most $16(4+\log 4)^2\sqrt{YZ}$. At each eligible modulus, nine times its individual mass bounds the mixed arithmetic entry for any two unit vectors with these respective physical cutoffs, provided $Y,Z\le N$. [Mean bound](Analytic435/MeanReflection.lean)
+
 ## Build the proofs
 
 Each project pins its Lean toolchain and Git dependencies. The main spectral project uses Lean 4.35.0. From the repository root, build it with Lake.
