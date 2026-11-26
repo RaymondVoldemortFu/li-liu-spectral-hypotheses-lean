@@ -14,7 +14,7 @@ roots = ["ActualLimits", "BetaSampling", "Characters", "Kernel", "Residues", "Pr
 
 [[lean_lib]]
 name = "ExistenceAudit"
-roots = ["ExistenceAudit", "ExistenceLocalization", "ConductorMoments", "MomentTruncation", "PerronApproximation", "PerronHardy", "PerronOperators", "PerronDiagonal", "PrimeResidual", "PrimeCorrelations"]
+roots = ["ExistenceAudit", "ExistenceLocalization", "ConductorMoments", "MomentTruncation", "PerronApproximation", "PerronHardy", "PerronOperators", "PerronDiagonal", "PrimeResidual", "PrimeCorrelations", "SquareResidues", "SquareCorrelations", "SquareRemoval", "PowerRemoval"]
 
 [[lean_lib]]
 name = "SpectralTests"

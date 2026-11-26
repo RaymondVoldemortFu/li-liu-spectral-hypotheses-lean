@@ -28,6 +28,8 @@ The constant is independent of $N$. Hypothesis S holds for some admissible $h$ e
 
 For each test vector, the finite arithmetic term is a sum over pairs of prime powers. Equal residue classes contribute with a plus sign. Opposite residue classes contribute with a minus sign. The diagonal cancels. [Signed correlation formula](Analytic435/PrimeCorrelations.lean)
 
+Set $Y=\lceil(\log N)^{100}\rceil$. Keep the primes up to $X$ and the prime powers below $Y^2$. With these indices alone, the signed quadratic form minus the original model still approximates $\langle f,T_N f\rangle$ within $C(\log N)^{-16}$ for every $\|f\|\leq1$. The constant is uniform in the eligible even modulus. For squares, the proof uses the fact that three distinct roots of one square residue modulo $N$ cannot all lie in an interval of length $Y$ when $Y^3<N$. For the remaining powers, the sum of the absolute coefficients converges with an explicit tail bound. [Square-root spacing](Analytic435/SquareResidues.lean) · [Removal of proper prime powers](Analytic435/PowerRemoval.lean)
+
 ## Build the proofs
 
 Each project pins its Lean toolchain and Git dependencies. The main spectral project uses Lean 4.35.0. From the repository root, build it with Lake.

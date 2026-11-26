@@ -1,5 +1,5 @@
 module
-public import PrimeCorrelations
+public import PowerRemoval
 public import ConductorMoments
 public import MomentTruncation
 public import ExistenceLocalization
