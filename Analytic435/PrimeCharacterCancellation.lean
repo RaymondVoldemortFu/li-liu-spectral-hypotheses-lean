@@ -13,7 +13,7 @@ namespace GoldbachSpectral435.CriticalCharacter
 def primeTwist {q : ℕ} (χ : Character q) (M : ℕ) (f : ℝ→ℝ) : ℂ :=
   ∑ n∈range M,(weightedMangoldt M n f:ℂ)*χ n
 
-private lemma finite_twist {q : ℕ} (χ : Character q) (M : ℕ) (mp : 0<M)
+theorem prime_twist_eq_sample {q : ℕ} (χ : Character q) (M : ℕ) (mp : 0<M)
     (f : ℝ→ℝ) (hf : FiniteModelWeight f) :
     primeTwist χ M f=(Real.sqrt M:ℂ)*characterSample χ M (companion f) := by
   rw [finite_character_sample χ M mp f hf,mul_sum]
@@ -83,7 +83,7 @@ theorem prime_twist_bound (f : ℝ→ℝ) (hf : FiniteModelWeight f) :
   have norm : ‖characterSample χ M (companion f)‖≤c*((K*L^2*J)*U) := by
     rw [← neg_neg (characterSample χ M (companion f)),← inv,norm_neg,verticalMellin,norm_mul]
     exact mul_le_mul_of_nonneg_left ((norm_integral_le_integral_norm _).trans b) cp
-  rw [finite_twist χ M mp f hf,norm_mul,Complex.norm_real,Real.norm_eq_abs,abs_of_nonneg (Real.sqrt_nonneg _)]
+  rw [prime_twist_eq_sample χ M mp f hf,norm_mul,Complex.norm_real,Real.norm_eq_abs,abs_of_nonneg (Real.sqrt_nonneg _)]
   apply (mul_le_mul_of_nonneg_left norm (Real.sqrt_nonneg _)).trans
   change Real.sqrt M*(c*(K*L^2*J*U))≤(1+c*K*U)*Real.sqrt M*L^2*J
   nlinarith only [mul_nonneg (mul_nonneg (Real.sqrt_nonneg (M:ℝ)) (sq_nonneg L)) jp.le]

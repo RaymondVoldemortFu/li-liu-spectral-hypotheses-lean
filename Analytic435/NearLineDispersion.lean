@@ -43,7 +43,7 @@ private lemma rate {q M : ℕ} (qm : q≤M) (qp : 0<q) (l6 : 6≤Real.log (M:ℝ
   change p*(C*Real.sqrt M*L^2*(6+Real.log q))*L≤4*C*((M:ℝ)*Real.sqrt e)
   nlinarith only [prod,j,pay,congrArg (fun t : ℝ => 4*C*t*Real.sqrt e) eq3]
 
-private lemma rescale {P m p e F G X Y : ℝ} (mp : 0<m) (pp : 0<p) (ep : 0<e)
+lemma rescale_pair_error {P m p e F G X Y : ℝ} (mp : 0<m) (pp : 0<p) (ep : 0<e)
     (disp : |P-e*(F/p)*(G/p)|≤X*Y+Real.sqrt e*(|F/p| *Y+|G/p| *X)) :
     let b := p*X/(m*Real.sqrt e)
     let c := p*Y/(m*Real.sqrt e)
@@ -88,7 +88,7 @@ theorem near_line_error (f g : ℝ→ℝ) (hf : FiniteModelWeight f) (hg : Finit
   have eq : (q:ℝ)*e=T*p^2 := (div_eq_iff (pow_ne_zero _ pp.ne')).mp (lifted_density zz hp ev j)
   have ep : 0<e := pos_of_mul_pos_right (eq ▸ mul_pos tp (sq_pos_of_pos pp)) qr.le
   have den : p^2≤2*(q:ℝ)*e := by nlinarith only [eq,mul_le_mul_of_nonneg_right low (sq_nonneg p)]
-  have bound := rescale mr pp ep (all q H M M q4 qm qm grh sign)
+  have bound := rescale_pair_error mr pp ep (all q H M M q4 qm qm grh sign)
   have left := rate qm (NeZero.pos q) l6 cap p e C pp ep cp den
   have right := rate qm (NeZero.pos q) l6 cap p e D pp ep dp den
   have logq : 0≤Real.log (q:ℝ) := Real.log_nonneg (by exact_mod_cast (show 1≤q by omega))

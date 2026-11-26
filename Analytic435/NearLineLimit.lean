@@ -12,22 +12,22 @@ open scoped Topology
 namespace GoldbachSpectral435.GoldbachSieve
 open PhysicalTests
 
-private lemma base_period {N M : ℕ} (np : 0<N) (nm : N≤M) :
+lemma base_period {N M : ℕ} (np : 0<N) (nm : N≤M) :
     (primorial (localCutoff N):ℝ)≤Real.sqrt M := by
   let Q := primorial (localCutoff N)
   have qp : (1:ℝ)≤Q := Nat.one_le_cast.mpr (primorial_pos _)
   apply (Real.le_sqrt (Nat.cast_nonneg _) (Nat.cast_nonneg _)).mpr
   exact (pow_le_pow_right₀ qp (by decide : 2≤32)).trans ((primorial_cutoff_power N np).trans (Nat.cast_le.mpr nm))
 
-theorem near_line_modulus : ∀ᶠ N : ℕ in atTop, ∀ M : ℕ, N≤M → ∃ j : ℕ,
+theorem near_modulus_power (k : ℕ) : ∀ᶠ N : ℕ in atTop, ∀ M : ℕ, N≤M → ∃ j : ℕ,
     let q : ℝ := liftedModulus (localCutoff N) j
     let L := Real.log (M:ℝ)
-    q*L^8≤M ∧ (M:ℝ)<2*q*L^8 := by
-  have h := (isLittleO_log_rpow_rpow_atTop 8 (show (0:ℝ)<1/2 by norm_num)).tendsto_div_nhds_zero.comp
+    q*L^k≤M ∧ (M:ℝ)<2*q*L^k := by
+  have h := (isLittleO_log_rpow_rpow_atTop (k:ℝ) (show (0:ℝ)<1/2 by norm_num)).tendsto_div_nhds_zero.comp
     (tendsto_natCast_atTop_atTop (R:=ℝ))
-  have h' : Tendsto (fun M : ℕ => (Real.log (M:ℝ))^8/Real.sqrt M) atTop (𝓝 0) := by
-    simpa only [Function.comp_def,Real.sqrt_eq_rpow,Real.rpow_ofNat] using h
-  obtain ⟨K,k⟩ := eventually_atTop.mp (h'.eventually_lt_const zero_lt_one)
+  have h' : Tendsto (fun M : ℕ => (Real.log (M:ℝ))^k/Real.sqrt M) atTop (𝓝 0) := by
+    simpa only [Function.comp_def,Real.sqrt_eq_rpow,Real.rpow_natCast] using h
+  obtain ⟨K,small⟩ := eventually_atTop.mp (h'.eventually_lt_const zero_lt_one)
   filter_upwards [eventually_ge_atTop K,eventually_ge_atTop (2:ℕ)] with N nk np
   intro M nm
   let L := Real.log (M:ℝ)
@@ -35,22 +35,27 @@ theorem near_line_modulus : ∀ᶠ N : ℕ in atTop, ∀ M : ℕ, N≤M → ∃ 
   have qp : 0<Q := Nat.cast_pos.mpr (primorial_pos _)
   have mr : (1:ℝ)<M := by exact_mod_cast (show 1<M by omega)
   have lp : 0<L := Real.log_pos mr
-  have divp : 0<Q*L^8 := by positivity
-  have cap : Q*L^8≤M := by
-    have a : L^8≤Real.sqrt M := (by simpa using (div_lt_iff₀ (Real.sqrt_pos.mpr (zero_lt_one.trans mr))).mp (k M (nk.trans nm)) : L^8<Real.sqrt M).le
+  have divp : 0<Q*L^k := by positivity
+  have cap : Q*L^k≤M := by
+    have a : L^k≤Real.sqrt M := (by simpa using (div_lt_iff₀ (Real.sqrt_pos.mpr (zero_lt_one.trans mr))).mp (small M (nk.trans nm)) : L^k<Real.sqrt M).le
     exact (mul_le_mul (base_period (by omega) nm) a (pow_nonneg lp.le _) (Real.sqrt_nonneg _)).trans_eq
       (Real.mul_self_sqrt (Nat.cast_nonneg _))
   obtain ⟨j,lo,hi⟩ := exists_nat_pow_near ((one_le_div divp).mpr cap) (by norm_num : (1:ℝ)<2)
   refine ⟨j,?_⟩
   dsimp only [liftedModulus]
   push_cast
-  change 2^j*Q*L^8≤M ∧ (M:ℝ)<2*(2^j*Q)*L^8
+  change 2^j*Q*L^k≤M ∧ (M:ℝ)<2*(2^j*Q)*L^k
   rw [pow_succ (2:ℝ) j] at hi
   constructor
   · linarith only [(le_div_iff₀ divp).mp lo]
   · linarith only [(div_lt_iff₀ divp).mp hi]
 
-private lemma perturbed_product {R P U V x y c d δ : ℝ} (dp : 0≤δ) (d1 : δ≤1)
+theorem near_line_modulus : ∀ᶠ N : ℕ in atTop, ∀ M : ℕ, N≤M → ∃ j : ℕ,
+    let q : ℝ := liftedModulus (localCutoff N) j
+    let L := Real.log (M:ℝ)
+    q*L^8≤M ∧ (M:ℝ)<2*q*L^8 := near_modulus_power 8
+
+lemma perturbed_product {R P U V x y c d δ : ℝ} (dp : 0≤δ) (d1 : δ≤1)
     (cp : 0≤c) (cd : c≤δ) (dd : d≤δ) (rr : |R-1|≤δ)
     (uu : |U-x|≤δ) (vv : |V-y|≤δ) (err : |P-U*V|≤c*d+|U| *d+|V| *c) :
     |R*P-x*y|≤δ*(4*(|x|+|y|+2)+|x*y|) := by

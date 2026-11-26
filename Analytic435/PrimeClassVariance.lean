@@ -116,6 +116,25 @@ theorem class_variance_identity {q : ℕ} [NeZero q] (M : ℕ) (f : ℝ→ℝ) :
   intro χ h
   rw [ite_eq_right (mem_erase.mp h).1]
 
+/-- Parseval turns any uniform nonprincipal twist bound into a bound
+on the sum of squared class errors. -/
+theorem variance_of_twists {q : ℕ} [NeZero q] (M : ℕ) (f : ℝ→ℝ) (B : ℝ)
+    (all : ∀ χ : Character q, χ≠1 → ‖primeTwist χ M f‖≤B) :
+    (∑ t∈unitClasses q,(classError M f t)^2)≤B^2 := by
+  classical
+  let T := univ.erase (1:Character q)
+  have φ : 0<(q.totient:ℝ) := Nat.cast_pos.mpr (NeZero.pos _)
+  have card : T.card≤q.totient := by
+    have b := DirichletCharacter.card_eq_totient_of_hasEnoughRootsOfUnity ℂ q
+    rw [Nat.card_eq_fintype_card] at b
+    exact (card_le_card (erase_subset ..)).trans (by simpa using b.le)
+  apply le_of_mul_le_mul_left _ φ
+  rw [class_variance_identity]
+  have per (χ : Character q) (h : χ∈T) := pow_le_pow_left₀ (norm_nonneg _) (all χ (mem_erase.mp h).1) 2
+  apply (sum_le_sum per).trans
+  rw [sum_const,nsmul_eq_mul]
+  exact mul_le_mul_of_nonneg_right (Nat.cast_le.mpr card) (sq_nonneg B)
+
 /-- The class-variance bound loses no factor in the number of residue
 classes. It holds for each individual modulus. -/
 theorem class_variance_bound (f : ℝ→ℝ) (hf : FiniteModelWeight f) :
@@ -126,19 +145,7 @@ theorem class_variance_bound (f : ℝ→ℝ) (hf : FiniteModelWeight f) :
   obtain ⟨C,cp,all⟩ := prime_twist_bound f hf
   refine ⟨C,cp,?_⟩
   intro q M inst q4 qm grh
-  let B := C*Real.sqrt M*(Real.log M)^2*(6+Real.log q)
-  let T := univ.erase (1:Character q)
-  have φ : 0<(q.totient:ℝ) := Nat.cast_pos.mpr (NeZero.pos _)
-  have card : T.card≤q.totient := by
-    have b := DirichletCharacter.card_eq_totient_of_hasEnoughRootsOfUnity ℂ q
-    rw [Nat.card_eq_fintype_card] at b
-    exact (card_le_card (erase_subset ..)).trans (by simpa using b.le)
-  apply le_of_mul_le_mul_left _ φ
-  rw [class_variance_identity]
-  have per (χ : Character q) (h : χ∈T) := pow_le_pow_left₀ (norm_nonneg _) (all q M q4 qm grh χ (mem_erase.mp h).1) 2
-  apply (sum_le_sum per).trans
-  rw [sum_const,nsmul_eq_mul]
-  exact mul_le_mul_of_nonneg_right (Nat.cast_le.mpr card) (sq_nonneg B)
+  exact variance_of_twists M f _ (all q M q4 qm grh)
 
 #print axioms class_variance_identity
 #print axioms class_variance_bound
