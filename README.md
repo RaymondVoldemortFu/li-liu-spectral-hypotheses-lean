@@ -74,6 +74,20 @@ $$
 
 In particular it is at most $10368/(\log N)^2$ throughout $W\le N^2$ and $\sqrt{YZ}\le N/(\log N)^6$. The unit vectors, the modulus and the two window sizes may vary together. When both physical cutoffs are comparable to $N$, estimating the discrepancy between the reflected prime sum and the continuous model remains necessary. [Critical-window bounds](Analytic435/PhysicalHyperbola.lean)
 
+## Finite formulas on a dense family of tests
+
+Fix an eligible modulus $N$. Take any positive integer $k$, put $M=kN$, and let $f$ be a real $C^6$ function compactly supported in $(0,1)$. Put $w(n)=\Lambda(n)f(n/M)/\sqrt M$. Write $e_N(j,n)$ for the signed unit-residue indicator after diagonal subtraction and $J_f(y)=2\int_0^\infty f(u)f(u+y)\,du-\int_0^\infty f(u)f(y-u)\,du$. The original Riesz vector $x_f$ satisfies the exact identity
+
+$$
+\langle x_f,T_Nx_f\rangle=
+\sum_{n,j<M}w(n)w(j)e_N(j,n)
+-\sum_{\ell=1}^{2k}\mathfrak S(\ell N)J_f(\ell/k).
+$$
+
+Both sums are finite. The model formula follows from Mellin inversion of the continued density after dilation. At $k=1$ the difference is $\mathfrak S(N)\int_0^1 f(u)f(1-u)\,du$ minus the reflected Mangoldt sum. [Dilation and inversion](Analytic435/Dilation.lean) · [Exact finite discrepancy](Analytic435/FiniteDiscrepancy.lean) · [First-scale identity](Analytic435/ReflectionModel.lean)
+
+The complex linear span of these real-weight vectors, with $k$ and $f$ allowed to vary, is dense in the full original Hardy space at each $N$. In Fourier time the test associated with a compact smooth profile $g$ pairs against $g+g'$. A cutoff argument recovers the Fourier–Laplace transform from these pairings at every real point of the strip. Analytic continuation then proves density. Obtaining uniform norm decay on the critical strip remains open here. [Time profiles](Analytic435/PhysicalTests.lean) · [Density theorem](Analytic435/PhysicalDensity.lean)
+
 ## Build the proofs
 
 Each project pins its Lean toolchain and Git dependencies. The main spectral project uses Lean 4.35.0. From the repository root, build it with Lake.

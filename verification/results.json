@@ -2,8 +2,8 @@
   "date": "2026-11-26",
   "primary_spectral_proof": {
     "export": "Analytic435/.lake/build/AnalyticAudit.ndjson",
-    "bytes": 701961326,
-    "sha256": "7a1c0b159e41615e1d0786f87655b2c0151fe4c70d945be065d1e03e099bda2a",
+    "bytes": 701996103,
+    "sha256": "6fb6b9c4f9e8adf4f684d617390a6fbfcccce2ce11784b391c80d6dbbaf99e92",
     "lean4lean_declarations": 81859,
     "con_leche_records": 81858,
     "kernels": [
@@ -20,7 +20,7 @@
       "Classical.choice",
       "Quot.sound"
     ],
-    "lake_jobs": 4229,
+    "lake_jobs": 4230,
     "entry_points": [
       "PaperPremise.paper_GRH_iff",
       "PaperPremise.paper_spectral_consequences",
@@ -54,14 +54,14 @@
   },
   "existence_research": {
     "export": "Analytic435/.lake/build/ExistenceAudit.ndjson",
-    "bytes": 685583498,
-    "sha256": "d4b39315265c66e3ac923c4b3d2b83a5999358e0879f628afe636f3f96c71738",
+    "bytes": 695997541,
+    "sha256": "aed1fa969073cf093466373fe340476f572259a5f349f88fe85093212e86ee5b",
     "lean": "4.35.0",
-    "export_roots": 56,
+    "export_roots": 67,
     "targets": "verification/existence-targets.txt",
     "log": "verification/existence-audit.log",
-    "lean4lean_declarations": 80615,
-    "con_leche_records": 80614,
+    "lean4lean_declarations": 81101,
+    "con_leche_records": 81100,
     "kernels": ["leanchecker --from-export", "lean4lean --import", "con-leche --verified", "nanoda"],
     "axioms": ["propext", "Classical.choice", "Quot.sound"]
   },
@@ -133,8 +133,8 @@
     "style": "A4, black on white"
   },
   "local_lean_sources": {
-    "count": 92,
-    "fingerprint_sha256": "a51ca59c00f0d876378c0472fce5a3217f74c2aa9e7766a3fcbb667af3c674af",
+    "count": 97,
+    "fingerprint_sha256": "e7918633da3f3610c84b6cc4af35c80f45b7ece9c10cef6ae6c4e19e50d58422",
     "algorithm": "SHA256 of UTF-8 relative path, NUL, binary file SHA256, in ascending path order"
   },
   "source_release": {

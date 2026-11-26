@@ -10,11 +10,11 @@ subDir = "formalization"
 
 [[lean_lib]]
 name = "AnalyticAudit"
-roots = ["ActualLimits", "BetaSampling", "Characters", "Kernel", "Residues", "Progressions", "BetaCross", "Diagonal", "Quadratic", "Samples", "Gram", "Entry", "Energy", "Opposite", "PrimeLower", "PhysicalAP", "SpectralTestsAtScale", "PrimeMass", "SmoothShift", "ShiftMean", "RowMean", "ModulusWitness", "AtWindow", "OriginalBounds", "SpectralRefutation", "OriginalStatements", "PositiveWidth", "ArithmeticWidths", "PaperPremise", "FiniteSamples", "SparsePrescriptions", "ShortShiftLimit", "BandPNT", "AnalyticAudit"]
+roots = ["ActualLimits", "Dilation", "BetaSampling", "Characters", "Kernel", "Residues", "Progressions", "BetaCross", "Diagonal", "Quadratic", "Samples", "Gram", "Entry", "Energy", "Opposite", "PrimeLower", "PhysicalAP", "SpectralTestsAtScale", "PrimeMass", "SmoothShift", "ShiftMean", "RowMean", "ModulusWitness", "AtWindow", "OriginalBounds", "SpectralRefutation", "OriginalStatements", "PositiveWidth", "ArithmeticWidths", "PaperPremise", "FiniteSamples", "SparsePrescriptions", "ShortShiftLimit", "BandPNT", "AnalyticAudit"]
 
 [[lean_lib]]
 name = "ExistenceAudit"
-roots = ["ExistenceAudit", "ExistenceLocalization", "PhysicalSupport", "LocalPrimeForm", "Reflection", "PhysicalHyperbola", "ModelDecay", "StripDecay", "ConductorMoments", "ConductorCorrection", "DiagonalPole", "SecondMoment", "MomentTruncation", "PerronApproximation", "PerronHardy", "PerronOperators", "PerronDiagonal", "PrimeResidual", "PrimeCorrelations", "SquareResidues", "SquareCorrelations", "SquareRemoval", "PowerRemoval", "PrimeHyperbola"]
+roots = ["ExistenceAudit", "ExistenceLocalization", "PhysicalSupport", "LocalPrimeForm", "Reflection", "PhysicalHyperbola", "ReflectionModel", "FiniteDiscrepancy", "PhysicalTests", "PhysicalDensity", "ModelDecay", "StripDecay", "ConductorMoments", "ConductorCorrection", "DiagonalPole", "SecondMoment", "MomentTruncation", "PerronApproximation", "PerronHardy", "PerronOperators", "PerronDiagonal", "PrimeResidual", "PrimeCorrelations", "SquareResidues", "SquareCorrelations", "SquareRemoval", "PowerRemoval", "PrimeHyperbola"]
 
 [[lean_lib]]
 name = "SpectralTests"
