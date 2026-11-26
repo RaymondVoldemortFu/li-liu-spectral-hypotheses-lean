@@ -1,0 +1,15 @@
+name = "goldbachUnconditional"
+defaultTargets = ["UnconditionalAudit"]
+
+[[require]]
+name = "goldbachSpectralAnalytic"
+path = "../Analytic435"
+
+[[require]]
+name = "GRH"
+git = "https://github.com/lsernau/grh-lean.git"
+rev = "72fead102f663d5c7a407964a13dc0cf9d977207"
+subDir = "grh-compact"
+
+[[lean_lib]]
+name = "UnconditionalAudit"

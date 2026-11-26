@@ -19,7 +19,7 @@ private lemma endpoint {f : ℝ→ℝ} (hf : FiniteModelWeight f) : f 1=0 := by
   by_contra nz
   exact lt_irrefl 1 (hf.mem_support_unit nz).2
 
-private lemma primeSum_integral (M : ℕ) (mp : 0<M) (f : ℝ→ℝ) (hf : FiniteModelWeight f) :
+lemma primeSum_integral (M : ℕ) (mp : 0<M) (f : ℝ→ℝ) (hf : FiniteModelWeight f) :
     primeSum M f/M= -(∫ u in (0:ℝ)..1, deriv f u*(psi (M*u)/M)) := by
   let m := (M:ℝ)
   have mr : 0<m := Nat.cast_pos.mpr mp
@@ -50,6 +50,15 @@ private lemma primeSum_integral (M : ℕ) (mp : 0<M) (f : ℝ→ℝ) (hf : Finit
   simp_rw [eq] at ab
   rw [ab]
   rw [neg_div,mul_div_cancel_left₀ _ mr.ne']
+
+lemma integral_by_parts (f : ℝ→ℝ) (hf : FiniteModelWeight f) :
+    (∫ u in (0:ℝ)..1, deriv f u*u)= -(∫ u in (0:ℝ)..1, f u) := by
+  have parts := intervalIntegral.integral_mul_deriv_eq_deriv_mul_of_hasDerivAt (a:=(0:ℝ)) (b:=1)
+    (u:=fun t : ℝ => t) (u':=fun _ => (1:ℝ)) (v:=f) (v':=deriv f)
+    continuous_id.continuousOn hf.continuous.continuousOn (fun t _ => hasDerivAt_id t)
+    (fun t _ => (hf.smooth.differentiable (by decide) t).hasDerivAt) (by simp) ((hf.smooth.continuous_deriv (by decide)).intervalIntegrable ..)
+  simp only [endpoint hf,mul_zero,zero_mul,sub_zero,zero_sub,one_mul] at parts
+  simpa only [mul_comm] using parts
 
 theorem primeSum_limit (f : ℝ→ℝ) (hf : FiniteModelWeight f) :
     Tendsto (fun M : ℕ => primeSum M f/M) atTop (𝓝 (∫ u in (0:ℝ)..1,f u)) := by
@@ -91,11 +100,7 @@ theorem primeSum_limit (f : ℝ→ℝ) (hf : FiniteModelWeight f) :
       change deriv f u*(psi ((M:ℝ)*u)/((M:ℝ)*u)*u)=_
       dsimp [A]
       field_simp
-  have parts := intervalIntegral.integral_mul_deriv_eq_deriv_mul_of_hasDerivAt (a:=(0:ℝ)) (b:=1)
-    (u:=fun t : ℝ => t) (u':=fun _ => (1:ℝ)) (v:=f) (v':=deriv f)
-    continuous_id.continuousOn hf.continuous.continuousOn (fun t _ => hasDerivAt_id t)
-    (fun t _ => (hf.smooth.differentiable (by decide) t).hasDerivAt) (by simp) (dc.intervalIntegrable ..)
-  simp only [endpoint hf,mul_zero,zero_mul,sub_zero,zero_sub,one_mul] at parts
+  have parts := integral_by_parts f hf
   have same : -(∫ u,F u ∂μ)=∫ u in (0:ℝ)..1,f u := by
     dsimp only [μ,F]
     rw [← intervalIntegral.integral_of_le zero_le_one]

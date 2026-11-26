@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-26",
+  "date": "2026-11-27",
   "primary_spectral_proof": {
     "export": "Analytic435/.lake/build/AnalyticAudit.ndjson",
     "bytes": 701993520,
@@ -54,16 +54,25 @@
   },
   "existence_research": {
     "export": "Analytic435/.lake/build/ExistenceAudit.ndjson",
-    "bytes": 759560770,
-    "sha256": "58d9053dc49d8d1a83ad798c0c83769a29f441e904d1f65f5cd4633d2a7e970c",
+    "bytes": 762067999,
+    "sha256": "662bb11fea786602a4dfca57654d14301fff0c8450e21513ea03d2d9786145a1",
     "lean": "4.35.0",
-    "export_roots": 209,
+    "export_roots": 229,
     "targets": "verification/existence-targets.txt",
     "log": "verification/existence-audit.log",
-    "lean4lean_declarations": 84523,
-    "con_leche_records": 84522,
-    "kernels": ["leanchecker --from-export", "lean4lean --import", "con-leche --verified", "nanoda"],
-    "axioms": ["propext", "Classical.choice", "Quot.sound"]
+    "lean4lean_declarations": 84622,
+    "con_leche_records": 84621,
+    "kernels": [
+      "leanchecker --from-export",
+      "lean4lean --import",
+      "con-leche --verified",
+      "nanoda"
+    ],
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
   },
   "arithmetic_support": {
     "export": ".lake/build/Audit.ndjson",
@@ -124,17 +133,18 @@
     "check": "Explicit expression trees, including constants, universes and numerical instance arguments. Names of bound variables are ignored and two closed wrappers are unfolded. The two mathematical proofs were replayed as separate native exports."
   },
   "paper": {
-    "pdf": "paper/spectral-hypotheses.pdf",
-    "pdf_sha256": "de22af0ac5d83510c0d25c6f8013d8f408fad5d9e7ba3a5eb2283d3db8e241b4",
-    "tex": "paper/spectral-hypotheses.tex",
-    "tex_sha256": "854b854e258a2c9e3fe99dcd2edc293be23421b219f41dd487d641c1c6bcf983",
+    "pdf": "paper/R/refutation-of-R.pdf",
+    "pdf_sha256": "1cba898e989fc5bd25a2e23eea9e64ab794a710d999649bc017ca53f641c268b",
+    "tex": "paper/R/refutation-of-R.tex",
+    "tex_sha256": "32898b73d00fe9839adf49787eccf3839268c9e79b5a4ee6700d7c91ae78d921",
+    "author": "Leiming Fu",
     "compiler": "pdfLaTeX, standalone source compiled to stable cross-references",
-    "pages": 13,
+    "pages": 6,
     "style": "A4, black on white"
   },
   "local_lean_sources": {
-    "count": 176,
-    "fingerprint_sha256": "ef6aaa85510599209fc95107ff0f8b44b24fbb2e7cb869dc242416a138e4d43c",
+    "count": 183,
+    "fingerprint_sha256": "cf5d3ec68caf3496518429989e88b0936fcb921998f3d2bacdb5776599413f7c",
     "algorithm": "SHA256 of UTF-8 relative path, NUL, binary file SHA256, in ascending path order"
   },
   "source_release": {
@@ -146,14 +156,15 @@
     "pdf_sha256": "998f35a787a2f568113fac12caf5a9a799f537e83a5e649be25f3a76ac81bc58"
   },
   "scope": {
-    "R": "Refuted given primitive Dirichlet GRH. The GRH theorem was checked separately.",
-    "S": "Sparse changes of any admissible prescription can force failure under the paper's GRH premise. The logarithmic prescription itself and existence of any successful prescription remain undecided. Both have exact finite kernel criteria."
+    "R": "Formally refuted. The joint Lean theorem proves the negation of the original HypothesisR using the proof of primitive Dirichlet GRH.",
+    "S": "The existence of a successful admissible prescription and the particular choice h(N) = log N remain open. The formal results include an exact operator-norm criterion, a single-scale criterion and failures of individual admissible prescriptions."
   },
   "reproduction": {
     "native": "From Analytic435 run lake --wfail build AnalyticAudit with Lean 4.35.0.",
-    "local_replay": "Run python verification/replay.py spectral and python verification/replay.py arithmetic. Python 3.11+, ripgrep, the pinned Lean toolchains and Lean 4.36 checker binaries are required.",
+    "local_replay": "Run python verification/replay.py separately with spectral, existence and arithmetic. Python 3.11+, ripgrep, the pinned Lean toolchains and Lean 4.36 checker binaries are required.",
     "grh": "Use verification/Replay-GRH.ps1 with the two compressed files from the recorded certificate source, zstd and the pinned checker. Python and ripgrep must be on PATH.",
-    "interface": "Run python verification/compare-interface.py challenge.ndjson Analytic435/.lake/build/AnalyticAudit.ndjson."
+    "interface": "Run python verification/compare-interface.py challenge.ndjson Analytic435/.lake/build/AnalyticAudit.ndjson.",
+    "joint": "From the repository root run python verification/replay.py unconditional to build, export and check the joint proof."
   },
   "fresh_checkout": {
     "proof_revision": "aa26e76",
@@ -165,12 +176,44 @@
     "matching_spectral_sha256": "7a1c0b159e41615e1d0786f87655b2c0151fe4c70d945be065d1e03e099bda2a"
   },
   "chinese_companion": {
-    "pdf": "paper/spectral-hypotheses-zh.pdf",
-    "pdf_sha256": "37af75890b349f0d6d56676cd26135dfbdbf9b91f99ed4c8923f79d39ff4da7c",
-    "tex": "paper/spectral-hypotheses-zh.tex",
-    "tex_sha256": "4121f7082ad3580f248c0bb9e34817970078cbb213a1eb3821baa74e5c76c456",
-    "compiler": "XeLaTeX with Fandol fonts, two passes with the source alone in a fresh directory",
+    "pdf": "paper/archive/spectral-hypotheses-zh.pdf",
+    "pdf_sha256": "12a68191a153fa5345804a32f06046601ad7866bd59601b9e4114db7c97fa5a8",
+    "tex": "paper/archive/spectral-hypotheses-zh.tex",
+    "tex_sha256": "67faa8c3135890098f56c8a37bca0c4fbda99448a40d887cc479bbba3e74b1fe",
+    "author": "Leiming Fu",
+    "compiler": "XeLaTeX with Fandol fonts, standalone source compiled to stable cross-references",
     "pages": 8,
+    "style": "A4, black on white"
+  },
+  "joint_grh_spectral_proof": {
+    "statement": "GoldbachSpectral435.Unconditional.not_R : ¬ ConditionalGoldbach.HypothesisR",
+    "source": "WithGRH435/UnconditionalAudit.lean",
+    "grh_repository": "https://github.com/lsernau/grh-lean/tree/72fead102f663d5c7a407964a13dc0cf9d977207",
+    "lean": "4.35.0",
+    "lake_jobs": 10175,
+    "export_roots": 5,
+    "targets": "verification/unconditional-targets.txt",
+    "log": "verification/unconditional-audit.log",
+    "export": "WithGRH435/.lake/build/UnconditionalAudit.ndjson",
+    "bytes": 5274506584,
+    "sha256": "0a748d517e836f1e58204c7a8915ff75c4b99a11fb22b3f5614b0b5b44a0ea00",
+    "kernels": [
+      "leanchecker --from-export"
+    ],
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "hypothesis_s_paper": {
+    "pdf": "paper/S/hypothesis-S.pdf",
+    "pdf_sha256": "1316aa81bd028171f1209b1c2aaf7d6481381ed052f4c35e23e641cd8ed44247",
+    "tex": "paper/S/hypothesis-S.tex",
+    "tex_sha256": "ca11f6fe362a2c2c910d355908d61262337e20283cd26961275adcb9a7bb2e83",
+    "author": "Leiming Fu",
+    "compiler": "pdfLaTeX, standalone source compiled to stable cross-references",
+    "pages": 12,
     "style": "A4, black on white"
   }
 }

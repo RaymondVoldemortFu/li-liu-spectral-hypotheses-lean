@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = {
     "spectral": (ROOT / "Analytic435", "AnalyticAudit"),
     "existence": (ROOT / "Analytic435", "ExistenceAudit"),
+    "unconditional": (ROOT / "WithGRH435", "UnconditionalAudit"),
     "arithmetic": (ROOT, "Audit"),
 }
 AXIOMS = ["propext", "Classical.choice", "Quot.sound"]
@@ -46,14 +47,22 @@ def main():
             parser.error(f"cannot find {name}. Set --checker-bin to the Lean 4.36 bin directory")
         binaries[name] = os.path.abspath(binary)
 
-    run([lake, "--wfail", "build", module])
+    if args.project == "unconditional":
+        # The published GRH dependency includes deprecation warnings on its pinned toolchain.
+        run([lake, "build", "+Main", "+OriginalStatements", "+SingleScaleCriterion"])
+    else:
+        run([lake, "--wfail", "build", module])
     targets = (ROOT / "verification" / f"{args.project}-targets.txt").read_text().splitlines()
     build = project / ".lake" / "build"
     export = build / f"{module}.ndjson"
     with tempfile.TemporaryDirectory(dir=build) as scratch:
         candidate = Path(scratch) / export.name
-        with candidate.open("wb") as stream:
-            run([lake, "env", "leanexport", module, "--", *targets], stdout=stream)
+        if args.project == "unconditional":
+            run([lake, "env", sys.executable, str(ROOT / "verification/join-grh.py"),
+                 str(candidate.resolve()), *targets])
+        else:
+            with candidate.open("wb") as stream:
+                run([lake, "env", "leanexport", module, "--", *targets], stdout=stream)
         if not candidate.stat().st_size:
             raise RuntimeError("empty proof export")
         relative = os.path.relpath(candidate, project)

@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "Please cite this repository when using the Lean proofs. The accompanying manuscripts are listed under references."
+title: "The Li–Liu spectral hypotheses in Lean"
+type: software
+authors:
+  - family-names: Fu
+    given-names: Leiming
+repository-code: "https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean"
+url: "https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean"
+date-released: "2026-11-27"
+references:
+  - type: unpublished
+    title: "A formal refutation of the Li–Liu spectral hypothesis R"
+    authors:
+      - family-names: Fu
+        given-names: Leiming
+    year: 2026
+    url: "https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/blob/main/paper/R/refutation-of-R.pdf"
+  - type: unpublished
+    title: "Finite tests and arithmetic obstructions for the Li–Liu spectral hypothesis S"
+    authors:
+      - family-names: Fu
+        given-names: Leiming
+    year: 2026
+    url: "https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/blob/main/paper/S/hypothesis-S.pdf"

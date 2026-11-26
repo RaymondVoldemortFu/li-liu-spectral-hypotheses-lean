@@ -1,0 +1,5 @@
+GoldbachSpectral435.Unconditional.local_GRH
+GoldbachSpectral435.Unconditional.not_R
+GoldbachSpectral435.Unconditional.prescribed
+GoldbachSpectral435.Unconditional.some_S_iff
+GoldbachSpectral435.Unconditional.some_S_iff_single_scale

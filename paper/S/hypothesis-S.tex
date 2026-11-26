@@ -5,7 +5,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage[hidelinks]{hyperref}
-\hypersetup{pdftitle={Arithmetic obstructions and finite tests for the Li--Liu spectral hypotheses},pdfauthor={Codex}}
+\hypersetup{pdftitle={Finite tests and arithmetic obstructions for the Li--Liu spectral hypothesis S},pdfauthor={Leiming Fu}}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -17,24 +17,23 @@
 \DeclareMathOperator{\supp}{supp}
 \allowdisplaybreaks[1]
 \setlength{\emergencystretch}{1em}
-\title{Arithmetic obstructions and finite tests for the\\ Li--Liu spectral hypotheses}
-\author{Codex}
+\title{Finite tests and arithmetic obstructions for the Li--Liu spectral hypothesis S}
+\author{Leiming Fu}
 \date{27 November 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
-Li and Liu deduce a weighted binary Goldbach asymptotic from a prescribed zero-free region for the spectral function of a residual operator. Under Dirichlet GRH we construct an arithmetic sequence on which the zero-free region fails. Any admissible prescription can be modified on an arbitrarily thin subsequence of these records to produce a counterexample. In particular, a failing prescription agrees with $\log N$ off a set containing at most $1+\lfloor\log_2 X\rfloor$ integers up to $X$, and its width is smaller than every fixed inverse power of $\log N$. We give an exact finite-matrix criterion for the unmodified prescription and for the existence of any admissible zero-free region. On the first physical scale, decay of the normalized quadratic form on its entire test family is equivalent to a uniform Hardy--Littlewood asymptotic for ordinary ordered prime pairs with a sharp cutoff in the first summand. An unconditional total variation estimate removes both von Mangoldt weights. We also prove a two-prime asymptotic on both sum and difference congruences at moduli of size comparable to the summation length divided by the cube of its logarithm. The construction also gives an independent derivation of the failure of Hypothesis R under Dirichlet GRH.
+For Li and Liu's residual operator $T_N$, the existence of an admissible prescription satisfying Hypothesis S is equivalent to $\|T_N\|/\mathfrak S(N)\to0$ along the eligible even moduli. We prove this equivalence and a finite kernel criterion. Some admissible prescriptions fail even when they agree with $\log N$ off an arbitrarily sparse sequence. On the first physical scale, decay is equivalent to a uniform asymptotic for ordered Goldbach pairs with a sharp cutoff in one summand. We give large-modulus correlation estimates and a uniform Ramanujan-series truncation on the full sampling horizon. The existence assertion remains open.
 \end{abstract}
 
-\section{The hypotheses and the main results}
-
+\section{The existence question}
 Let $\Lambda$ be the von Mangoldt function. For even $N\ge4$, write
 \[
  C_2=\prod_{p>2}\left(1-\frac{1}{(p-1)^2}\right),\qquad
  \SSg(N)=2C_2\prod_{\substack{p\mid N\\p>2}}\frac{p-1}{p-2},
  \qquad \delta_N^2=\frac{\SSg(N)(\log N)^3}{N}.
 \]
-Products indexed by $p$ are over primes. Write $G(N)$ for GRH in the open critical strip for primitive Dirichlet characters of conductors dividing $N$. Let $G$ denote the assertion that $G(N)$ holds for every sufficiently large even $N$. Each positive conductor divides arbitrarily large even integers, so $G$ is equivalent to GRH for all primitive Dirichlet characters. The arithmetic obstructions below use $G$. The equivalences concerning individual moduli retain the local condition $G(N)$.
+Products indexed by $p$ are over primes. Write $G(N)$ for GRH in the open critical strip for primitive Dirichlet characters of conductors dividing $N$. Let $G$ denote the assertion that $G(N)$ holds for every sufficiently large even $N$. Each positive conductor divides arbitrarily large even integers, so $G$ is equivalent to GRH for all primitive Dirichlet characters. The arithmetic obstructions below use $G$, which follows from the formally verified primitive-character theorem \cite{grh,compact}. The equivalences concerning individual moduli retain the local condition $G(N)$.
 
 For $N>e^{10}$ satisfying $G(N)$, let $T_N$ be the Li--Liu compact selfadjoint residual operator on the Hardy strip $a_N<\Rea s<b$, where $a_N=1/\log N$ and $b=1/8$. We use their normalization $c=1$ throughout. Its nonzero eigenvalues $\mu_\nu$, counted with multiplicity, define
 \[
@@ -65,15 +64,8 @@ $(\log N)^d\eta_{\widetilde h}(N)\to0$.
 
 The records are defined without using a norm, eigenvalue, or zero of $T_N$. The sequence $p$ may grow as fast as desired. The argument gives no conclusion about $\mathrm S(\log)$ from equality of the two prescriptions outside $E_p$.
 
-\begin{theorem}[Arithmetic norm growth]\label{th:growth}
-Assume $G$. For each integer $d\ge0$ there are arbitrarily large even $N$ such that $N\|T_N\|^2>(\log N)^d$. Hypothesis R fails. If for some fixed $j\ge0$ an admissible prescription eventually satisfies
-$\eta_h(N)\ge 1/(4(\log N)^j)$, then $\mathrm S(h)$ fails. On a single increasing sequence $N_i$ of even integers there are real zeros $x_i<1$ of $X_{N_i}$ such that $(\log N_i)^d(1-x_i)\to0$ for every fixed $d\ge0$.
-\end{theorem}
 
-Yilin Liu previously obtained an obstruction to R and to prescribed inverse-logarithmic widths by detecting opposite prime shifts with a Maier matrix \cite{YL}. We use the opposite shifts, derive the required operator pairing, and construct the arithmetic discrepancy by finite inclusion--exclusion and the ordinary prime number theorem. Section~\ref{sec:samples} treats the two remaining assertions directly through the entries of a fixed sequence of sampling matrices. Section~\ref{sec:limit} bounds the lower estimate obtainable from one short-shift test at their scales.
-
-\section{Spectral thresholds and an arithmetic matrix element}\label{sec:entry}
-
+\section{Spectral and arithmetic estimates}\label{sec:entry}
 For $0<\eta<1/2$ the norm criterion for an open zero-free half-space is
 \begin{equation}\label{eq:dict}
  X_N(q)\ne0\ (\Rea q>1-\eta)
@@ -108,125 +100,23 @@ For an absolute constant $C$ and every sufficiently large eligible even $N$,
 \end{equation}
 for every test.
 \end{lemma}
-\begin{proof}
-Set $M=2N$ and $f(u)=b_0(Mu)$. Choose a fixed smooth $g$, symmetric about $1/2$, taking values in $[0,1]$, supported in $[3/8,5/8]$, and equal to one on $[7/16,9/16]$. For a real smooth $v$ compactly supported in $(0,1)$ set
-\[
- w_v(n)=M^{-1/2}\Lambda(n)v(n/M),\qquad
- J_v(y)=2\int_{\mathbb R}v(u)v(u+y)\dd u-\int_{\mathbb R}v(u)v(y-u)\dd u.
-\]
-For a Hardy function $F$ let $x_v$ represent the linear functional
-\[
- F\longmapsto\frac1{2\pi i}\int_{\Rea s=1/9}
- M^s\widehat{\sqrt u\,v(u)}(s)(1+s)F(s)\dd s,\qquad
- \widehat f(s)=\int_0^\infty f(u)u^{s-1}\dd u .
-\]
-Pairing each of the three kernels with this functional twice gives
-\begin{align}
- \langle T_N x_v,x_v\rangle={}&
- \frac{2}{\varphi(N)}\sum_{\chi(-1)=-1}\left|\sum_{n<M}w_v(n)\chi(n)\right|^2
- -\sum_{\substack{n<M\\(n,N)=1}}w_v(n)^2
- -\sum_{\ell\ge1}\SSg(\ell N)J_v(\ell/2).
- \label{eq:pair}
-\end{align}
-For clarity, in the character term Mellin inversion first uses the absolutely convergent expansion of $-L'/L$. The move to $\Rea s=1/9$ crosses no pole for an odd character under $G(N)$. The diagonal is inverted termwise. For the last term use $w=s+z$ in the two Mellin integrals. The inner beta integral is the Mellin transform of $J_v$. The quotient of the sampling scales gives $2^w$. On $\Rea w>1$, $D_N(w)=\sum_{\ell\ge1}\SSg(\ell N)\ell^{-w}$, so inversion samples at $\ell/2$. The pole at $w=1$ is removable in the pairing because $\int_0^\infty J_v(y)\dd y=0$. This follows by interchanging the two integrals and using symmetry in their two arguments. Smooth compact support gives rapid vertical decay in the contour moves.
 
-Polarize \eqref{eq:pair} using $v=f+g,f,g$. The diagonal cross term is zero. In the beta cross term the translated and reflected copies of $g$ coincide on $\supp f$ at $y=1/2$ by symmetry. For $y=\ell/2$, $\ell\ge2$, both vanish there. Also $g(u)f(u+y)=0$ for every such $y$, and the two reflected cross terms have equal integral. The odd-character projection is the difference of the equal- and opposite-residue indicators on units. For $m$ with $f(m/M)\ne0$ only the two samples $N+m,N-m$ contribute from $g$, both with value one. Thus the real part of the mixed matrix element is $-B_N(b_0)/M$.
+The opposite-shift estimate \eqref{eq:transfer} follows by testing $T_N$ against two smooth physical weights at $M=2N$. One is supported near $m/M$ and the second is symmetric about $1/2$ and equal to one at $(N\pm m)/M$. The continuous model and diagonal cancel from the mixed matrix element. Odd-character orthogonality leaves $-B_N(b_0)/M$. Mellin Plancherel bounds the squared norms of the two test vectors by $O(P^2/(MH))$ and $O(1)$, respectively. The full calculation and the following arithmetic estimate are proved in \cite{Rpaper}.
 
-Mellin Plancherel for the weighted functional gives
-\[
- \|x_v\|^2=\frac1{2\pi}\int_0^\infty
- \frac{(Mu)^{2a_N}}{1+(Mu)^{-2(b-a_N)}}\bigl(v(u)/2-u v'(u)\bigr)^2\dd u .
-\]
-The weight is bounded by $e^4$ on the supports. For $v=f$, the change of variable $y=Mu$ contributes $M^{-1}$, and the two support constraints give
-$H\int(b_0(y)/2-yb_0'(y))^2\dd y\le9P^2$. The corresponding integral for the fixed $g$ is constant. Apply Cauchy--Schwarz to the mixed element and use $M=2N$.
-\end{proof}
-
-\section{An odd layer of inclusion--exclusion}\label{sec:sieve}
-
-Fix an odd positive integer $k$. For a positive integer $t$ set
-\[
- \begin{gathered}
- z=8t^4,\qquad H=t^{4k},\qquad D=32\cdot16^k,\qquad P=DH,\\
- \mathcal P=\{p:z<p\le2z\},\qquad s=|\mathcal P|,\qquad Q=2\prod_{p\in\mathcal P}p .
- \end{gathered}
-\]
-Choose smooth functions $u,v$ taking values in $[0,1]$, supported respectively in $[1,4]$ and $[1,2]$, and equal to one on $[2,3]$ and $[7/5,8/5]$, respectively. Set $b_a(x)=u((x-a)/H)v(x/P)$ and
-\[
- R(a)=\sum_{P\le m\le2P}\Lambda(m)b_a(m)
- \bigl(\one_{(a-m,Q)=1}-\one_{(a+m,Q)=1}\bigr).
-\]
-The product rule gives an absolute $V\ge1$ such that $b_a/V$ is a test with interval length $3H$ whenever $20P<N$.
-
-\begin{lemma}\label{lm:row}
-For all sufficiently large $t$ there is an even integer $a\in[0,2P]$ with $R(a)\gg_k t^{3k}$.
+\begin{lemma}\label{lm:arithmetic}
+For each $d\ge0$ there are arbitrarily large even $N$ and tests as above such that $HB_N(b_0)^2>P^2(\log N)^d$.
 \end{lemma}
 \begin{proof}
-Sum over the even rows $a$. Even $m$ contribute zero. For odd $m$ write $h=m-a$, $w(h)=u(h/H)$ and $v_m=\one_{m\ {\rm odd}}\Lambda(m)v(m/P)$. The result is
-\[
- \sum_{P\le m\le2P}v_m
- \sum_{\substack{0<h<4H+1\\ h\ {\rm odd}}}w(h)
- \bigl(\one_{(h,Q)=1}-\one_{(2m-h,Q)=1}\bigr).
-\]
-On the support of $w$ every such $h$ corresponds to an allowed row. Expand both indicators over subsets $T\subseteq\mathcal P$, writing $d_T=\prod_{p\in T}p$. Eventually $4H+1\le z^k$ and $4P<z^{k+1}$. Consequently $k$ distinct band primes cannot divide $h$ together, and $k+1$ cannot divide $2m-h$. In layer $k$ only $d_T\mid2m-h$ survives. Its coefficient is $+1$ because $k$ is odd.
-
-For $|T|<k$, the two counts of odd $h$ are residue classes $d_T$ and $2m-d_T$ modulo $2d_T$. The prefix counts differ by at most two. Abel summation bounds their weighted difference by twice an endpoint value plus twice the discrete total variation of $w$, hence by an absolute constant. There are at most $k(s+1)^{k-1}$ such subsets and $\sum v_m\le(P+1)\log(2P)$.
-
-For a top-layer subset, $d=d_T\le(2z)^k=P/32$. Take an odd multiple $y$ of $d$ within distance $d$ of $3P$. Each prime $m$ in
-\[
-   (y+2H)/2<m\le(y+3H)/2
-\]
-contributes $\log m$ to that subset, since $h=2m-y$ is odd, $2H\le h\le3H$, and $7P/5\le m\le8P/5$. This interval has length $P/(2D)$. The prime number theorem $\vartheta(x)\sim x$ gives mass at least $H/4$ uniformly in $d$ for fixed $k$. Indeed both endpoints lie in $[P,2P]$, on which the endpoint errors are uniformly $o(P)$. Thus
-\[
- \sum_{a\ {\rm even}}R(a)\ \ge\
- \binom{s}{k}\frac H4-O\bigl(k(s+1)^{k-1}(P+1)\log(2P)\bigr).
-\]
-The same prime number theorem gives $s\log(2z)\ge z/2$ eventually, so $s\ge t^3$. For fixed $k$, $\binom{s}{k}\gg_k s^k$, $H=P/D$ and $\log(2P)=o(s)$. Divide the resulting lower bound by at most $2P+1$ rows.
+For an odd $k$ the inclusion--exclusion construction of \cite{Rpaper} gives
+$P=32\cdot16^k t^{4k}$, a test of length $3t^{4k}$, and an even $2^{64t^9}/4<N<2^{64t^9}$. Its opposite-shift sum is $\gg_k t^{3k}$. Consequently the squared sum times the length divided by $P^2$ is $\gg_k t^{2k}$. Take $2k>9d$.
 \end{proof}
-
-\section{From residue classes to an even modulus}\label{sec:transfer}
-
-Retain the broad weight $g$ of Lemma~\ref{lm:transfer}. For a residue class $v\bmod Q$ and a new sampling scale $M$, write
-\[
- A(v)=\sum_{\substack{n<M\\n\equiv v\bmod Q}}\Lambda(n)g(n/M),
- \qquad U=\frac1{\varphi(Q)}\sum_{\substack{n<M\\(n,Q)=1}}\Lambda(n)g(n/M).
-\]
-For $(v,Q)=1$ and $G(Q)$ one has
-\begin{equation}\label{eq:ap}
- |A(v)-U|\ll_g M^{3/4}Q^2 .
-\end{equation}
-To see this, let $F(u)=\sqrt u\,g(u)$ and $\chi$ be a nonprincipal character modulo $Q$. Mellin inversion for $\sum_n\Lambda(n)\chi(n)n^{-1/2}F(n/M)$ on $\Rea s=1$ has integrand $M^s\widehat F(s)(-L'/L)(1/2+s,\chi)$. On $1/4\le\Rea s\le1$ the logarithmic derivative is holomorphic under $G(Q)$ and has the usual bound $O(\log^2(Q(2+|\Im s|)))$. This is the proved strip estimate for Dirichlet logarithmic derivatives used in the Li--Liu construction \cite{LL,LLLean}. Four integrations by parts give $\widehat F(s)\ll_g(1+|\Im s|)^{-4}$. After a shift to $\Rea s=1/4$, replacing the logarithmic bound by $O(Q^2(1+|\Im s|)^2)$ gives $O_g(M^{1/4}Q^2)$. Multiply by $\sqrt M$ and average the nonprincipal characters by orthogonality to obtain \eqref{eq:ap}. For $4Q\le M$ and sufficiently large $M$, the primes in $(7M/16,9M/16]$ exceed $Q$ and contribute at least $M/16$ by the prime number theorem. Hence $U\ge M/(16\varphi(Q))$.
-
-For $0<m\le2P$, $8P\le M$ and $4Q\le M$ this implies
-\begin{equation}\label{eq:translate}
- \sum_{\substack{N<M,\,N\equiv a\bmod Q\\(N,m)=1}}g(N/M)\Lambda(N\pm m)
-  =U\one_{(a\pm m,Q)=1}+O_g\bigl(M^{3/4}Q^2+\sqrt M\log M+P\log(2M)\bigr).
-\end{equation}
-Indeed moving the weight from $N/M$ to $(N\pm m)/M$ costs $O_g(m\log(2M))$ by the mean value theorem. Its support stays away from the endpoints. After translation $(N\pm m,m)=(N,m)$. Every prime in the new support exceeds $m,Q$. A discarded term in a unit class, or a surviving term in a nonunit class, must therefore be a proper prime power. Their total weight is bounded by $\psi(M)-\vartheta(M)\le2\sqrt M\log M$. Apply \eqref{eq:ap} to the remaining unit-class sum.
-
-Set $r=2^{t^9}$ and $M=r^{64}$. Eventually $P,Q\le r$, since $P$ is polynomial in $t$ and $\log_2 Q\le 1+2z(2z+1)\le t^9$. Multiplying the error in \eqref{eq:translate} by $2(P+1)\log(2P)$ gives at most $M/(32Q)$ for large $t$. For example the error for a single sign is at most $5r^{51}$ after absorbing fixed constants and logarithms, and $640r^{54}\le r^{64}$ eventually. Take the even $a$ of Lemma~\ref{lm:row}. Subtract the two signs, multiply by $\Lambda(m)b_a(m)$, and sum over $m$. For $t$ large enough that $R(a)\ge1$ this gives
-\[
- \sum_{\substack{N<M\\N\equiv a\bmod Q}}g(N/M) B_N(b_a)
- \ge U R(a)-M/(32Q)\ge M R(a)/(32Q).
-\]
-There are at most $2M/Q$ candidate centres, and $0\le g\le1$. Some even $N\in(M/4,M)$ therefore satisfies $B_N(b_a)>R(a)/128$. At that centre $20P<N$ eventually. Lemma~\ref{lm:transfer} and the normalized test $b_a/V$ give
-\begin{equation}\label{eq:winning}
-  N\|T_N\|^2\gg \frac{(3H)B_N(b_a/V)^2}{P^2}
-       \gg_k t^{2k},\qquad \log N\le64t^9\log2 .
-\end{equation}
-For any given $d$ take odd $k$ with $2k>9d$ and let $t$ tend to infinity.
-
-\begin{proof}[Completion of the proof of Theorem~\ref{th:growth}]
-One has $1\le\SSg(N)\le(\log N)^2$ eventually. For the lower bound, completing the factors for $p-1$ in $C_2$ to all integers $n\ge2$ gives the smaller product $\prod_{n=2}^m(1-n^{-2})=(m+1)/(2m)$ in the limit. For the upper bound order the odd prime factors as $p_i\ge i+2$. Their correction factors telescope upwards to at most $1+\omega(N)$, where $2^{\omega(N)}\le N$.
-Hypothesis R would give $N\|T_N\|^2\le(\log N)^5$, contradicting \eqref{eq:winning}. At width $\eta=1/(4(\log N)^j)$, criterion~\eqref{eq:dict} would imply $N\|T_N\|^2\le(4/3)(\log N)^{j+5}$. Choosing $d=j+6$ gives a strict violation at arbitrarily large $N$ and a real zero in $(1-\eta,1)$. A larger prescribed width also fails there. Choose the $i$th modulus beyond its predecessor with $j=i$. For fixed $d$ the quantity $(\log N_i)^d(1-x_i)$ is eventually at most $1/(4\log N_i)$.
-\end{proof}
-
 \section{Arithmetic records and sparse prescriptions}\label{sec:records}
 
 For $n>1$ define
 \[
  h_j(n)=\sqrt{\frac{n\SSg(n)}{4(\log n)^{j+3}}},\qquad j=0,1,\ldots
 \]
-and give $h_j$ value one at $0,1$. Then $\eta_{h_j}(n)=1/(4(\log n)^j)$ for $n>1$ and $h_j(n)\to\infty$. Write $A_d(N)$ if some test of Section~\ref{sec:entry} satisfies $HB_N(b_0)^2>P^2(\log N)^d$. Equation~\eqref{eq:winning}, at the stage before applying the operator bound, proves $A_d$ at arbitrarily large even moduli for each fixed $d$.
+and give $h_j$ value one at $0,1$. Then $\eta_{h_j}(n)=1/(4(\log n)^j)$ for $n>1$ and $h_j(n)\to\infty$. Write $A_d(N)$ if some test of Section~\ref{sec:entry} satisfies $HB_N(b_0)^2>P^2(\log N)^d$. Lemma~\ref{lm:arithmetic} gives $A_d$ at arbitrarily large even moduli for each fixed $d$.
 
 Put $r_{-1}=2$. Take $r_j$ to be the least even $N>r_{j-1}$ satisfying $A_{j+8}(N)$ and $h_j(n)\ge j$ for every integer $n\ge N$. Both requirements can be met by the preceding paragraph. Set
 \[
@@ -316,7 +206,7 @@ Both $\Lambda(N-m)$ and $\Lambda(N+m)$ lie in $[0,\log(2N)]$. Since $|b_0|\le1$,
 $|B_N(b_0)|\le\log(2N)\psi(2P)$, where $\psi(x)=\sum_{n\le x}\Lambda(n)$. Chebyshev's inequality $\psi(x)\le(\log4+4)x$, together with $\log(2N)\le2\log N$ and $\log4+4\le7$, gives the first bound. Square it, multiply by $H/(P^2N)$, and use $H\le P$. The uniform assertion follows from $(\log N)^4/\sqrt N\to0$.
 \end{proof}
 
-For the moduli of Section~\ref{sec:transfer}, $P$ grows polynomially in $t$ and $N>2^{64t^9}/4$. The proposition applies even though the same tests prove Theorem~\ref{th:growth}. On the upper-bound side the Hilbert--Schmidt estimates give $\|T_N\|\ll(\log N)^2$ under local GRH \cite[Theorem 6.2]{LL}. By \eqref{eq:dict} they guarantee the width $c\SSg(N)/(N\log N)$ for a fixed $c>0$. The ratio of $\eta_{\log}$ to this width is $(\log N)^6/(c\SSg(N)^2)$ and tends to infinity. We have neither a uniform bound at the threshold \eqref{eq:sampleS} for $h=\log$ nor a cofinal strict violation at that threshold. The logarithmic prescription and the existence assertion of Theorem~\ref{th:exist} remain undecided here.
+For the moduli of Lemma~\ref{lm:arithmetic}, $P$ grows polynomially in $t$ and $N>2^{64t^9}/4$. The proposition applies even though those tests give unbounded logarithmic norm growth in \cite{Rpaper}. On the upper-bound side the Hilbert--Schmidt estimates give $\|T_N\|\ll(\log N)^2$ under local GRH \cite[Theorem 6.2]{LL}. By \eqref{eq:dict} they guarantee the width $c\SSg(N)/(N\log N)$ for a fixed $c>0$. The ratio of $\eta_{\log}$ to this width is $(\log N)^6/(c\SSg(N)^2)$ and tends to infinity. We have neither a uniform bound at the threshold \eqref{eq:sampleS} for $h=\log$ nor a cofinal strict violation at that threshold. The logarithmic prescription and the existence assertion of Theorem~\ref{th:exist} remain undecided here.
 
 \section{Prime counts on the first physical scale}\label{sec:sharp}
 
@@ -633,10 +523,114 @@ on all smooth interior tests. The endpoint and energy estimates in
 the proof of Theorem~\ref{th:sharp} give the asserted equivalences.
 \end{proof}
 
-\section*{Formal verification}
-The formal proofs use the residual operator and the hypotheses of the Li--Liu formalization \cite{LLLean}. Lean, lean4lean, con-leche and nanoda independently accepted the proof export for the spectral obstruction and the common export for Theorems~\ref{th:sharp}, \ref{th:congruences} and~\ref{th:frequency}. The latter lean4lean replay checked 84,362 declarations. The exports contain three axiom declarations, for propositional extensionality, classical choice and quotient soundness \cite{formal}.
+\section{Rational arcs and truncation by denominator}\label{sec:arcs}
 
-A separate verified-mode replay of the Dirichlet GRH certificate \cite{grh} accepted 1,468,418 declarations and all five challenge statements. The primitive-character proposition and seven definitions, including the $L$-function and primitivity, agree across the two formal libraries \cite{formal}.
+Write $e(y)=\exp(2\pi i y)$. For a real $f\in C_c^6(0,1)$ put
+\[
+ S_f(\xi)=\sum_{n<M}\Lambda(n)f(n/M)e(n\xi),\qquad
+ I_f(t)=\int_0^1 f(u)e^{itu}\dd u .
+\]
+The local GRH assumption $G(q)$ has the meaning fixed in Section~1.
+
+\begin{theorem}\label{th:rational}
+Let $a/q$ be reduced, $q\ge1$, and set $t=2\pi M(\xi-a/q)$.
+For any fixed $D>0$, sufficiently large $M$, and $4q\le M$, under $G(4q)$ one has
+\begin{align*}
+ S_f(\xi)={}&\frac{\mu(q)}{\varphi(q)}M I_f(t)\\
+ &+O_{f,D}\!\left(\sqrt{qM}(1+|t|)^4(6+\log(4q))
+ +(1+|t|)\left(\frac{M}{(\log M)^D}+1\right)
+ +\log M\log(4q)\right).
+\end{align*}
+Let $R,U$ be positive integers satisfying $4\le R$ and $RU\le M\le R(U+1)$.
+Suppose that $G(q)$ holds for $R\le q\le U$. Outside the union of the intervals
+$|\xi-a/q|\le((U+1)q)^{-1}$ over reduced fractions of denominator $q<R$,
+\[
+ |S_f(\xi)|\ll_f M(6+\log M)/\sqrt R+(\log M)^2 .
+\]
+\end{theorem}
+
+\begin{proof}
+Apply the character estimate used in Section~\ref{sec:congruences} to
+$f(u)\cos(tu)$ and $f(u)\sin(tu)$. Four integrations by parts in the Mellin
+transform bound its weighted norm by $C_f(1+|t|)^4$. Each differentiation
+of a trigonometric factor costs at most $|t|$ on the support of $f$.
+Thus every nonprincipal character modulo $Q\ge4$ contributes at most
+$C_f(1+|t|)^4\sqrt M(6+\log Q)$. Orthogonality and Cauchy--Schwarz
+over the units cost at most $\sqrt{\varphi(Q)}$ for a residue weight of
+absolute value at most one. The prime powers excluded from the units
+have total Mangoldt mass at most $\lfloor\log_2 M\rfloor\log Q$.
+
+Take $Q=4q$ and pull $e(an/q)$ back to the units modulo $Q$. Reduction
+onto the units modulo $q$ is surjective with fibers of equal size.
+The resulting mean is $\mu(q)/\varphi(q)$, by M\"obius inversion on the
+coprimality indicator and summation of a finite geometric progression.
+The ordinary prime number theorem with logarithmic remainder gives
+$\sup_{0\le y\le M}|\psi(y)-y|\ll_D M/(\log M)^D+1$. Partial summation
+against $f(u)e^{itu}$ costs $O_f(1+|t|)$. This proves the first estimate.
+
+For the second estimate choose a Dirichlet approximant of denominator
+$q\le U$ and error at most $((U+1)q)^{-1}$. The exclusion forces $q\ge R$,
+so $|t|\le 2\pi$. Apply the character estimate directly at $q$. Its
+nonprincipal part is $O_f(\sqrt{qM}(6+\log M))$, and $Rq\le M$.
+The principal part is $O_f(M/\varphi(q))$ by Chebyshev's bound.
+The elementary inequality $q\le2\varphi(q)^2$ follows prime power by prime
+power, with the factor $2$ needed only at $2$. These bounds give the claim.
+\end{proof}
+
+A denominator cutoff also suffices for the arithmetic part of the model.
+Write $c_q(H)=\sum_{a\bmod q,\,(a,q)=1}e(aH/q)$ and
+\[
+ L_Q(H)=\sum_{1\le q\le Q}\frac{\mu(q)^2c_q(H)}{\varphi(q)^2}.
+\]
+Let $z=\lfloor\log N/64\rfloor$ and use the dilation
+$k_N=\lceil \exp(8\log N\log\log N)/N\rceil$.
+
+\begin{theorem}\label{th:denominators}
+For each $\varepsilon>0$ there is a positive integer $A$ such that,
+for every sufficiently large $N$ and every even $0<H\le2k_NN$,
+\[
+             \left|L_{z^A}(H)/\SSg(H)-1\right|\le\varepsilon .
+\]
+\end{theorem}
+
+\begin{proof}
+Set $\lambda_p=1/(p-1)$ for $p\mid H$ and $\lambda_p=-1/(p-1)^2$
+otherwise. M\"obius inversion gives
+$c_q(H)=\sum_{e\mid(q,H)} e\,\mu(q/e)$, a multiplicative function of $q$.
+In particular, at a squarefree denominator the summand in $L_Q(H)$
+is the product of the $\lambda_p$ over $p\mid q$.
+Write $\SSg_Q(H)=\prod_{p\le Q}(1+\lambda_p)$.
+The product of $1+|\lambda_p|$ is at most $4\SSg_Q(H)$.
+Indeed, at every odd prime the product of $1+|\lambda_p|$ with
+$(1-1/(p-1)^2)^2$ is at most $1+\lambda_p$. The product of the twin-prime
+factors over any finite set is at least $1/2$, by telescoping against all
+integers greater than two. At $2$, evenness gives $\lambda_2=1$.
+
+For $Q=z^A$ weight each subset of the primes up to $Q$ by the product of
+its $|\lambda_p|$. After normalization the probability that $p$ belongs
+to the subset is $w_p=|\lambda_p|/(1+|\lambda_p|)$. If $d$ is the
+product of its primes, then $\mathbb E\log d=\sum_{p\le Q} w_p\log p$.
+For $p\le z$ use $w_p\le1/p$. For $p>z$ dividing $H$ use $w_p\le1/z$,
+and for the remaining primes use $w_p\le4/(zp)$. The elementary factorial
+bound $\sum_{p\le y}(\log p)/p\le2\log y$ gives
+\[
+ \mathbb E\log d\le 2\log z+\frac{\log H}{z}+\frac{8\log Q}{z}.
+\]
+On the indicated horizon $\log H\le2304z\log z$ for large $N$.
+At $z\ge8A$ the expectation is at most $2307\log z$.
+Markov's inequality at $\log Q$ and the absolute-product comparison give
+\[
+       |L_Q(H)-\SSg_Q(H)|\le (4\cdot2307/A)\,\SSg_Q(H).
+\]
+The finite Euler products converge to $\SSg(H)$ with uniformly vanishing
+relative error for $\log H\le2304Q\log Q$, as proved in
+Section~\ref{sec:congruences}. Choosing $A$ and then $N$ proves the theorem.
+\end{proof}
+
+\section*{Formal verification}
+The equivalence for existence, the individual failures and the prime-count criteria use the original Lean definitions \cite{LLLean,formal}. The primitive-character GRH theorem also gives the existence criterion at every sufficiently large even modulus \cite{grh,compact}. The independent export replays and the theorem lists are recorded with the sources \cite{formal}.
+
+\paragraph{Acknowledgment.} OpenAI Codex assisted with the proof construction, Lean formalization and preparation of the manuscript.
 
 \begingroup\small
 \begin{thebibliography}{9}
@@ -644,7 +638,12 @@ A separate verified-mode replay of the Dirichlet GRH certificate \cite{grh} acce
 \bibitem{YL} Y. Liu, \emph{Failure of the Li--Liu spectral hypothesis R under Dirichlet GRH}, 21 November 2026. \href{https://hexagonmath.org/2611.00788v1}{Hexagon 2611.00788v1}.
 \bibitem{LLLean} \emph{Conditional Goldbach in Lean}, revision \texttt{c55db645}. \href{https://github.com/subfish-zhou/conditional-goldbach-lean/tree/c55db645f3b4aed00374fe4aa1fcee2428c88c4b}{Formal definitions and proofs}.
 \bibitem{grh} L. Alp\"oge, \href{https://alpo.ge/remark.pdf}{Announcement of a proof of the Riemann hypothesis}, 20 November 2026. A. V. Sutherland, \emph{Verification files for the Lean proof of the Riemann hypothesis}, updated 25 November 2026. \href{https://math.mit.edu/~drew/grh/}{Certificates and challenge statements}.
-\bibitem{formal} Codex, \emph{The Li--Liu spectral hypotheses in Lean}, 2026. \href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/tree/046b4e9}{Proof sources, revision \texttt{046b4e9}}. \href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/tree/main/verification}{Verification records}.
+\bibitem{Rpaper} L. Fu, \emph{A formal refutation of the Li--Liu spectral hypothesis R}, preprint, 2026.
+\href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/blob/main/paper/R/refutation-of-R.pdf}{Manuscript}.
+\bibitem{formal} L. Fu, \emph{The Li--Liu spectral hypotheses in Lean}, 2026.
+\href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean}{Proof sources and verification records}.
+\bibitem{compact} L. Sernau, \emph{Compact GRH formalization}, revision \texttt{72fead10}.
+\href{https://github.com/lsernau/grh-lean/tree/72fead102f663d5c7a407964a13dc0cf9d977207/grh-compact}{Lean source}.
 \end{thebibliography}
 \endgroup
 \end{document}

@@ -1,0 +1,9 @@
+Build completed successfully (10175 jobs).
+'GoldbachSpectral435.Unconditional.some_S_iff_single_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.Unconditional.local_GRH' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.Unconditional.not_R' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.Unconditional.prescribed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.Unconditional.some_S_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+Lean default kernel accepts the solution
+UnconditionalAudit.ndjson axiom declarations: Classical.choice, Quot.sound, propext
+0A748D517E836F1E58204C7A8915FF75C4B99A11FB22B3F5614B0B5B44A0EA00

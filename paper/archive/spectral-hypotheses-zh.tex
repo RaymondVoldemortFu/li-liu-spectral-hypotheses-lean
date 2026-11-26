@@ -3,7 +3,7 @@
 \usepackage[top=23mm,bottom=24mm,left=26mm,right=26mm]{geometry}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[unicode,hidelinks]{hyperref}
-\hypersetup{pdftitle={李–刘哥德巴赫谱假设的移位素数和障碍},pdfsubject={狄利克雷 GRH 下的谱范数下界及无零区},pdfauthor={Codex}}
+\hypersetup{pdftitle={李–刘哥德巴赫谱假设的移位素数和障碍},pdfsubject={狄利克雷 GRH 下的谱范数下界及无零区},pdfauthor={Leiming Fu}}
 \ctexset{section={format=\large\bfseries\raggedright,aftername=\quad,beforeskip=2ex,afterskip=.8ex},subsection={format=\normalsize\bfseries\raggedright,aftername=\quad}}
 \setlength{\emergencystretch}{1em}
 \allowdisplaybreaks[1]
@@ -20,7 +20,7 @@
 \newcommand{\GRH}{\mathrm{GRH}}
 \DeclareMathOperator{\supp}{supp}
 \title{\bfseries 李--刘哥德巴赫谱假设的移位素数和障碍}
-\author{Codex}
+\author{Leiming Fu}
 \date{2026 年 11 月 26 日}
 \begin{document}
 \maketitle
@@ -28,6 +28,7 @@
 对李、刘定义的哥德巴赫残差算子 \(T_N\)，本文在狄利克雷广义黎曼猜想下证明，对每个固定的 \(d\ge0\)，有无穷多个偶数 \(N\) 满足
 \(N\|T_N\|^2>(\log N)^d\)。因此假设 R 失败，假设 S 对最终宽度至少为 \(1/(4(\log N)^j)\) 的每个预定函数亦失败。证明从模 \(N\)、采样尺度 \(2N\) 的精确矩阵元出发。对二进区间内的素数作有限容斥，奇数阶的末层在两个移位中只出现一次，其余层的取整误差由权函数的总变差控制。普通素数定理与一个从特征和推导的平滑等差数列估计将这一偏差转移回算子。进一步，只用移位和选取模数，可预先规定一个宽度比每个固定对数负幂都小、仍有反例的函数。另一方面，存在某个可容许的 S 函数等价于 \(\|T_N\|/\Sg(N)\to0\)。本文的下界与这一极限相容。
 \end{abstract}
+\noindent\textbf{版本说明。} 本文保留最初的条件性表述。后续英文论文将狄利克雷 GRH 的形式化证明与反证合并，得到原命题的否定 $\neg\mathrm R$。是否存在可容许的 $h$ 使 $\mathrm S(h)$ 成立仍为开放问题。研究与写作使用了 OpenAI Codex。
 
 \section{谱假设与结论}
 以下所有对数均为自然对数。令 \(\Lam\) 为冯·芒戈尔特函数，\(\varphi\) 为欧拉函数，并设
@@ -333,7 +334,7 @@ R 会给出 \(N\|T_N\|^2\le\Sg(N)(\log N)^3\le(\log N)^5\)，与 (1) 矛盾。
 \bibitem{GRH} L. Alpöge, \href{https://alpo.ge/remark.pdf}{关于黎曼猜想证明的公告}, 20 November 2026.
 A. V. Sutherland, \href{https://math.mit.edu/~drew/grh/}{\textit{Verification files for the Lean proof of the Riemann Hypothesis}},
 24 November 2026，第五个经核对的命题。
-\bibitem{ThisLean} Codex, \textit{The Li--Liu spectral hypotheses in Lean}, 26 November 2026.
+\bibitem{ThisLean} Leiming Fu, \textit{The Li--Liu spectral hypotheses in Lean}, 26 November 2026.
 \href{https://github.com/RaymondVoldemortFu/li-liu-spectral-hypotheses-lean/tree/eb458a4}{带谱证明与核验记录的固定版本}。
 \end{thebibliography}
 \end{document}

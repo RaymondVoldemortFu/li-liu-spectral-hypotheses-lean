@@ -37,11 +37,10 @@ private lemma excluded_arc (q M : ℕ) [NeZero q] (ψ : AddChar (ZMod q) ℂ)
         exact (mul_le_mul_of_nonneg_left (hb _) ArithmeticFunction.vonMangoldt_nonneg).trans_eq (mul_comm ..)
     _ ≤ _ := by rw [← mul_sum]; exact mul_le_mul_of_nonneg_left (excluded_mass_bound q M (NeZero.pos q)) fp
 
-private lemma principal_unit_mean (q : ℕ) [NeZero q] (ψ : AddChar (ZMod q) ℂ) (inj : Function.Injective ψ) :
-    unitMean q (unitsOnly ψ)=(ArithmeticFunction.moebius q:ℂ)/q.totient := by
+private lemma unitMean_unitsOnly (q : ℕ) [NeZero q] (ψ : AddChar (ZMod q) ℂ) :
+    unitMean q (unitsOnly ψ)=unitMean q ψ := by
   unfold unitMean
   congr 1
-  rw [← primitive_additive_mean q ψ inj]
   exact sum_congr rfl fun a ha => ite_eq_left (mem_unitClasses.mp ha)
 
 def arcSum {q : ℕ} (M : ℕ) (f : ℝ→ℝ) (ψ : AddChar (ZMod q) ℂ) (t : ℝ) :=
@@ -62,12 +61,11 @@ private lemma expand_arc {q M : ℕ} (f : ℝ→ℝ) (ψ : AddChar (ZMod q) ℂ)
   simp only [weightedMangoldt,cosTest,sinTest,Complex.ofReal_mul]
   ring
 
-/-- For ψ(n)=exp(2πian/q) with (a,q)=1 the main coefficient is μ(q)/φ(q).
-The two phases are kept together in the original complex exponential sum. -/
-theorem rational_arc_bound (f : ℝ→ℝ) (hf : FiniteModelWeight f) :
+/-- The principal term for any additive character is its mean on the units. -/
+theorem additive_arc_bound (f : ℝ→ℝ) (hf : FiniteModelWeight f) :
     ∃ C F : ℝ, 0<C ∧ 0≤F ∧ ∀ᶠ M : ℕ in atTop, ∀ (q : ℕ) [NeZero q], 4≤q → q≤M → GRH q →
-      ∀ (ψ : AddChar (ZMod q) ℂ), Function.Injective ψ → ∀ t : ℝ,
-      ‖arcSum M f ψ t-(ArithmeticFunction.moebius q:ℂ)/q.totient*principalArc q M f t‖≤
+      ∀ (ψ : AddChar (ZMod q) ℂ), ∀ t : ℝ,
+      ‖arcSum M f ψ t-unitMean q ψ*principalArc q M f t‖≤
         Real.sqrt q*(C*(1+|t|)^4*Real.sqrt M*(6+Real.log q))+F*(Nat.log 2 M:ℝ)*Real.log q := by
   obtain ⟨C,cp,all⟩ := modulated_residue_bound f hf
   obtain ⟨F,fb⟩ := hf.norm_bounded
@@ -75,8 +73,8 @@ theorem rational_arc_bound (f : ℝ→ℝ) (hf : FiniteModelWeight f) :
   have fp := (abs_nonneg _).trans (cap 0)
   refine ⟨2*C,2*F,by positivity,by positivity,?_⟩
   filter_upwards [all] with M est
-  intro q inst q4 qm grh ψ inj t
-  let a := (ArithmeticFunction.moebius q:ℂ)/q.totient
+  intro q inst q4 qm grh ψ t
+  let a := unitMean q ψ
   let P := fun b => (principalMass q M (trigTest b t f):ℂ)
   let S := fun b => residueSum q M (trigTest b t f) ψ
   let W := Real.sqrt q*(C*(1+|t|)^4*Real.sqrt M*(6+Real.log q))
@@ -94,7 +92,7 @@ theorem rational_arc_bound (f : ℝ→ℝ) (hf : FiniteModelWeight f) :
     have zero (x : ZMod q) (nu : ¬IsUnit x) : unitsOnly ψ x=0 := ite_eq_right nu
     have core := est q q4 qm grh b t (unitsOnly ψ) zero uni
     change ‖residueSum q M w (unitsOnly ψ)-(principalMass q M w:ℂ)*unitMean q (unitsOnly ψ)‖≤W at core
-    rw [principal_unit_mean q ψ inj,mul_comm (principalMass q M w:ℂ)] at core
+    rw [unitMean_unitsOnly q ψ,mul_comm (principalMass q M w:ℂ)] at core
     have tri := dist_triangle (S b) (residueSum q M w (unitsOnly ψ)) (a*P b)
     simp only [dist_eq_norm] at tri
     exact tri.trans (add_le_add exc core)
@@ -107,6 +105,21 @@ theorem rational_arc_bound (f : ℝ→ℝ) (hf : FiniteModelWeight f) :
   apply (norm_add_le ..).trans
   rw [norm_mul,norm_I,one_mul]
   exact (add_le_add (bound false) (bound true)).trans_eq (by dsimp only [V,W]; ring)
+
+/-- For ψ(n)=exp(2πian/q) with (a,q)=1 the main coefficient is μ(q)/φ(q).
+The two phases are kept together in the original complex exponential sum. -/
+theorem rational_arc_bound (f : ℝ→ℝ) (hf : FiniteModelWeight f) :
+    ∃ C F : ℝ, 0<C ∧ 0≤F ∧ ∀ᶠ M : ℕ in atTop, ∀ (q : ℕ) [NeZero q], 4≤q → q≤M → GRH q →
+      ∀ (ψ : AddChar (ZMod q) ℂ), Function.Injective ψ → ∀ t : ℝ,
+      ‖arcSum M f ψ t-(ArithmeticFunction.moebius q:ℂ)/q.totient*principalArc q M f t‖≤
+        Real.sqrt q*(C*(1+|t|)^4*Real.sqrt M*(6+Real.log q))+F*(Nat.log 2 M:ℝ)*Real.log q := by
+  obtain ⟨C,F,cp,fp,est⟩ := additive_arc_bound f hf
+  refine ⟨C,F,cp,fp,?_⟩
+  filter_upwards [est] with M bound
+  intro q inst q4 qm grh ψ inj t
+  have m : unitMean q ψ=(ArithmeticFunction.moebius q:ℂ)/q.totient := by
+    rw [unitMean,primitive_additive_mean q ψ inj]
+  simpa only [m] using bound q q4 qm grh ψ t
 
 #print axioms rational_arc_bound
 end GoldbachSpectral435.CriticalCharacter

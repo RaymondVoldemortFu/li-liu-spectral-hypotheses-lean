@@ -9,7 +9,8 @@ public import SharpNearLineLimit
 public import DyadicLineRecovery
 public import PrimeLineSifting
 public import GoldbachLineTail
-public import MinorArcFrequencies
+public import ArchimedeanPrimeArcs
+public import RamanujanCoefficients
 public import MeanReflection
 public import EligibleModuli
 public import SecondMoment

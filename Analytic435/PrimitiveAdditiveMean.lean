@@ -28,7 +28,7 @@ private lemma coprime_indicator (q n : ℕ) (qp : 0<q) :
   change ((if n.gcd q=1 then (1:ℤ) else 0:ℤ):ℂ)=if n.gcd q=1 then 1 else 0
   split <;> norm_num
 
-private lemma multiples (d q : ℕ) (dp : 0<d) (dv : d∣q) (F : ℕ→ℂ) :
+lemma sum_on_multiples (d q : ℕ) (dp : 0<d) (dv : d∣q) (F : ℕ→ℂ) :
     (∑ n∈range q,if d∣n then F n else 0)=∑ k∈range (q/d), F (d*k) := by
   obtain ⟨m,rfl⟩ := dv
   rw [Nat.mul_div_cancel_left _ dp,← sum_filter]
@@ -47,7 +47,7 @@ private lemma primitive_progression (q : ℕ) [NeZero q] (ψ : AddChar (ZMod q) 
     (∑ n∈range q,if d∣n then ψ n else 0)=if d=q then 1 else 0 := by
   have qp := NeZero.pos q
   have dp := Nat.pos_of_dvd_of_pos dv qp
-  rw [multiples d q dp dv]
+  rw [sum_on_multiples d q dp dv]
   have term (k : ℕ) : ψ ((d*k:ℕ):ZMod q)=(ψ d)^k := by
     rw [Nat.cast_mul,mul_comm,← nsmul_eq_mul,AddChar.map_nsmul_eq_pow]
   simp_rw [term]
@@ -63,12 +63,12 @@ private lemma primitive_progression (q : ℕ) [NeZero q] (ψ : AddChar (ZMod q) 
     rw [← term, Nat.mul_div_cancel' dv, ZMod.natCast_self,ψ.map_zero_eq_one]
   rw [geom_sum_eq notOne,power,sub_self,zero_div]
 
-/-- A complete reduced-residue sum of an injective additive character is μ(q). -/
-theorem primitive_additive_mean (q : ℕ) [NeZero q] (ψ : AddChar (ZMod q) ℂ)
-    (inj : Function.Injective ψ) : (∑ a∈unitClasses q,ψ a)=(ArithmeticFunction.moebius q:ℂ) := by
+lemma unit_phase_expansion (q : ℕ) [NeZero q] (F : ZMod q→ℂ) :
+    (∑ a∈unitClasses q,F a)=∑ d∈q.divisors,(ArithmeticFunction.moebius d:ℂ)*
+      ∑ n∈range q, if d∣n then F n else 0 := by
   classical
   have qp := NeZero.pos q
-  have rangeEq : (∑ a∈unitClasses q,ψ a)=∑ n∈range q,if n.Coprime q then ψ n else 0 := by
+  have rangeEq : (∑ a∈unitClasses q,F a)=∑ n∈range q,if n.Coprime q then F n else 0 := by
     rw [unitClasses,sum_filter]
     apply sum_bij (fun (a : ZMod q) _ => a.val)
     · intro a _; exact mem_range.mpr a.val_lt
@@ -78,12 +78,12 @@ theorem primitive_additive_mean (q : ℕ) [NeZero q] (ψ : AddChar (ZMod q) ℂ)
       have iu := ZMod.isUnit_iff_coprime a.val q
       rw [ZMod.natCast_zmod_val] at iu ⊢
       simp only [iu]
-  have term (n : ℕ) : (if n.Coprime q then ψ n else 0)=
-      ∑ d∈q.divisors,(ArithmeticFunction.moebius d:ℂ)*(if d∣n then ψ n else 0) := by
-    have ind := congrArg (· *ψ (n:ZMod q)) (coprime_indicator q n qp)
+  have term (n : ℕ) : (if n.Coprime q then F n else 0)=
+      ∑ d∈q.divisors,(ArithmeticFunction.moebius d:ℂ)*(if d∣n then F n else 0) := by
+    have ind := congrArg (· *F (n:ZMod q)) (coprime_indicator q n qp)
     rw [sum_mul] at ind
     calc
-      _ = (if n.Coprime q then 1 else 0:ℂ)*ψ n := by split <;> simp
+      _ = (if n.Coprime q then 1 else 0:ℂ)*F n := by split <;> simp
       _ = _ := by
         rw [← ind]
         apply sum_congr rfl
@@ -93,6 +93,12 @@ theorem primitive_additive_mean (q : ℕ) [NeZero q] (ψ : AddChar (ZMod q) ℂ)
   simp_rw [term]
   rw [sum_comm]
   simp_rw [← mul_sum]
+
+/-- A complete reduced-residue sum of an injective additive character is μ(q). -/
+theorem primitive_additive_mean (q : ℕ) [NeZero q] (ψ : AddChar (ZMod q) ℂ)
+    (inj : Function.Injective ψ) : (∑ a∈unitClasses q,ψ a)=(ArithmeticFunction.moebius q:ℂ) := by
+  have qp := NeZero.pos q
+  rw [unit_phase_expansion]
   have per (d : ℕ) (hd : d∈q.divisors) := primitive_progression q ψ inj d (Nat.mem_divisors.mp hd).1
   rw [sum_congr rfl (fun d hd => congrArg ((ArithmeticFunction.moebius d:ℂ)*·) (per d hd))]
   simp [mul_ite,Nat.mem_divisors,qp.ne']
