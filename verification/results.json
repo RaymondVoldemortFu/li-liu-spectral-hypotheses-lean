@@ -240,6 +240,22 @@
       "Quot.sound"
     ],
     "dependencies_log": "verification/r-dependencies.log",
-    "checked_proof_body_references": 37
+    "checked_proof_body_references": 37,
+    "proof_export": {
+      "export": "WithGRH435/.lake/build/RPaperAudit.ndjson",
+      "bytes": 5237694522,
+      "sha256": "7d071cb834f1dde437ff5d88e8da78692919df97868e308efcdcc5bd9b023e1e",
+      "targets": "verification/r-paper-targets.txt",
+      "export_roots": 5,
+      "log": "verification/r-paper-export.log",
+      "checker": "con-leche --verified --jobs=4",
+      "checker_revision": "5dc36dc15b7bee891a02406b78a8ac816a47baad",
+      "con_leche_records": 207991,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
   }
 }

@@ -14,6 +14,7 @@ CONFIG = {
     "spectral": (ROOT / "Analytic435", "AnalyticAudit"),
     "existence": (ROOT / "Analytic435", "ExistenceAudit"),
     "unconditional": (ROOT / "WithGRH435", "UnconditionalAudit"),
+    "r-paper": (ROOT / "WithGRH435", "RPaperAudit"),
     "arithmetic": (ROOT, "Audit"),
 }
 AXIOMS = ["propext", "Classical.choice", "Quot.sound"]
@@ -29,6 +30,7 @@ def main():
                         help="check the export with Lean's kernel and audit all its axiom declarations")
     args = parser.parse_args()
     project, module = CONFIG[args.project]
+    joint = project == ROOT / "WithGRH435"
     lake = shutil.which(args.lake)
     if not lake:
         parser.error("Lake executable not found")
@@ -54,7 +56,7 @@ def main():
             parser.error(f"cannot find {name}. Set --checker-bin to the Lean 4.36 bin directory")
         binaries[name] = os.path.abspath(binary)
 
-    if args.project == "unconditional":
+    if joint:
         # The published GRH dependency includes deprecation warnings on its pinned toolchain.
         run([lake, "build", "+Main", "+OriginalStatements", "+SingleScaleCriterion"])
     else:
@@ -64,7 +66,7 @@ def main():
     export = build / f"{module}.ndjson"
     with tempfile.TemporaryDirectory(dir=build) as scratch:
         candidate = Path(scratch) / export.name
-        if args.project == "unconditional":
+        if joint:
             run([lake, "env", sys.executable, str(ROOT / "verification/join-grh.py"),
                  str(candidate.resolve()), *targets])
         else:
@@ -76,7 +78,7 @@ def main():
         run([binaries["leanchecker"], "--from-export", relative])
         if not args.lean_only:
             run([binaries["lean4lean"], "--import", relative])
-            con_leche_args = ["--verified", "--jobs=4"] if args.project == "unconditional" else ["--verified"]
+            con_leche_args = ["--verified", "--jobs=4"] if joint else ["--verified"]
             run([binaries["con-leche"], *con_leche_args, relative])
             config = Path(scratch) / "nanoda.json"
             config.write_text(json.dumps({

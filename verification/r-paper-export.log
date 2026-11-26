@@ -1,0 +1,13 @@
+'GoldbachSpectral435.RPaperAudit.statement_agrees' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.RPaperAudit.main_normalization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.RPaperAudit.scale_squared' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.RPaperAudit.realization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GoldbachSpectral435.RPaperAudit.paper_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]
+con-leche: reading RPaperAudit.ndjson
+con-leche: parse done: 207991 fold records — the file's 207991, 0 built-in prelude records synthesised t=7.4s (parse 7.4s)
+con-leche: checking: 207991 declarations on 4 workers t=7.4s
+con-leche: check done: 207991 declarations t=138.5s (check 131.0s)
+con-leche: done: parse 7.4s, check 131.0s, 4 workers t=138.5s
+con-leche: accepted 207991 declarations (--verified)
+RPaperAudit.ndjson axiom declarations: Classical.choice, Quot.sound, propext
+7D071CB834F1DDE437FF5D88E8DA78692919DF97868E308EFCDCC5BD9B023E1E

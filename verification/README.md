@@ -33,6 +33,13 @@ Nanoda also accepted the joint export with four threads and the three-axiom allo
 
 The joint build also checks all three conclusions of the R manuscript against explicit statements of the operator and partial products. The audit records the original PDF pages, proof-body dependencies and axiom checks. [R manuscript audit](hypothesis-R.md)
 
+The R manuscript also has a dedicated export with five roots. It includes the complete proofs of the norm growth, the refutation and the common zero sequence. Verified-mode con-leche accepted all 207,991 declarations. To rebuild it and repeat the independent check, run the following commands with the same pinned con-leche executable. [Manuscript export transcript](r-paper-export.log) · [Roots](r-paper-targets.txt)
+
+```sh
+python verification/replay.py r-paper --lean-only
+con-leche --verified --jobs=4 --progress=10% WithGRH435/.lake/build/RPaperAudit.ndjson
+```
+
 The joint replay builds the pinned GRH and spectral dependencies. They both define a global name `nabla` with different meanings. The build helper checks the SHA-256 of the pinned Wiener source and renames its finite-difference declaration and its occurrences in a temporary copy. It then builds the joint theorem with warnings treated as errors and exports the listed roots. The combined export includes the proof terms of the GRH theorem. [Build helper](join-grh.py) · [Joint targets](unconditional-targets.txt)
 
 For a native build of the spectral implication or S research, change to `Analytic435` and run `lake --wfail build AnalyticAudit` or `lake --wfail build ExistenceAudit`. Build the arithmetic support at the repository root with `lake --wfail build Audit`. The export checker accepts only propositional extensionality, classical choice and quotient soundness.

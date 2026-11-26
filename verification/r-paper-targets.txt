@@ -1,0 +1,5 @@
+GoldbachSpectral435.RPaperAudit.statement_agrees
+GoldbachSpectral435.RPaperAudit.main_normalization
+GoldbachSpectral435.RPaperAudit.scale_squared
+GoldbachSpectral435.RPaperAudit.realization
+GoldbachSpectral435.RPaperAudit.paper_theorem

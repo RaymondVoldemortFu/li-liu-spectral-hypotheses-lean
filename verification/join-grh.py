@@ -48,10 +48,13 @@ def main():
     root = "UnconditionalAudit"
     subprocess.run([lean, "-DwarningAsError=true", "-o", str(scratch / (root + ".olean")),
                     root + ".lean"], cwd=project, env=env, check=True)
-    subprocess.run([lean, "-DwarningAsError=true", "RPaperAudit.lean"],
+    paper = "RPaperAudit"
+    subprocess.run([lean, "-DwarningAsError=true", "-o", str(scratch / (paper + ".olean")), paper + ".lean"],
                    cwd=project, env=env, check=True)
+    if output.stem not in (root, paper):
+        raise ValueError(f"Unknown joint export module: {output.stem}")
     with output.open("wb") as stream:
-        subprocess.run([exporter, root, "--", *sys.argv[2:]], cwd=project, env=env,
+        subprocess.run([exporter, output.stem, "--", *sys.argv[2:]], cwd=project, env=env,
                        stdout=stream, check=True)
 
 

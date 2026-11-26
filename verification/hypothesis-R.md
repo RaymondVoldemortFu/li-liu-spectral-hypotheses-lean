@@ -22,6 +22,8 @@ The manuscript writes the analytic kernel with the beta expression. Lean defines
 
 ## Evidence and reproduction
 
+A dedicated export contains the five manuscript checks, including the complete proof terms for all three conclusions of Theorem 1.1. Verified-mode con-leche accepted its 207,991 declarations. Scanning that export independently found the same three standard axioms. [Paper export transcript and SHA-256](r-paper-export.log) · [Five roots](r-paper-targets.txt)
+
 The closed proof applies `refute_R` to a proof of local GRH at each modulus obtained from `LFunction_eq_zero_re_of_isPrimitive`. The complete 5,274,506,584-byte joint export passed the Lean kernel, verified-mode con-leche and nanoda. Its only axiom declarations are `propext`, `Classical.choice` and `Quot.sound`. The separate GRH challenge comparison checks the primitive-character statement against its proof certificate. The five paper-audit declarations also undergo a transitive axiom check during Lean elaboration. [Closed theorem](../WithGRH435/UnconditionalAudit.lean) · [Joint audit](unconditional-audit.log) · [GRH challenge](grh-replay.log) · [Paper audit](r-paper-audit.log)
 
 The dependency check reads expression nodes in the two checked exports. Each reported arrow means that the proof body on the left contains a reference to the declaration on the right. The joint export contains the closed R proof. The spectral export contains the cofinal norm and zero-sequence proofs that the manuscript combines with the checked GRH input. [Dependency transcript](r-dependencies.log) · [Checker instructions and versions](README.md)
