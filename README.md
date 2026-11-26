@@ -99,6 +99,14 @@ At the first scale, write $F(u)=f(u)f(1-u)$. Let $H_N(t)$ be the sum of $\Lambda
 
 There is also an unconditional mean bound for the absolute prime masses at the two ends of this line. Put $v(n)=\Lambda(n)/\sqrt n$ for $n>0$ and $v(0)=0$. Summing $v(n)v(j)$ over $n+j=N$, $n\le Y$, $j\le Z$, and over any finite set of distinct moduli costs at most $16(4+\log 4)^2\sqrt{YZ}$. At each eligible modulus, nine times its individual mass bounds the mixed arithmetic entry for any two unit vectors with these respective physical cutoffs, provided $Y,Z\le N$. [Mean bound](Analytic435/MeanReflection.lean)
 
+For weights supported on $u\ge 1/N$, the same mesh gives a bound in the Hilbert norm itself,
+
+$$
+|D_N(1,f)|\le 16\pi\bigl(D+\mathfrak S(N)/m\bigr) E_N(1,f).
+$$
+
+The constant is uniform as the support approaches either endpoint. Integration by parts gives $\int_0^1(f(u)/(1-u))^2\,du\le4\int_0^1 u^2 f'(u)^2\,du$. Applying this inequality to the reflected product bounds its total variation by four times $\int_0^1(f(u)/2-u f'(u))^2\,du$. [Reflection inequality](Analytic435/ReflectionVariation.lean) · [Norm bound](Analytic435/ReflectionEnergy.lean)
+
 ## Build the proofs
 
 Each project pins its Lean toolchain and Git dependencies. The main spectral project uses Lean 4.35.0. From the repository root, build it with Lake.

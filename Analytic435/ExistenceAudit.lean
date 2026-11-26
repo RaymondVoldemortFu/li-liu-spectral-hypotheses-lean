@@ -1,7 +1,7 @@
 module
 public import PhysicalHyperbola
 public import PhysicalCriterion
-public import GoldbachPrimitive
+public import ReflectionEnergy
 public import MeanReflection
 public import EligibleModuli
 public import SecondMoment

@@ -25,6 +25,10 @@ private theorem density_companion {f : ℝ → ℝ} (hf : Differentiable ℝ f) 
     show (Real.sqrt u)^2*f u=u*f u by rw [sq],
     show (Real.sqrt u)^2*u*deriv f u=u*u*deriv f u by rw [sq]]
 
+/-- The original norm integrand uses the physical derivative f/2-u f'. -/
+theorem derivativeWeight_eq_density {f : ℝ → ℝ} (hf : Differentiable ℝ f) {u : ℝ} (hu : 0<u) :
+    derivativeWeight f u = Real.sqrt u*physicalDensity f u := density_companion hf hu
+
 /-- Uniform norm estimate on the published strip. The bound applies at
 the doubled sampling scale and does not depend on the support endpoints. -/
 theorem norm_at_double_le (N : ℕ) (lar : Real.exp 10 < (N:ℝ))
