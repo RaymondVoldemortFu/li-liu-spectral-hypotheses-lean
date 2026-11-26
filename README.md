@@ -152,6 +152,16 @@ The estimate applies to every translate of the interval. At a prime $p$, the sie
 
 For the original first-line counting measure, put $F_N(t)=t+H_N(t)/\mathfrak S(N)$. For $0\le s\le t\le1$ one has $0\le F_N(t)-F_N(s)\le C(t-s+1/N+(\log N)^2/\sqrt N)$. In particular, any sequence of intervals of vanishing relative length has vanishing normalized mass as the even moduli grow. The estimate gives upper bounds on concentration. Identifying the limiting mass on each interval still requires a prime-pair asymptotic. [Original counting measure](Analytic435/GoldbachIntervals.lean)
 
+## Sharp Goldbach counts and the first scale
+
+Along every sequence of eligible even moduli tending to infinity, the normalized first-scale bound for all real test functions tends to zero if and only if
+
+$$
+\sup_{0\le t\le1} |F_N(t)-t|\longrightarrow 0.
+$$
+
+In particular the existence of any admissible $h$ satisfying S implies this uniform asymptotic for the actual von Mangoldt pair counts. To prove the forward implication, polarization and reflection symmetry recover each smooth interior weight from the original quadratic forms. The translated sieve estimate controls the ends of each interval as the test approaches its indicator. Positivity of the counting measure extends convergence on a finite mesh to every threshold. The reverse implication uses the first-scale operator estimate above. [Energy and exact entries](Analytic435/FirstLineLimits.lean) · [Polarization](Analytic435/GoldbachSmoothTests.lean) · [Interval tests](Analytic435/GoldbachWindowTests.lean) · [Equivalence](Analytic435/SharpGoldbachLimits.lean)
+
 ## Build the proofs
 
 Each project pins its Lean toolchain and Git dependencies. The main spectral project uses Lean 4.35.0. From the repository root, build it with Lake.

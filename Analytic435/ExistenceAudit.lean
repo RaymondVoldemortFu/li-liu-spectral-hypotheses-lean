@@ -4,7 +4,7 @@ public import PhysicalCriterion
 public import FirstBlockBound
 public import KernelBound
 public import SingleScaleCriterion
-public import GoldbachIntervals
+public import SharpGoldbachLimits
 public import MeanReflection
 public import EligibleModuli
 public import SecondMoment
