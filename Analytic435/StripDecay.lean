@@ -1,6 +1,6 @@
 module
 public import ExistenceLocalization
-public import PhysicalSupport
+public import LocalPrimeForm
 public import ModelDecay
 public import Mathlib.Analysis.InnerProductSpace.Rayleigh
 
@@ -167,20 +167,18 @@ private lemma norm_of_forms {H : Type*} [NormedAddCommGroup H] [InnerProductSpac
   exact (congrArg norm (symm.isSymmetric x x)).le.trans (cap x)
 
 /-- Operator norm of the complete residual on a variable left boundary.
-The three terms come from the short arithmetic form, the complementary
-block and the original model, respectively. -/
-theorem residual_strip_bound :
-    ∃ K C B : ℝ, 0<K ∧ 0<C ∧ 0<B ∧ ∀ N : ℕ, ∀ (_ : NeZero N), Even N →
+The short arithmetic form vanishes exactly. The two terms bound the
+complementary block and the model. -/
+theorem residual_strip_decay :
+    ∃ C B : ℝ, 0<C ∧ 0<B ∧ ∀ N : ℕ, ∀ (_ : NeZero N), Even N →
     Real.exp 10<(N:ℝ) → GRH N → ∀ {a : ℝ}, alpha N≤a → ∀ (ha : a<beta) (Y : ℕ),
     0<Y → 2*Y≤N →
-    ‖residualOperator ha N‖ ≤ K/(Real.log N)^16+
-      C*(Real.log N)^2*Real.exp (-(a-alpha N)*Real.log Y)+
+    ‖residualOperator ha N‖ ≤ C*(Real.log N)^2*Real.exp (-(a-alpha N)*Real.log Y)+
       B*singularSeries N*(N:ℝ)^(-2*a)*(a⁻¹)^2 := by
-  obtain ⟨K,kp,short⟩ := PhysicalSupport.short_arithmetic_bound
   obtain ⟨C,cp,op⟩ := residualOperator_uniform_hs_bound
   obtain ⟨D,dp,model⟩ := modelOperator_uniform_hs_bound
   obtain ⟨B,bp,decay⟩ := ModelDecay.operator_decay
-  refine ⟨4*K,8*(2*C+D),B,by positivity,by positivity,bp,?_⟩
+  refine ⟨8*(2*C+D),B,by positivity,bp,?_⟩
   intro N inst he lar g a ua ha Y yp ys
   obtain ⟨four,lp,hu⟩ := large_parameters lar
   have up := large_alpha_pos lar
@@ -210,16 +208,17 @@ theorem residual_strip_bound :
     apply ContinuousLinearMap.ext
     intro f
     simp only [A,J,add_apply,ContinuousLinearMap.comp_apply,map_add]
-  change ‖residualOperator ha N‖ ≤ 4*K/L^16+8*(2*C+D)*L^2*E+M
+  change ‖residualOperator ha N‖ ≤ 8*(2*C+D)*L^2*E+M
   apply norm_of_forms _ (residualOperator_spec_at a N ap four g ha).2.2.2.1 (by positivity)
   intro f
-  have c := compressed_form ua ha.le ylog (show 0≤K/L^16 by positivity) A
-    (fun v hv => by rw [id]; exact short N inst he lar g hu Y yp ys v hv) f
+  have c := compressed_form ua ha.le ylog (le_refl (0:ℝ)) A
+    (fun v hv => by rw [id,LocalPrimeForm.short_arithmetic_zero N Y he lar g hu yp ys v hv,norm_zero,zero_mul]) f
   have ae : inner ℂ (J.adjoint f) (A (J.adjoint f)) =
       inner ℂ f ((residualOperator ha N+modelOperator ha N) f) := by
     rw [ContinuousLinearMap.adjoint_inner_left,← ad]
     rfl
-  change ‖inner ℂ (J.adjoint f) (A (J.adjoint f))‖≤ (4*(K/L^16)+8*‖A‖*E)*‖f‖^2 at c
+  change ‖inner ℂ (J.adjoint f) (A (J.adjoint f))‖≤ (4*0+8*‖A‖*E)*‖f‖^2 at c
+  simp only [mul_zero,zero_add] at c
   rw [ae] at c
   have mb : ‖inner ℂ f (modelOperator ha N f)‖≤M*‖f‖^2 :=
     (form_bound _ _ _).trans ((mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_right ma
@@ -231,19 +230,34 @@ theorem residual_strip_bound :
   apply (norm_sub_le _ _).trans ((add_le_add c mb).trans _)
   have scale := mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_left an (by norm_num : (0:ℝ)≤8)) epos.le
   calc
-    _ ≤ (4*(K/L^16)+8*((2*C+D)*L^2)*E)*‖f‖^2+M*‖f‖^2 := by gcongr
+    _ ≤ (8*((2*C+D)*L^2)*E)*‖f‖^2+M*‖f‖^2 := by gcongr
     _ = _ := by ring
+
+theorem residual_strip_bound :
+    ∃ K C B : ℝ, 0<K ∧ 0<C ∧ 0<B ∧ ∀ N : ℕ, ∀ (_ : NeZero N), Even N →
+    Real.exp 10<(N:ℝ) → GRH N → ∀ {a : ℝ}, alpha N≤a → ∀ (ha : a<beta) (Y : ℕ),
+    0<Y → 2*Y≤N →
+    ‖residualOperator ha N‖ ≤ K/(Real.log N)^16+
+      C*(Real.log N)^2*Real.exp (-(a-alpha N)*Real.log Y)+
+      B*singularSeries N*(N:ℝ)^(-2*a)*(a⁻¹)^2 := by
+  obtain ⟨C,B,cp,bp,cap⟩ := residual_strip_decay
+  refine ⟨1,C,B,zero_lt_one,cp,bp,?_⟩
+  intro N inst he big g a ua ha Y yp ys
+  have logp := (large_parameters big).2.1
+  exact (cap N inst he big g ua ha Y yp ys).trans (by
+    have := div_nonneg (zero_le_one: (0:ℝ)≤1) (pow_nonneg logp.le 16)
+    linarith)
 
 /-- A uniform bound down to a moving neighborhood of the original left
 boundary. It gives normalized decay whenever a log N - 2 log log N
 tends to positive infinity. -/
-theorem normalized_strip_bound :
+theorem normalized_exponential_bound :
     ∃ D : ℝ, 0<D ∧ ∀ N : ℕ, ∀ (_ : NeZero N), Even N → Real.exp 10<(N:ℝ) → GRH N →
     ∀ {a : ℝ}, alpha N≤a → ∀ ha : a<beta,
       ‖residualOperator ha N‖/singularSeries N ≤
-        D*((Real.log N^16)⁻¹ + Real.log N^2*Real.exp (-a*Real.log N)) := by
-  obtain ⟨K,C,B,kp,cp,bp,cap⟩ := residual_strip_bound
-  let D := K+2*Real.exp 1*C+B
+        D*(Real.log N^2*Real.exp (-a*Real.log N)) := by
+  obtain ⟨C,B,cp,bp,cap⟩ := residual_strip_decay
+  let D := 2*Real.exp 1*C+B
   have dpos : 0<D := by dsimp [D]; positivity
   refine ⟨D,dpos,?_⟩
   intro N inst even large g a ua ha
@@ -290,17 +304,21 @@ theorem normalized_strip_bound :
   have model : B*S*(N:ℝ)^(-2*a)*(a⁻¹)^2 ≤ B*S*E*L^2 :=
     mul_le_mul (mul_le_mul_of_nonneg_left nscale (by positivity))
       (pow_le_pow_left₀ (inv_nonneg.mpr ap.le) ai 2) (sq_nonneg _) (by positivity)
-  have shortS := le_mul_of_one_le_left (show 0≤K/L^16 by positivity) sp
   have crossS := le_mul_of_one_le_left (show 0≤C*L^2*(2*Real.exp 1*E) by positivity) sp
-  change ‖residualOperator ha N‖/S ≤ D*((L^16)⁻¹+L^2*E)
+  change ‖residualOperator ha N‖/S ≤ D*(L^2*E)
   apply (div_le_iff₀ s0).mpr
-  apply est.trans ((add_le_add (add_le_add shortS (cros.trans crossS)) model).trans _)
-  have kD : K≤D := by dsimp [D]; nlinarith only [mul_pos (Real.exp_pos 1) cp,bp]
-  have cD : 2*Real.exp 1*C+B≤D := by dsimp [D]; linarith
-  calc
-    _ = (K*(L^16)⁻¹+(2*Real.exp 1*C+B)*(L^2*E))*S := by ring
-    _ ≤ (D*(L^16)⁻¹+D*(L^2*E))*S := by gcongr
-    _ = _ := by ring
+  exact est.trans ((add_le_add (cros.trans crossS) model).trans_eq (by dsimp only [D]; ring))
+
+theorem normalized_strip_bound :
+    ∃ D : ℝ, 0<D ∧ ∀ N : ℕ, ∀ (_ : NeZero N), Even N → Real.exp 10<(N:ℝ) → GRH N →
+    ∀ {a : ℝ}, alpha N≤a → ∀ ha : a<beta,
+      ‖residualOperator ha N‖/singularSeries N ≤
+        D*((Real.log N^16)⁻¹ + Real.log N^2*Real.exp (-a*Real.log N)) := by
+  obtain ⟨D,dp,cap⟩ := normalized_exponential_bound
+  refine ⟨D,dp,?_⟩
+  intro N inst even big g a ua ha
+  apply (cap N inst even big g ua ha).trans
+  exact mul_le_mul_of_nonneg_left (le_add_of_nonneg_left (by positivity)) dp.le
 
 /-- Along every eligible sequence, the entire normalized operator tends
 to zero once the left boundary exceeds the indicated logarithmic scale. -/

@@ -14,7 +14,7 @@ roots = ["ActualLimits", "BetaSampling", "Characters", "Kernel", "Residues", "Pr
 
 [[lean_lib]]
 name = "ExistenceAudit"
-roots = ["ExistenceAudit", "ExistenceLocalization", "PhysicalSupport", "ModelDecay", "StripDecay", "ConductorMoments", "ConductorCorrection", "DiagonalPole", "SecondMoment", "MomentTruncation", "PerronApproximation", "PerronHardy", "PerronOperators", "PerronDiagonal", "PrimeResidual", "PrimeCorrelations", "SquareResidues", "SquareCorrelations", "SquareRemoval", "PowerRemoval", "PrimeHyperbola"]
+roots = ["ExistenceAudit", "ExistenceLocalization", "PhysicalSupport", "LocalPrimeForm", "ModelDecay", "StripDecay", "ConductorMoments", "ConductorCorrection", "DiagonalPole", "SecondMoment", "MomentTruncation", "PerronApproximation", "PerronHardy", "PerronOperators", "PerronDiagonal", "PrimeResidual", "PrimeCorrelations", "SquareResidues", "SquareCorrelations", "SquareRemoval", "PowerRemoval", "PrimeHyperbola"]
 
 [[lean_lib]]
 name = "SpectralTests"

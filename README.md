@@ -48,10 +48,12 @@ Here $\psi=\Gamma'/\Gamma$ and the sum runs over the distinct prime divisors of 
 Let $T_{N,a}$ be the original residual operator on the strip with left boundary $a$ and right boundary $1/8$. Write $L=\log N$. For all sufficiently large eligible even $N$ and every $1/L\le a<1/8$, an absolute constant $D$ satisfies
 
 $$
-\frac{\|T_{N,a}\|}{\mathfrak S(N)}\le D\bigl(L^{-16}+L^2 e^{-aL}\bigr).
+\frac{\|T_{N,a}\|}{\mathfrak S(N)}\le D L^2 e^{-aL}.
 $$
 
-In particular, the entire normalized operator tends to zero whenever $aL-2\log L\to+\infty$. Odd-character orthogonality cancels the finite arithmetic form when both indices are below $N/2$. Restriction to the strip with left boundary $a$ controls the terms outside this range. The model retains the separate factor $N^{-2a}$. At the boundary $a=1/L$ in Hypothesis S, the second term in the displayed bound is $L^2/e$. Decay at this boundary remains open. [Support and cancellation](Analytic435/PhysicalSupport.lean) · [Model estimate](Analytic435/ModelDecay.lean) · [Operator bound and limit](Analytic435/StripDecay.lean)
+In particular, the entire normalized operator tends to zero whenever $aL-2\log L\to+\infty$. At the boundary $a=1/L$ in Hypothesis S, the upper bound is $D L^2/e$. Decay at this boundary remains open. [Operator bound and limit](Analytic435/StripDecay.lean)
+
+For a test vector supported at Fourier times $t>-\log Y$, the original arithmetic form is exactly a finite signed sum over $n,j<Y$. This holds for every positive integer $Y$ at each eligible modulus. When $2Y\le N$, odd-character orthogonality makes the sum zero. Restriction to the strip with left boundary $a$ bounds the contribution from the complementary times. The model has its own factor $N^{-2a}$. [Fourier support](Analytic435/PhysicalSupport.lean) · [Exact arithmetic form](Analytic435/LocalPrimeForm.lean) · [Model estimate](Analytic435/ModelDecay.lean)
 
 ## Build the proofs
 

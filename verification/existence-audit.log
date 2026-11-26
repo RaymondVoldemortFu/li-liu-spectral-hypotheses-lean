@@ -1,8 +1,8 @@
-Build completed successfully (4384 jobs).
+Build completed successfully (4386 jobs).
 Lean default kernel accepts the solution
-checked 80514 declarations
+checked 80552 declarations
 con-leche: 1 inductive blocks modelled in-process: Lean.Syntax (30 generated records, checked by the fold as declarations and not counted as records of the file)
-con-leche: accepted 80513 declarations (--verified)
+con-leche: accepted 80551 declarations (--verified)
 ExistenceAudit.ndjson axiom declarations: Classical.choice, Quot.sound, propext
-9A36B08EAB0A1D303242CE3074C3BCB8F1450B3BD8CB3BEFD0A1E02A67AD7524
+7077655669A64690FF87BAA9C838EFF3613907AB1268F7A4219201884AB908B6
 Lean, lean4lean, con-leche and nanoda accepted the same export.

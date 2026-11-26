@@ -60,7 +60,7 @@ private theorem rank_error {H : Type*} [NormedAddCommGroup H] [InnerProductSpace
 
 /-- An actual Gram representation together with the sum of its squared
 column norms. The trace identity uses the finite-rank Gram representation. -/
-private theorem character_columns (N : ℕ) [NeZero N] (hlarge : Real.exp 10<(N:ℝ))
+theorem character_columns (N : ℕ) [NeZero N] (hlarge : Real.exp 10<(N:ℝ))
     (hGRH : GRH N) (ha : alpha N<beta) :
     ∃ v : {χ : Character N // χ ∈ oddCharacters N} → HardySpace (alpha N) beta,
       (∀ χ s, s∈strip (alpha N) beta → fourierLaplace (v χ) s =
